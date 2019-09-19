@@ -23,6 +23,7 @@ Here I combine notes and slides for my Python debugging workshop
 
 ## Dungeon game
 
+* args, to see who entered the function/room with us
 * increase context lines number, picture of a knight opening visor
 * up and down the floors in stack, multiple floors aka elevator
 * Sphinx's ridiculous puzzle with going back in time inside a function with `jump`
@@ -31,6 +32,10 @@ Here I combine notes and slides for my Python debugging workshop
 * cannot modify the code, only pdbrc
 * debugging inside a closure == inside the dragon's belly
 * enter to repeat command, keep walking
+* source the enemy to see weakness?
+* display/undisplay to check surroundings
+* interact: a safespace to experiment
+* we can use `!` only n-times
 
 
 ## TODO
