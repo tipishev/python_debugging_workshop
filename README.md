@@ -15,3 +15,5 @@ Here I combine notes and slides for my Python debugging workshop
 * %debug iPython magic
 * post-mortem
 * debugging live in a closure
+* pickling traceback for later debugging
+* frame-hacking, review David Beazley's book
