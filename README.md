@@ -23,8 +23,11 @@ Here I combine notes and slides for my Python debugging workshop
 
 ## Dungeon game
 
+* short commands: l - look, a - around
 * args, to see who entered the function/room with us
+* hide function arguments with *args and **kwargs
 * increase context lines number, picture of a knight opening visor
+  - use context size as a game mechanic aka light?
 * up and down the floors in stack, multiple floors aka elevator
 * Sphinx's ridiculous puzzle with going back in time inside a function with `jump`
 * make a "look" command to check surroundings (local variables?)
@@ -36,7 +39,14 @@ Here I combine notes and slides for my Python debugging workshop
 * display/undisplay to check surroundings
 * interact: a safespace to experiment
 * we can use `!` only n-times
+* morbid pickling
+* narrate to sys/err?
 
+### Meta
+
+* remember the last year talk about Multi-user Dungeons (MUD)
+* analogy with building a dungeon at work
+* mention `l`, `u`, and `d` reminding of Interactive Fiction (IF)
 
 ## TODO
 
