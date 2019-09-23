@@ -21,6 +21,9 @@ Here I combine notes and slides for my Python debugging workshop
   - condition
 
 
+## PDB 3.7.4 Notes
+
+
 ## Dungeon game
 
 * short commands: l - look, a - around
@@ -39,17 +42,22 @@ Here I combine notes and slides for my Python debugging workshop
 * display/undisplay to check surroundings
 * interact: a safespace to experiment
 * we can use `!` only n-times
-* morbid pickling
+* morbid traceback pickling, black bag?
 * narrate to sys/err?
+* flat structure: 3 dungeon branches, each with key, one final room
+* use ipdb.rc for provisioning
 
 ### Meta
 
 * remember the last year talk about Multi-user Dungeons (MUD)
 * analogy with building a dungeon at work
 * mention `l`, `u`, and `d` reminding of Interactive Fiction (IF)
+* mention git game
+* nethack
 
 ## TODO
 
 * review David Beazley's book on frames and frame hacking
 * read PDB source (1729 LOC): https://github.com/python/cpython/blob/master/Lib/pdb.py
 * read iPDV (345 LOC): https://github.com/gotcha/ipdb
+* read latest PDB docs
