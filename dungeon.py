@@ -20,7 +20,7 @@ class Player():
         self.is_armed = True
         narrate('you feel safer')
 
-    def attack(self, other):
+    def fight(self, other):
         assert self.is_armed
         del other
 
@@ -33,9 +33,9 @@ class Rat():
     def say(self, phrase):
         print(f'Rat: {phrase}')
 
-    def attack(self, player):
+    def fight(self, player):
         if not player.is_armed:
-            raise EatenByRat()
+            raise EatenByRat('maybe you should get a weapon')
         else:
             self.say('Ayeeee!')
             narrate('the rat perishes')
@@ -49,25 +49,29 @@ class EatenByRat(Exception):
 company = [Rat(), Rat(), Rat()]
 
 
-def entrance(self):
+def entrance(player):
     ''' an entrance to the Dungeons of Doom '''
-    ipdb.set_trace(context=5)
     rat = Rat()
-    rat.attack(player)
-    lower_floor(self, *company)
+    import pdb; pdb.set_trace(context=5, header=None)
+    rat.fight(player)
+    lower_floor(player, *company)
 
 
-def lower_floor(self, *company):
+def lower_floor(player, *company):
     ''' the room is decorated with glowing rocks '''
     narrate('you hear someone following you down the stairs')
     ipdb.set_trace(context=5)
     pass
 
 
-if __name__ == '__main__':
+def main():
     player = Player()
 
     # Preparation
-    player.arm()
+    #  player.arm()
 
     entrance(player)
+
+
+if __name__ == '__main__':
+    main()

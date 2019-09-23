@@ -6,11 +6,15 @@ Here I combine notes and slides for my Python debugging workshop
 ## Topics
 
 * pdb basic usage
+* useful aliases, combining, passing parameters
+* ;; multiple commands
+* .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
 * pretty-print with pp
 * `vars` built-in master race vs dirty `__dict__` peasants
 * one-time breakpoints
 * watching variables with post-run commands
 * %debug iPython magic
+* breakpoint() in Py3.7
 * post-mortem
 * debugging live in a closure
 * pickling traceback for later debugging
@@ -20,8 +24,27 @@ Here I combine notes and slides for my Python debugging workshop
   - filename:lineno | function
   - condition
 
+### iPdb tricks
 
-## PDB 3.7.4 Notes
+* autoreload
+
+## https://docs.python.org/3/library/pdb.html notes
+
+* debugger is extensible, `Pdb` class, `bdb` and `cmd` modules
+* `ipdb.run('dungeon.main()')`
+* envoke as a script `python3 -m ipdb dungeon.py`
+* auto-restart program, preserves breakpoints
+* `breakpoint()` built-in, find a way to switch to `ipdb`
+* `run` set breakpoints, accepts globals and locals kwargs, code object
+*  
+
+## PDB help notes
+* make fancy debugger
+* warn about single-letter variables, use `!` to be sure
+* `bt` alias for `where`
+* file-specified breakpoint looks on `sys.path`, `.py` can be skipped
+* enable/disable breakpoints, multiple (space separated list)
+
 
 
 ## Dungeon game
@@ -35,7 +58,7 @@ Here I combine notes and slides for my Python debugging workshop
 * Sphinx's ridiculous puzzle with going back in time inside a function with `jump`
 * make a "look" command to check surroundings (local variables?)
 * pp inventory
-* cannot modify the code, only pdbrc
+* cannot modify the code, only .pdbrc
 * debugging inside a closure == inside the dragon's belly
 * enter to repeat command, keep walking
 * source the enemy to see weakness?
@@ -46,12 +69,14 @@ Here I combine notes and slides for my Python debugging workshop
 * narrate to sys/err?
 * flat structure: 3 dungeon branches, each with key, one final room
 * use ipdb.rc for provisioning
+* use termcolor?
+* use emojis, e.g. hearts for health status
 
 ### Meta
 
 * remember the last year talk about Multi-user Dungeons (MUD)
 * analogy with building a dungeon at work
-* mention `l`, `u`, and `d` reminding of Interactive Fiction (IF)
+* mention `l` (look or light), `u`, and `d` reminding of Interactive Fiction (IF)
 * mention git game
 * nethack
 
@@ -61,3 +86,6 @@ Here I combine notes and slides for my Python debugging workshop
 * read PDB source (1729 LOC): https://github.com/python/cpython/blob/master/Lib/pdb.py
 * read iPDV (345 LOC): https://github.com/gotcha/ipdb
 * read latest PDB docs
+* read on bdb https://docs.python.org/3/library/bdb.html#module-bdb
+* read on https://docs.python.org/3/library/cmd.html#module-cmd
+* read all the help tree in PDB's `h` menu
