@@ -72,6 +72,9 @@ Here I combine notes and slides for my Python debugging workshop
 * use ipdb.rc for provisioning
 * use termcolor?
 * use emojis, e.g. hearts for health status
+* aliases for solving puzzles
+* bottomless pit of recursion missing a basecase
+* uranium coins? fix by rewriting pickup-hook
 
 ### Meta
 
