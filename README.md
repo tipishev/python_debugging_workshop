@@ -23,6 +23,7 @@ Here I combine notes and slides for my Python debugging workshop
 * break
   - filename:lineno | function
   - condition
+* `_` variable
 
 ### iPdb tricks
 
@@ -34,7 +35,7 @@ Here I combine notes and slides for my Python debugging workshop
 * `ipdb.run('dungeon.main()')`
 * envoke as a script `python3 -m ipdb dungeon.py`
 * auto-restart program, preserves breakpoints
-* `breakpoint()` built-in, find a way to switch to `ipdb`
+* `breakpoint()` built-in in 3.7+, find a way to switch to `ipdb`
 * `run` set breakpoints, accepts globals and locals kwargs, code object
 *  
 
@@ -49,7 +50,7 @@ Here I combine notes and slides for my Python debugging workshop
 
 ## Dungeon game
 
-* short commands: l - look, a - around
+* short commands: `l` - look, `a` - around
 * args, to see who entered the function/room with us
 * hide function arguments with *args and **kwargs
 * increase context lines number, picture of a knight opening visor
@@ -80,12 +81,17 @@ Here I combine notes and slides for my Python debugging workshop
 * mention git game
 * nethack
 
-## TODO
+## Reading List
 
-* review David Beazley's book on frames and frame hacking
-* read PDB source (1729 LOC): https://github.com/python/cpython/blob/master/Lib/pdb.py
-* read iPDV (345 LOC): https://github.com/gotcha/ipdb
-* read latest PDB docs
-* read on bdb https://docs.python.org/3/library/bdb.html#module-bdb
-* read on https://docs.python.org/3/library/cmd.html#module-cmd
-* read all the help tree in PDB's `h` menu
+* latest PDB docs
+* PDB help docs
+* all the help tree in PDB's `h` menu
+* https://realpython.com/python-debugging-pdb/
+* https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
+* https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/
+* example .pdbrc https://nedbatchelder.com/blog/200704/my_pdbrc.html
+* PDB source (1729 LOC): https://github.com/python/cpython/blob/master/Lib/pdb.py
+* iPDV (345 LOC): https://github.com/gotcha/ipdb
+* on bdb https://docs.python.org/3/library/bdb.html#module-bdb
+* on https://docs.python.org/3/library/cmd.html#module-cmd
+* David Beazley's cookbook, search for "frame", "debug", and "pdb"
