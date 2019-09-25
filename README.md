@@ -98,3 +98,4 @@ Here I combine notes and slides for my Python debugging workshop
 * on bdb https://docs.python.org/3/library/bdb.html#module-bdb
 * on https://docs.python.org/3/library/cmd.html#module-cmd
 * David Beazley's cookbook, search for "frame", "debug", and "pdb"
+* look at https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
