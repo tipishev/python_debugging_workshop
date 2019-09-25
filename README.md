@@ -28,6 +28,8 @@ Here I combine notes and slides for my Python debugging workshop
 ### iPdb tricks
 
 * autoreload
+* %debug% instead of .pm()
+* other magic commands?
 
 ## https://docs.python.org/3/library/pdb.html notes
 
