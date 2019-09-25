@@ -48,6 +48,11 @@ Here I combine notes and slides for my Python debugging workshop
 * file-specified breakpoint looks on `sys.path`, `.py` can be skipped
 * enable/disable breakpoints, multiple (space separated list)
 
+## https://github.com/python/cpython/blob/master/Lib/pdb.py
+
+* `find_function` uses `re`, delayed context manager
+* `getsourcelines` uses `inspect.findsource`, special logic for modules
+
 
 
 ## Dungeon game
@@ -58,7 +63,7 @@ Here I combine notes and slides for my Python debugging workshop
 * increase context lines number, picture of a knight opening visor
   - use context size as a game mechanic aka light?
 * up and down the floors in stack, multiple floors aka elevator
-* Sphinx's ridiculous puzzle with going back in time inside a function with `jump`
+* Sphinx's puzzle with going back in time inside a function with `jump`
 * make a "look" command to check surroundings (local variables?)
 * pp inventory
 * cannot modify the code, only .pdbrc
@@ -95,8 +100,7 @@ Here I combine notes and slides for my Python debugging workshop
 * https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
 * https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/
 * example .pdbrc https://nedbatchelder.com/blog/200704/my_pdbrc.html
-* PDB source (1729 LOC): https://github.com/python/cpython/blob/master/Lib/pdb.py
-* iPDV (345 LOC): https://github.com/gotcha/ipdb
+* iPDB (345 LOC): https://github.com/gotcha/ipdb
 * on bdb https://docs.python.org/3/library/bdb.html#module-bdb
 * on https://docs.python.org/3/library/cmd.html#module-cmd
 * David Beazley's cookbook, search for "frame", "debug", and "pdb"
