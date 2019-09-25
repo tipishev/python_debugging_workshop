@@ -39,7 +39,7 @@ Here I combine notes and slides for my Python debugging workshop
 * auto-restart program, preserves breakpoints
 * `breakpoint()` built-in in 3.7+, find a way to switch to `ipdb`
 * `run` set breakpoints, accepts globals and locals kwargs, code object
-*  
+* 
 
 ## PDB help notes
 * make fancy debugger
@@ -50,8 +50,34 @@ Here I combine notes and slides for my Python debugging workshop
 
 ## https://github.com/python/cpython/blob/master/Lib/pdb.py
 
+Notes on the latest PDB source.
+
 * `find_function` uses `re`, delayed context manager
 * `getsourcelines` uses `inspect.findsource`, special logic for modules
+* `lasti2lineno` uses `dis.filndlinestarts`, what's `lasti`?
+* `_rstr` String that doesn't quote its repr., what is it for?
+* line_prefix
+
+### class PDB
+
+* inherits from `cmd.Cmd` and `cmd.Bdb`
+* initializes both parents with relevant `__init__` args
+* prompt is initialized to `(Pdb) `
+* has dicts for aliases and displaying
+* `mainpytfile`/`wait_for_mainpyfile`
+* tries to use `readline` with a ridiculous regexp
+* successively reads global and local `.pdbrc`
+* has breakpoint-number-keyed dicts for
+  - commands
+  - commands_doprompt
+  - silent
+* flag and bp number for defining commands
+* `sigint_handler`
+* `reset` delegates to `bdb.Bdb`, calls `self.forget`
+* `self.forget` resets line number, stack, current index, frame, tb_lineno
+* `setup` forget(), `tb_lasti`, caches lineno, and `curframe.f_locals`
+* `execRcLines` check for `self.onecmd` and not comment (`'#'`)
+* overrides Bdb `.user_call`, `.user_line`, `.bp_commands`
 
 
 
