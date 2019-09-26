@@ -78,6 +78,12 @@ Notes on the latest PDB source.
 * `setup` forget(), `tb_lasti`, caches lineno, and `curframe.f_locals`
 * `execRcLines` check for `self.onecmd` and not comment (`'#'`)
 * overrides Bdb `.user_call`, `.user_line`, `.bp_commands`
+* bp_commands
+  - bdb sets self.current_bp
+  - checks self.commands
+  - one_cmd
+  - checks silencing and prompting
+* user_return
 
 
 
