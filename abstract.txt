@@ -1,15 +1,20 @@
 0) What is your workshop about?
 
-
+The workshop is about using Python's builtin debugger PDB and its extension iPDB.
 
 1) What the workshop’s domain of concern?
+
+Efficient use of debugger for understanding programs' dynamic behavior and finding bugs' root causes by going through practical exercises.
 
 
 2) What kind problem does it solve?
 
+Many developers inspect runtime state of their programs using print statements or logging. This approach works for simple cases but becomes insufficient with more moving parts. A debugger allows to get inside a running program, read and change its state and have a faster feedback loop in testing bug origin theories. This workshop aims to be a solid practical introduction for those new to debugging and act as a refresher for those who have used it before.
+
 
 3) Why is it important/difficult?
 
+This is important because learning to use a debugger once saves time.
 
 4) What kind of skills will audience learn from the workshop?
 
