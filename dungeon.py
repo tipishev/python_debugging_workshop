@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import ipdb
 
 
 def narrate(phrase):
@@ -59,7 +58,6 @@ def entrance(player):
 def lower_floor(player, *company):
     ''' the room is decorated with glowing rocks '''
     narrate('you hear someone following you down the stairs')
-    ipdb.set_trace(context=5)
     pass
 
 
