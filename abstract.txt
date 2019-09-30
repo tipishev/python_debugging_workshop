@@ -1,51 +1,27 @@
-0) What is your workshop about?
-
-The workshop is about using Python's builtin debugger pdb and its extension ipdb.
-
-1) What the workshop’s domain of concern?
-
-Efficient use of debugger for understanding programs' dynamic behavior and finding the root causes of bugs.
-
-2) What kind problem does it solve?
-
-Many developers inspect their running programs with print statements or logging. This works for simple cases but becomes insufficient when more moving parts are involved. A debugger allows to pause a running program, read and change its state, and control the execution flow.
-
-This workshop is a solid hands-on introduction to ipdb, a refresher for those who have used it before, and shows new features specific to Python 3.
-
-3) Why is it important/difficult?
-
-This is important because learning to use a debugger is a one-time investment that helps to fix bugs faster. The speedup comes from a faster feedback loop in testing bug origin theories.
-
-4) What kind of skills will audience learn from the workshop?
-
 This workshop will teach how to start the debugger, control the program flow, and inspect its internal state.
 
-
-5) Is there any prerequisite knowledge required to attend the workshop?
 This workshop assumes a basic knowledge of using Python interactive shell. Participants are welcome to bring laptops and follow along
 
 * improve
-
-
-
-You can also send us a short bio (max 2 sentence) if you want that to be published in the program together with your workshop!
+---
+What do you do when you see an exception stacktrace? Unless it's an obvious error, you examine the runtime state that caused it. Many developers do that with print and logging, which is fine for simple cases but gets increasingly complex with more moving parts involved. Fortunately, Python comes with a built-in debugger, a tool that lets you pause a running program, read and change its state, and control the execution flow. This workshop is a solid hands-on on (i)pdb in Python 3 that will help you to fix the bugs faster by having a shorter feedback loop for testing bug origin theories. In this workshop we will go through exercises on launching the debugger, inspecting the state of a running program, and controlling its execution.
 
 ---
 Notes on existing abstracts:
 
-- Foo is a bar, and does baz.
-- Rhetorical question 
-- Second person, referring to self
-- This is where Foo shines
-- What I will do in this talk
-- Foo does baz
-- 3 questions akin to HSAC!WDTK?DTKT??LFO!
+v Foo is a bar, and does baz.
+v Rhetorical question 
+x Second person, referring to self
+v This is where Foo shines
+~ What I will do in this talk
+v Foo does baz
+~ 3 questions akin to HSAC!WDTK?DTKT??LFO!
 - Observation
 - This talk will present
 - The talk presents Foo and introduces Bar
 - In this talk, we are going to ...
-- States problem as a fact of life
-- Declares the speaker in 3rd person
+v States problem as a fact of life
+x Declares the speaker in 3rd person
 - This talk gives an overview
 - "that make you"
 - An overview of talk "finishes up with..."
@@ -59,3 +35,5 @@ Notes on existing abstracts:
 - Good news first sentence problem resolution, aka "We're gonna die! Unless.."
 - We'll cover
 - foo will help *you*
+---
+Timofei Tipishev, software developer at Sportamore.
