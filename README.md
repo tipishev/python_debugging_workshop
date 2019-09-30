@@ -89,7 +89,10 @@ Notes on the latest PDB source.
 
 ## Dungeon game
 
+### Ideas
+
 * short commands: `l` - look, `a` - around
+  - a,b,c for 3 rats doesn't work, tell about `!`
 * args, to see who entered the function/room with us
 * hide function arguments with *args and **kwargs
 * increase context lines number, picture of a knight opening visor
@@ -114,6 +117,11 @@ Notes on the latest PDB source.
 * aliases for solving puzzles
 * bottomless pit of recursion missing a basecase
 * uranium coins? fix by rewriting pickup-hook
+
+### Realized notes
+* launching `./dungeon.py` seems the easiest
+* `__` works quite well for a filler
+
 
 ### Meta
 

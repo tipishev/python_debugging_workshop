@@ -1,23 +1,29 @@
 #!/usr/bin/env python3
 
-
+__ = "filler oh-oh-oh filler"
 
 def narrate(phrase):
     print(f'*{phrase}*')
 
+# TODO fight as a global function
 
-# TODO revisit an `enter` method
-class Player():
 
-    def __init__(self):
+class Player:
+
+    # TODO revisit an `enter` method or a global function
+
+    def __init__(self, name):
+        self.name = name
         self.is_armed = False
+        self.hearts = 3
 
     def __repr__(self):
-        return 'this is you'
+        return f'this is you, {self.name}'
 
     def arm(self):
+        narrate(f'{self.name} exercises the 2nd ammendment')
         self.is_armed = True
-        narrate('you feel safer')
+        narrate(f'{self.name} feels safer')
 
     def fight(self, other):
         assert self.is_armed
@@ -41,31 +47,98 @@ class Rat():
 
 
 class EatenByRat(Exception):
-    pass
-
-
-# hm.. passing an arg tuple doesn't support deletion, wrap list?
-company = [Rat(), Rat(), Rat()]
+    ''' a fate no worse than death, but much more humiliating '''
 
 
 def entrance(player):
     ''' an entrance to the Dungeons of Doom '''
     rat = Rat()
     rat.fight(player)
-    lower_floor(player, *company)
+    import ipdb; ipdb.set_trace(context=5); pass  # XXX breakpoint
+    __
+    __
+    __
+    __
+    __
+    __
+    '''
+    show ways to stop
+    * set a breakpoint
+    * until
+    '''
+    __
+    __
+    __
+    __  # you know
+    __  # it can go for quite a while...
+    __  # pst! take a look at lines 79 to 80  # FIXME they change
+    __
+    __
+    __
+    __
+    __
+    __
+    narrate('nothing to see for for the next 20 lines')
+    '''
+    * use l for incremental listing
+    * use ll for listing
+    * use absolute look with n, n+10
+    * use absolute look with n, 10  # same as previous
+    '''
+    __  # l 71,20
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    lower_floor(player, company=[Rat()] * 3)
 
 
-def lower_floor(player, *company):
+def lower_floor(player, company):
     ''' the room is decorated with glowing rocks '''
     narrate('you hear someone following you down the stairs')
     pass
 
 
 def main():
-    player = Player()
+    player = Player(name='Tim')
 
-    # Preparation
-    #  player.arm()
+    # Preparation  TODO a separate method?
+    player.arm()
 
     entrance(player)
 
