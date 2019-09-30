@@ -19,7 +19,7 @@ Here I combine notes and slides for my Python debugging workshop
 * debugging live in a closure
 * pickling traceback for later debugging
 * pdb config file
-* pinfo, pinfo2
+* pinfo, pinfo2: real story `DictWriter.field_names`
 * break
   - filename:lineno | function
   - condition
