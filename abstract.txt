@@ -32,3 +32,18 @@ This workshop assumes a basic knowledge of using Python interactive shell. Parti
 
 You can also send us a short bio (max 2 sentence) if you want that to be published in the program together with your workshop!
 
+---
+Notes on existing abstracts:
+
+- Foo is a bar, and does baz.
+- Rhetorical question 
+- Second person, referring to self
+- This is where Foo shines
+- What I will do in this talk
+- Foo does baz
+- 3 questions akin to HSAC!WDTK?DTKT??LFO!
+- Observation
+- This talk will present
+- The talk presents Foo and introduces Bar
+- In this talk we are going to ...
+- 
