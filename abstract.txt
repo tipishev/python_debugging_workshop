@@ -1,11 +1,7 @@
-This workshop will teach how to start the debugger, control the program flow, and inspect its internal state.
-
-This workshop assumes a basic knowledge of using Python interactive shell. Participants are welcome to bring laptops and follow along
-
-* improve
 ---
-What do you do when you see an exception stacktrace? Unless it's an obvious error, you examine the runtime state that caused it. Many developers do that with print and logging, which is fine for simple cases but gets increasingly complex with more moving parts involved. Fortunately, Python comes with a built-in debugger, a tool that lets you pause a running program, read and change its state, and control the execution flow. This workshop is a solid hands-on on (i)pdb in Python 3 that will help you to fix the bugs faster by having a shorter feedback loop for testing bug origin theories. In this workshop we will go through exercises on launching the debugger, inspecting the state of a running program, and controlling its execution.
+What do you do when you see an exception stacktrace? Unless it's a simple error, you examine the runtime state that caused it. Many developers do that with print and logging, which works well for simple cases but becomes complex with more moving parts involved. Fortunately, there is a built-in debugger pdb, as well as an improved iPython-powered wrapper ipdb, which lets you pause a running program, read and change its state, and control the execution flow. Ipdb is also useful in postmortem mode: one can explore the whole stacktrace right after an exception and collect all the relevant information at once instead of printing one variable at a time.
 
+This workshop is a hands-on tutorial on ipdb in Python 3. The exercises include configuration, launching, and navigating ipdb. If we have enough time we may also look at how to extend the default debugger. The workshop aims to sharpen your debugging skills and to reduce the feedback time for testing bug origin theories. If you bring a laptop you can follow along, but you don't have to: the slides and code will be available on Github.
 ---
 Notes on existing abstracts:
 
@@ -16,24 +12,24 @@ v This is where Foo shines
 ~ What I will do in this talk
 v Foo does baz
 ~ 3 questions akin to HSAC!WDTK?DTKT??LFO!
-- Observation
-- This talk will present
-- The talk presents Foo and introduces Bar
-- In this talk, we are going to ...
+v Observation
+v This talk will present
+v The talk presents Foo and introduces Bar
+v In this talk, we are going to ...
 v States problem as a fact of life
 x Declares the speaker in 3rd person
 - This talk gives an overview
-- "that make you"
-- An overview of talk "finishes up with..."
-- I will foo, I will bar
-- Nowadays, with foo and bar, more and more people...
-- Foo in bar has been ..., but baz is not enough 
-- This session will be introduction to foo
-- State the problem as the first sentence  
-- This talk will cover foo, a bar.
-- We will do foo and bar
-- Good news first sentence problem resolution, aka "We're gonna die! Unless.."
-- We'll cover
-- foo will help *you*
+v "that make you"
+v An overview of talk "finishes up with..."
+v I will foo, I will bar
+v Nowadays, with foo and bar, more and more people...
+v Foo in bar has been ..., but baz is not enough 
+v This session will be introduction to foo
+v State the problem as the first sentence  
+v This talk will cover foo, a bar.
+v We will do foo and bar
+v Good news first sentence problem resolution, aka "We're gonna die! Unless.."
+v We'll cover
+v foo will help *you*
 ---
 Timofei Tipishev, software developer at Sportamore.
