@@ -6,13 +6,11 @@ The workshop is about using Python's builtin debugger pdb and its extension ipdb
 
 Efficient use of debugger for understanding programs' dynamic behavior and finding the root causes of bugs.
 
-
 2) What kind problem does it solve?
 
 Many developers inspect their running programs with print statements or logging. This works for simple cases but becomes insufficient when more moving parts are involved. A debugger allows to pause a running program, read and change its state, and control the execution flow.
 
 This workshop is a solid hands-on introduction to ipdb, a refresher for those who have used it before, and shows new features specific to Python 3.
-
 
 3) Why is it important/difficult?
 
@@ -45,5 +43,19 @@ Notes on existing abstracts:
 - Observation
 - This talk will present
 - The talk presents Foo and introduces Bar
-- In this talk we are going to ...
-- 
+- In this talk, we are going to ...
+- States problem as a fact of life
+- Declares the speaker in 3rd person
+- This talk gives an overview
+- "that make you"
+- An overview of talk "finishes up with..."
+- I will foo, I will bar
+- Nowadays, with foo and bar, more and more people...
+- Foo in bar has been ..., but baz is not enough 
+- This session will be introduction to foo
+- State the problem as the first sentence  
+- This talk will cover foo, a bar.
+- We will do foo and bar
+- Good news first sentence problem resolution, aka "We're gonna die! Unless.."
+- We'll cover
+- foo will help *you*
