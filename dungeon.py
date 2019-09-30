@@ -52,7 +52,6 @@ company = [Rat(), Rat(), Rat()]
 def entrance(player):
     ''' an entrance to the Dungeons of Doom '''
     rat = Rat()
-    import pdb; pdb.set_trace(context=5, header=None)
     rat.fight(player)
     lower_floor(player, *company)
 
