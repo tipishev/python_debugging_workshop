@@ -125,7 +125,7 @@ def entrance(player):
     __
     __
     __
-    lower_floor(player, company=[Rat()] * 3)
+    lower_floor(player, company=[Rat()] * 3)  # TODO hide env with **lower_floor_kwargs
 
 
 def lower_floor(player, company):
