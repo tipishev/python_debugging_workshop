@@ -39,7 +39,13 @@ Here I combine notes and slides for my Python debugging workshop
 * auto-restart program, preserves breakpoints
 * `breakpoint()` built-in in 3.7+, find a way to switch to `ipdb`
 * `run` set breakpoints, accepts globals and locals kwargs, code object
-* 
+* `runeval` returns the expression result. Ok.
+* `runcall` to run a callable
+* `run`, `runeval`, `runcall` are boring
+* `set_trace` FTW, could not test header in `ipdb`
+
+
+* TODO `post_mortem` STUDY sys.traceback!
 
 ## PDB help notes
 * make fancy debugger
