@@ -24,6 +24,7 @@ Here I combine notes and slides for my Python debugging workshop
   - filename:lineno | function
   - condition
 * `_` variable
+* Emojii plugin for gdb, saved in twitter likes
 
 ### iPdb tricks
 
