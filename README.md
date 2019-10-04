@@ -8,7 +8,6 @@ Here I combine notes and slides for my Python debugging workshop
 * pdb basic usage
 * useful aliases, combining, passing parameters
 * ;; multiple commands
-* .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
 * pretty-print with pp
 * `vars` built-in master race vs dirty `__dict__` peasants
 * one-time breakpoints
@@ -18,12 +17,12 @@ Here I combine notes and slides for my Python debugging workshop
 * post-mortem
 * debugging live in a closure
 * pickling traceback for later debugging
-* pdb config file
+* pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
 * pinfo, pinfo2: real story `DictWriter.field_names`
 * break
   - filename:lineno | function
   - condition
-* `_` variable
+* `_` variable stores the result of previous ivocation
 * Emojii plugin for gdb, saved in twitter likes
 
 ### iPdb tricks
