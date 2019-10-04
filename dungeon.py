@@ -1,21 +1,64 @@
 #!/usr/bin/env python3
 
 __ = "filler oh-oh-oh filler"
+PLUTONIUM_CRITICAL_MASS = 11  # kg
+
 
 def narrate(phrase):
     print(f'*{phrase}*')
 
+
+def encounter(*actors):
+    for actor in actors:
+        pass
+
+
 # TODO fight as a global function
+
+# Items
+
+class Coin:
+    """ a plain silver coin
+          __,.,---'''''              '''''---..._
+       ,-'             .....:::''::.:            '`-.
+      '           ...:::.....       '
+                  ''':::'''''       .               ,
+      |'-.._           ''''':::..::':          __,,-
+       '-.._''`---.....______________.....---''__,,-
+            ''`---.....______________.....---''
+    """
+
+
+coin = Coin()
+
+
+class PlutCoin:
+    """ a 1 kg plutonium-239 coin
+                      ______________
+          __,.,---'''''              '''''---..._
+       ,-'             .....:::''::.:            '`-.
+      '           ...:::.....       '
+                  ''':::'''''       .               ,
+      |'-.._           ''''':::..::':          __,,-
+       '-.._''`---.....______________.....---''__,,-
+            ''`---.....______________.....---''
+
+    """
+
+
+plutcoin = PlutCoin()
 
 
 class Player:
 
     # TODO revisit an `enter` method or a global function
+    # TODO move editable parts to a separate file
 
     def __init__(self, name):
         self.name = name
         self.is_armed = False
         self.hearts = 3
+        self.inventory = []
 
     def __repr__(self):
         return f'this is you, {self.name}'
@@ -25,15 +68,25 @@ class Player:
         self.is_armed = True
         narrate(f'{self.name} feels safer')
 
-    def fight(self, other):
+    def fight(self, other):  # TODO should be a global function
         assert self.is_armed
         del other
 
+    def pick(self, item):
+        # TODO make it adjustable to avoid picking up too much plutonium
+        self.inventory.append(item)
 
-class Rat():
+        # a splode if carrying too much plutcoin
+        plutonium_mass = len([item for item in self.inventory
+                              if isinstance(item, PlutCoin)])
+        if plutonium_mass >= PLUTONIUM_CRITICAL_MASS:
+            raise AtomicallyExploded('you became too enriched')
+
+
+class Rat():  # TODO make a Creature superclass
 
     def __repr__(self):
-        return 'a hideous rodent'
+        return 'A rat'
 
     def say(self, phrase):
         print(f'Rat: {phrase}')
@@ -45,16 +98,24 @@ class Rat():
             self.say('Ayeeee!')
             narrate('the rat perishes')
 
+# Exceptions aka Deaths
+
 
 class EatenByRat(Exception):
-    ''' a fate no worse than death, but much more humiliating '''
+    ''' a fate no worse than death, just more humiliating '''
+
+
+class AtomicallyExploded(Exception):
+    ''' unlike whiskey, too much plutonium is too much '''
 
 
 def entrance(player):
     ''' an entrance to the Dungeons of Doom '''
-    rat = Rat()
-    rat.fight(player)
-    import ipdb; ipdb.set_trace(context=5); pass  # XXX breakpoint
+    #  rat = Rat()
+    #  rat.fight(player)
+    import ipdb
+    ipdb.set_trace(context=5)  # XXX breakpoint
+    boring_corridor(player)
     __
     __
     __
@@ -128,20 +189,73 @@ def entrance(player):
     lower_floor(player, company=[Rat()] * 3)  # TODO hide env with **lower_floor_kwargs
 
 
+def boring_corridor(player):
+    ''' This is a rather dull looking corridor with grey dusty walls '''
+    __
+    __
+    __
+    __
+    __
+    __  # there's a writing on a dusty wall
+    __  # "this corridor is long,
+    __  # I promiss, there is nothing
+    __  # to see here, just a 5 coins.
+    __  # so, just type "r" or "return" to skip to the end of it.
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    player.pick(coin)
+    __
+    __
+    __
+    __
+    __
+    __
+    player.pick(coin)
+    player.pick(coin)
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    player.pick(coin)
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    __
+    return 42  # Thanks for walking with us, buh-bye!
+
+
 def lower_floor(player, company):
     ''' the room is decorated with glowing rocks '''
     narrate('you hear someone following you down the stairs')
     pass
 
 
-def main():
+def main_corridor():
     player = Player(name='Tim')
 
-    # Preparation  TODO a separate method?
+    # Preparation  TODO a separate method or file?
     player.arm()
 
     entrance(player)
 
 
 if __name__ == '__main__':
-    main()
+    main_corridor()

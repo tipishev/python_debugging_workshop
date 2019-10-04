@@ -87,7 +87,6 @@ Notes on the latest PDB source.
 * user_return
 
 
-
 ## Dungeon game
 
 ### Ideas
@@ -114,14 +113,25 @@ Notes on the latest PDB source.
 * flat structure: 3 dungeon branches, each with key, one final room
 * use ipdb.rc for provisioning
 * use termcolor?
-* use emojis, e.g. hearts for health status
 * aliases for solving puzzles
 * bottomless pit of recursion missing a basecase
-* uranium coins? fix by rewriting pickup-hook
+* use money mechanic to buy a key or get killed by a shopkeep
+
+* all deaths are preventable with proper preparation!!!
 
 ### Realized notes
 * launching `./dungeon.py` seems the easiest
 * `__` works quite well for a filler
+* uranium coins? fix by rewriting pickup-hook
+* use emojis, e.g. hearts for health status
+
+
+### Description
+
+So, without further ado we descend into the Dungeons of Doom.
+
+### Boring Corridor
+as 
 
 
 ### Meta
