@@ -3,6 +3,28 @@
 Here I combine notes and slides for my Python debugging workshop
 
 
+## Plan
+
+### Introduction
+
+
+### Main part
+
+* [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
+* help commands
+
+### Conclusion
+
+* Now you know what to do when you encounter a bug
+  - insert a breakpoint
+  - if it's live use one of `run`, `runeval`, or `runcall` or `set_trace` in a closure
+
+* Call to action
+  - set up useful aliases (which?)
+  - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
+
+
+
 ## Topics
 
 * pdb basic usage
@@ -22,8 +44,10 @@ Here I combine notes and slides for my Python debugging workshop
 * break
   - filename:lineno | function
   - condition
+* tbreak aka tea break
 * `_` variable stores the result of previous ivocation
 * Emojii plugin for gdb, saved in twitter likes
+* mocking live code
 
 ### iPdb tricks
 
@@ -41,7 +65,7 @@ Here I combine notes and slides for my Python debugging workshop
 * `run` set breakpoints, accepts globals and locals kwargs, code object
 * `runeval` returns the expression result. Ok.
 * `runcall` to run a callable
-* `run`, `runeval`, `runcall` are boring
+* `run`, `runeval`, `runcall` are boring but useful with no access to code
 * `set_trace` FTW, could not test header in `ipdb`
 
 
@@ -123,6 +147,7 @@ Notes on the latest PDB source.
 * use money mechanic to buy a key or get killed by a shopkeep
 
 * all deaths are preventable with proper preparation!!!
+* condition can be decreasing health.
 
 ### Realized notes
 * launching `./dungeon.py` seems the easiest
@@ -136,7 +161,7 @@ Notes on the latest PDB source.
 So, without further ado we descend into the Dungeons of Doom.
 
 ### Boring Corridor
-as 
+
 
 
 ### Meta
