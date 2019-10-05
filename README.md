@@ -8,7 +8,6 @@ Here I combine notes and slides for my Python debugging workshop
 * pdb basic usage
 * useful aliases, combining, passing parameters
 * ;; multiple commands
-* .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
 * pretty-print with pp
 * `vars` built-in master race vs dirty `__dict__` peasants
 * one-time breakpoints
@@ -18,12 +17,13 @@ Here I combine notes and slides for my Python debugging workshop
 * post-mortem
 * debugging live in a closure
 * pickling traceback for later debugging
-* pdb config file
+* pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
 * pinfo, pinfo2: real story `DictWriter.field_names`
 * break
   - filename:lineno | function
   - condition
-* `_` variable
+* `_` variable stores the result of previous ivocation
+* Emojii plugin for gdb, saved in twitter likes
 
 ### iPdb tricks
 
@@ -39,7 +39,13 @@ Here I combine notes and slides for my Python debugging workshop
 * auto-restart program, preserves breakpoints
 * `breakpoint()` built-in in 3.7+, find a way to switch to `ipdb`
 * `run` set breakpoints, accepts globals and locals kwargs, code object
-* 
+* `runeval` returns the expression result. Ok.
+* `runcall` to run a callable
+* `run`, `runeval`, `runcall` are boring
+* `set_trace` FTW, could not test header in `ipdb`
+
+
+* TODO `post_mortem` STUDY sys.traceback!
 
 ## PDB help notes
 * make fancy debugger
