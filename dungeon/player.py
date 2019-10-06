@@ -17,3 +17,7 @@ class Player:  # TODO inherit from Creature?
 
     def dares(self, location):
         return False  # let's play it safe for now
+
+    def rename(self):
+        self.name = 'Foomba'
+        return 'Foomba'

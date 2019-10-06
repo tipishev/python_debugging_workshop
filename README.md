@@ -67,6 +67,10 @@ Here I combine notes and slides for my Python debugging workshop
 * `runcall` to run a callable
 * `run`, `runeval`, `runcall` are boring but useful with no access to code
 * `set_trace` FTW, could not test header in `ipdb`
+* `alias` can take all arguments with `%*`
+* `interact` what's the use?
+* `p`... why would I use it instead of !command?, I guess if one misses prints
+* `>>` marks current exception
 
 
 * TODO `post_mortem` STUDY sys.traceback!
@@ -128,13 +132,15 @@ Notes on the latest PDB source.
   - use context size as a game mechanic aka light?
 * up and down the floors in stack, multiple floors aka elevator
 * Sphinx's puzzle with going back in time inside a function with `jump`
+* jump over pits
 * make a "look" command to check surroundings (local variables?)
-* pp inventory
+* pp a bag full of JSON
 * cannot modify the code, only .pdbrc
 * debugging inside a closure == inside the dragon's belly
 * enter to repeat command, keep walking
 * source the enemy to see weakness?
 * display/undisplay to check surroundings
+* `display` to check coin count, try multiple
 * interact: a safespace to experiment
 * we can use `!` only n-times
 * morbid traceback pickling, black bag?
@@ -147,6 +153,7 @@ Notes on the latest PDB source.
 * use money mechanic to buy a key or get killed by a shopkeep
 
 * all deaths are preventable with proper preparation!!!
+* hm... maybe passwords to avoid redoing boring exercises
 * condition can be decreasing health.
 
 ### Realized notes
