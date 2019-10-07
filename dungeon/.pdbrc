@@ -1,0 +1,9 @@
+# Print instance variables (usage "pi classInst")
+alias pi for k in %1.__dict__.keys(): print("%1.",k,"=",%1.__dict__[k])
+# Print instance variables in self
+alias ps pi player
+
+alias inventory pp player.inventory
+alias inv inventory
+alias i inv
+alias iw print("=Weapons=\n") ;; pp [item for item in player.inventory if item in ['sword', 'dagger', 'whip']]

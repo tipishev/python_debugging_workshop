@@ -143,7 +143,7 @@ Notes on the latest PDB source.
 * `display` to check coin count, try multiple
 * interact: a safespace to experiment
 * we can use `!` only n-times
-* morbid traceback pickling, black bag?
+* morbid traceback pickling, black bag with another adventurer's traceback
 * narrate to sys/err?
 * flat structure: 3 dungeon branches, each with key, one final room
 * use ipdb.rc for provisioning
@@ -167,12 +167,48 @@ Notes on the latest PDB source.
 
 So, without further ado we descend into the Dungeons of Doom.
 
-### Boring Corridor
+### Locations
 
+#### Quitting
+
+* show q(uit)
+
+#### Walking
+
+* demonstrates
+  - n(ext)
+  - s(tep)
+  - r(eturn)
+  - unt(il)
+  - c(ont(inue))
+
+#### Looking
+
+* shows ways to list a file - l(ist)
+  - just line
+  - lines range
+  - line with count
+
+#### Fooscending
+
+* show how to navigate up and down the stack
+
+#### Running
+
+* shows 3 ways to run a command:
+  - run
+  - runeval
+  - runcall
+
+
+#### Aliasing
+
+* use really useful aliases
 
 
 ### Meta
 
+* mention inspiration of nethack
 * remember the last year talk about Multi-user Dungeons (MUD)
 * analogy with building a dungeon at work
 * mention `l` (look or light), `u`, and `d` reminding of Interactive Fiction (IF)
