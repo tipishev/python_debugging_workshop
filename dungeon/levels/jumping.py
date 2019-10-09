@@ -15,6 +15,15 @@ def a_room_of_certain_doom(player):
     raise Exception('Certain doom as seen on TV')
 
 
+def safe_room(player):
+    _  # try to go (u)p and (j)ump
+    _  # still can jump here
+    _
+    _  # no worries, as soon as you
+    _  # return, you can jump again
+    return player
+
+
 def jumping_corridor(player):
     # you have to jump a lot here
     _
