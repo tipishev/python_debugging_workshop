@@ -46,7 +46,6 @@ Here I combine notes and slides for my Python debugging workshop
   - condition
 * tbreak aka tea break
 * `_` variable stores the result of previous ivocation
-* Emojii plugin for gdb, saved in twitter likes
 * mocking live code
 
 ### iPdb tricks
@@ -74,6 +73,12 @@ Here I combine notes and slides for my Python debugging workshop
 
 
 * TODO `post_mortem` STUDY sys.traceback!
+
+## https://www.youtube.com/watch?v=mbdYATn7h6Q  Pudb tutorial from PyBay 2017
+
+* one `print` is never enough, will definitely get in production, war story about bearded crab
+* watch-statements
+
 
 ## PDB help notes
 * make fancy debugger
@@ -231,4 +236,6 @@ So, without further ado we descend into the Dungeons of Doom.
 * on https://docs.python.org/3/library/cmd.html#module-cmd
 * David Beazley's cookbook, search for "frame", "debug", and "pdb"
 * look at https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
-* https://www.youtube.com/watch?v=mbdYATn7h6Q  Pudb tutorial from PyBay 2017
+* https://github.com/pablogsal/gdb-emoji
+* https://pbs.twimg.com/media/EFbZsS_W4AAQ5Sh?format=jpg&name=900x900
+* https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
