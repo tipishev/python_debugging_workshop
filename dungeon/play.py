@@ -5,7 +5,7 @@ from levels import jumping_corridor
 
 player = Player(name='Tim')
 
-import ipdb; ipdb.set_trace(context=3)
+import ipdb; ipdb.set_trace(context=7)
 player =  jumping_corridor(player)  # you return as a different person
 
 if player and player.has('Golden Python'):
