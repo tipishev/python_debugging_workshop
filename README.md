@@ -78,6 +78,8 @@ Here I combine notes and slides for my Python debugging workshop
 
 * one `print` is never enough, will definitely get in production, war story about bearded crab
 * watch-statements
+* code, variables, stack, breakpoints
+
 
 
 ## PDB help notes
@@ -204,6 +206,7 @@ So, without further ado we descend into the Dungeons of Doom.
   - run
   - runeval
   - runcall
+* example with running property: `ipdb.run('obj.property')`
 
 
 #### Aliasing
