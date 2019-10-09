@@ -6,6 +6,7 @@ class Player:  # TODO inherit from Creature?
 
     def __init__(self, name):
         self.name = name
+
         self.inventory = [
             'sword',
             'shield',

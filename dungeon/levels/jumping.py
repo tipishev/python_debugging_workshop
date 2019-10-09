@@ -1,47 +1,54 @@
-# TODO import deaths as avoidable and unavoidable
+from deaths import SmashedByBoulder, DoomedToDeath
 
 _ = None
 
 
 def a_room_of_certain_doom(player):
-    _  # Oh.. check (w)here you are
-    _  # what has been called cannot be uncalled
-    _  # try to go (u)p and (j)ump
+    _  # Oh-oh...
+    _  # this room does NOT return you safely.
     _  #
-    _  # didn't help, did it?
-    _  # because this is the new bottom frame
-    _  # you can still (j)ump within this block [5, 12]
-    _  # won't help you though.
-    raise Exception('Certain doom as seen on TV')
+    _  # fell free to c(ont(inue)), die,
+    _  # and avoid going here next time
+    raise DoomedToDeath('CertainDoom™ as seen on TV')
 
 
 def safe_room(player):
-    _  # try to go (u)p and (j)ump
-    _  # still can jump here
+    _  # check (w)here you are
     _
-    _  # no worries, as soon as you
-    _  # return, you can jump again
+    _  # go (u)p and (j)ump
+    _
+    _  # it doesn't work
+    _  # because this is the bottom frame now
+    _  # you can still (j)ump within this function
+    _
+    _  # as soon as you return, you can jump again
     return player
 
 
 def jumping_corridor(player):
-    # you have to jump a lot here
+    ''' here you should j(ump) a lot '''
     _
     _
-    raise Exception('smashed by a rock')
+    raise SmashedByBoulder('This was avoidable...')
+    _  # quick! (j)ump here!
+    raise SmashedByBoulder('Also avoidable')  # now carefully (n)ext here...
+    _  # don't make a (s)tep! (j)ump to the next line
+    safe_room(player)  # (s)tep in this room, it's safe as milk.
     _
-    raise Exception('smashed by a rock')
+    a_room_of_certain_doom(player)  # you've been warned
+    _  # pst! The key guardian likes bread and beer and hates beards!
     _
-    _
-    a_room_of_certain_doom(player)
     _
     player.inventory.append('b')
     player.inventory[-1] += 'e'
     player.inventory[-1] += 'a'
     player.inventory[-1] += 'r'
     player.inventory[-1] += 'd'
-
-    if player.inventory.pop() is 'bread':
+    _
+    _
+    _
+    if player.inventory.pop() in ('bread', 'beer'):
         player.inventory.append('jumping key')
         return player
-    raise Exception('Failed to collect bread')
+    else:
+        raise DoomedToDeath('go shave!')
