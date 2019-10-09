@@ -14,14 +14,14 @@ def a_room_of_certain_doom(player):
 
 def safe_room(player):
     _  # check (w)here you are
+    _  # go (u)p and try to (j)ump...
     _
-    _  # go (u)p and (j)ump
-    _
-    _  # it doesn't work
-    _  # because this is the bottom frame now
+    _  # doesn't work, does it?
+    _  # It's because safe_room is the bottom frame now
     _  # you can still (j)ump within this function
+    _  # as soon as you (r)eturn to the frame above
+    _  # try to (j)ump again
     _
-    _  # as soon as you return, you can jump again
     return player
 
 
@@ -32,7 +32,7 @@ def jumping_corridor(player):
     raise SmashedByBoulder('This was avoidable...')
     _  # quick! (j)ump here!
     raise SmashedByBoulder('Also avoidable')  # now carefully (n)ext here...
-    _  # don't make a (s)tep! (j)ump to the next line
+    _  # don't make (n)ext (s)tep! (j)ump here or to the next line
     safe_room(player)  # (s)tep in this room, it's safe as milk.
     _
     a_room_of_certain_doom(player)  # you've been warned
@@ -47,6 +47,7 @@ def jumping_corridor(player):
     _
     _
     _
+    # TODO work on guardian character
     if player.inventory.pop() in ('bread', 'beer'):
         player.inventory.append('jumping key')
         return player
