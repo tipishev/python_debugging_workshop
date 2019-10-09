@@ -203,7 +203,10 @@ So, without further ado we descend into the Dungeons of Doom.
 
 #### Aliasing
 
+* knapsack metaphor
 * use really useful aliases
+  - examine `dict`
+  - dump to file
 
 
 ### Meta
@@ -217,7 +220,6 @@ So, without further ado we descend into the Dungeons of Doom.
 
 ## Reading List
 
-* latest PDB docs
 * PDB help docs
 * all the help tree in PDB's `h` menu
 * https://realpython.com/python-debugging-pdb/
@@ -229,3 +231,4 @@ So, without further ado we descend into the Dungeons of Doom.
 * on https://docs.python.org/3/library/cmd.html#module-cmd
 * David Beazley's cookbook, search for "frame", "debug", and "pdb"
 * look at https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
+* https://www.youtube.com/watch?v=mbdYATn7h6Q  Pudb tutorial from PyBay 2017
