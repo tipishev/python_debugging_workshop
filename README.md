@@ -7,10 +7,11 @@ Here I combine notes and slides for my Python debugging workshop
 
 ### Introduction
 
+"if you need debugging something went wrong long before you hit the bug"
+
 
 ### Main part
 
-* [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
 * help commands
 
 ### Conclusion
@@ -22,6 +23,25 @@ Here I combine notes and slides for my Python debugging workshop
 * Call to action
   - set up useful aliases (which?)
   - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
+
+
+## Images
+
+* [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
+* how do we read stack overflow
+* how do we read github repositories (in relation to pudb)
+* dungeon map + lighting + jumping possibility
+* stacktrace stairs/elevator
+* walking n, s, unt, c, r
+* debugger skill-chart / snake-brain meme?
+  - 1/0
+  - print
+  - pdb
+  - ipdb
+  - pudb*
+  - avoiding bugs with isort, flake8, autopep8, messy room analogy
+
+
 
 
 
@@ -47,6 +67,7 @@ Here I combine notes and slides for my Python debugging workshop
 * tbreak aka tea break
 * `_` variable stores the result of previous ivocation
 * mocking live code
+* PUDB
 
 ### iPdb tricks
 
@@ -195,10 +216,12 @@ So, without further ado we descend into the Dungeons of Doom.
   - just line
   - lines range
   - line with count
+* look puzzle: look at line 42, look 42 lines lower, 47 higher, etc.
 
 #### Fooscending
 
 * show how to navigate up and down the stack
+* infinite recursion trap without base case, bottomless pit, actually 1000 calls bottom
 
 #### Running
 
@@ -207,6 +230,8 @@ So, without further ado we descend into the Dungeons of Doom.
   - runeval
   - runcall
 * example with running property: `ipdb.run('obj.property')`
+* ! is guard, running python commands is forbidden "magic"
+* something to hook onto
 
 #### Jumping
 
