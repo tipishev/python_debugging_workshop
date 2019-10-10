@@ -1,4 +1,12 @@
-from deaths import SmashedByBoulder, DoomedToDeath
+class RolledOverByBoulder(Exception):
+    ''' <insert flat joke here> '''
+
+class DoomedToDeath(Exception):
+    ''' A lovecraftian certain death '''
+
+
+class KickedByGuard(Exception):
+    ''' This guard has heavy boots and temper '''
 
 _ = None
 
@@ -29,17 +37,27 @@ def jumping_corridor(player):
     ''' here you should j(ump) a lot '''
     _
     _
-    raise SmashedByBoulder('This was avoidable...')
+    raise RolledOverByBoulder('This was avoidable...')
     _  # quick! (j)ump here!
-    raise SmashedByBoulder('Also avoidable')  # now carefully (n)ext here...
+    raise RolledOverByBoulder('Also avoidable')  # now carefully (n)ext here...
     _  # don't make (n)ext (s)tep! (j)ump here or to the next line
     safe_room(player)  # (s)tep in this room, it's safe as milk.
     _
     a_room_of_certain_doom(player)  # you've been warned
-    _  # pst! The key guardian likes bread and beer and hates beards!
     _
-    # TODO example of finally and loops where jump doesn't work
     _
+    try:  # step in, it's pretty safe
+        raise RolledOverByBoulder('except... will save you')
+    except RolledOverByBoulder:
+        _  # told you.
+        _  # Jump to `finally` from here to get a segfault
+    finally:
+        _  # try to jump out of here
+        _  # docs say it's impossible
+        _  # they are lying tho
+    _
+    _  # I've heard the guard likes bread and beer
+    _  # ...and hates them beards!
     player.inventory.append('b')
     player.inventory[-1] += 'e'
     player.inventory[-1] += 'a'
@@ -48,9 +66,11 @@ def jumping_corridor(player):
     _
     _
     _
-    # TODO work on guardian character
-    if player.inventory.pop() in ('bread', 'beer'):
+    # you nervously give the last item you got to the level guard...
+    item = player.inventory.pop()
+    if item in ('bread', 'beer'):
         player.inventory.append('jumping key')
         return player
     else:
-        raise DoomedToDeath('go shave!')
+        raise KickedByGuard('Standing all day at the bottom of the file '
+                            f'and all I get is a stupid "{item}"!')
