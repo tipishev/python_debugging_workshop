@@ -208,6 +208,14 @@ So, without further ado we descend into the Dungeons of Doom.
   - runcall
 * example with running property: `ipdb.run('obj.property')`
 
+#### Jumping
+
+* jumping is useful to skip
+  - expensive computation in loops
+  - initialization before debug-section
+  - network calls
+* pudb jump https://github.com/inducer/pudb/pull/306
+
 
 #### Aliasing
 

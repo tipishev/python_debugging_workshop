@@ -8,7 +8,7 @@ player = Player(name='Tim')
 #  player.inventory.append('jumping key')
 
 
-import ipdb; ipdb.set_trace(context=7)
+#  import ipdb; ipdb.set_trace(context=7)
 
 if not player.has('jumping key'):
     player =  jumping_corridor(player)  # you return as a different person
