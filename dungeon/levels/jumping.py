@@ -1,3 +1,5 @@
+_ = None
+
 class RolledOverByBoulder(Exception):
     ''' <insert flat joke here> '''
 
@@ -6,10 +8,7 @@ class DoomedToDeath(Exception):
 
 
 class KickedByGuard(Exception):
-    ''' This guard has heavy boots and temper '''
-
-_ = None
-
+    ''' This guard has heavy boots and short temper '''
 
 def a_room_of_certain_doom(player):
     _  # Oh-oh...
