@@ -38,6 +38,7 @@ def jumping_corridor(player):
     a_room_of_certain_doom(player)  # you've been warned
     _  # pst! The key guardian likes bread and beer and hates beards!
     _
+    # TODO example of finally and loops where jump doesn't work
     _
     player.inventory.append('b')
     player.inventory[-1] += 'e'
