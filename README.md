@@ -68,6 +68,7 @@ Here I combine notes and slides for my Python debugging workshop
 * `_` variable stores the result of previous ivocation
 * mocking live code
 * PUDB
+* web-pdb `PYTHONBREAKPOINT=web_pdb.set_trace` for multithreaded
 
 ### iPdb tricks
 
@@ -82,6 +83,9 @@ Here I combine notes and slides for my Python debugging workshop
 * envoke as a script `python3 -m ipdb dungeon.py`
 * auto-restart program, preserves breakpoints
 * `breakpoint()` built-in in 3.7+, find a way to switch to `ipdb`
+  - `export PYTHONBREAKPOINT=ipdb.set_trace`
+  - `export PYTHONBREAKPOINT=pudb.set_trace`
+  - `export PYTHONBREAKPOINT=0` to ignore breakpoints
 * `run` set breakpoints, accepts globals and locals kwargs, code object
 * `runeval` returns the expression result. Ok.
 * `runcall` to run a callable

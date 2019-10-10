@@ -9,7 +9,7 @@ player.inventory.append('jumping key')
 player.inventory.append('Golden Python')
 
 if not player.has('walking key'):
-    #  import ipdb; ipdb.set_trace(context=7)
+    breakpoint()
     player =  walking_corridor(player)
 
 if not player.has('jumping key'):
