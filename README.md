@@ -55,7 +55,16 @@ Here I combine notes and slides for my Python debugging workshop
 * one-time breakpoints
 * watching variables with post-run commands
 * %debug iPython magic
+
 * breakpoint() in Py3.7
+  - defaults to `pdb.set_trace`
+  - easy to remember
+  - linters complain
+  - configure to the debugger of your choice
+  - `breakpoint(*args, **kwargs)`
+  - simple values `0` for none, `1` for default, `some.importable.callable`
+
+
 * post-mortem
 * debugging live in a closure
 * pickling traceback for later debugging
@@ -224,6 +233,7 @@ So, without further ado we descend into the Dungeons of Doom.
 
 #### Fooscending
 
+* mention `a` arguments
 * show how to navigate up and down the stack
 * infinite recursion trap without base case, bottomless pit, actually 1000 calls bottom
 
