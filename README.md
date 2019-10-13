@@ -1,4 +1,4 @@
-# python_debugging_workshop
+# Python Debugging Workshop
 
 Here I combine notes and slides for my Python debugging workshop
 
@@ -44,6 +44,7 @@ Then you will also see that debugging is similar to playing such a game:
 ### Conclusion
 
 * Now you know what to do when you encounter a bug
+  - configure a debugger of choice: `pdb`, `ipdb`, or `pudb`
   - insert a breakpoint
   - if it's live use one of `run`, `runeval`, or `runcall` or `set_trace` in a closure
 
@@ -57,7 +58,7 @@ Then you will also see that debugging is similar to playing such a game:
 * [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
 * how do we read stack overflow
 * how do we read github repositories (in relation to pudb)
-* dungeon map + lighting + jumping possibility
+* ~~dungeon map~~ + lighting + jumping possibility
 * stacktrace stairs/elevator
 * walking n, s, unt, c, r
 * debugger skill-chart / snake-brain meme?
@@ -79,14 +80,17 @@ Then you will also see that debugging is similar to playing such a game:
 * watching variables with post-run commands
 * %debug iPython magic
 
-* breakpoint() in Py3.7
+* `breakpoint()` in 3.7+
   - defaults to `pdb.set_trace`
-  - easy to remember
-  - linters complain
+  - raison d'être:
+    * easy to remember
+    * linters complain
   - configure to the debugger of your choice
   - `breakpoint(*args, **kwargs)` useful for passing context=10
   - simple values `0` for none, `1` for default, `some.importable.callable`
-
+  - `export PYTHONBREAKPOINT=ipdb.set_trace`
+  - `export PYTHONBREAKPOINT=pudb.set_trace`
+  - `export PYTHONBREAKPOINT=0` to ignore breakpoints
 
 * post-mortem
 * debugging live in a closure
@@ -114,10 +118,6 @@ Then you will also see that debugging is similar to playing such a game:
 * `ipdb.run('dungeon.main()')`
 * envoke as a script `python3 -m ipdb dungeon.py`
 * auto-restart program, preserves breakpoints
-* `breakpoint()` built-in in 3.7+, find a way to switch to `ipdb`
-  - `export PYTHONBREAKPOINT=ipdb.set_trace`
-  - `export PYTHONBREAKPOINT=pudb.set_trace`
-  - `export PYTHONBREAKPOINT=0` to ignore breakpoints
 * `run` set breakpoints, accepts globals and locals kwargs, code object
 * `runeval` returns the expression result. Ok.
 * `runcall` to run a callable
@@ -144,6 +144,45 @@ Then you will also see that debugging is similar to playing such a game:
 * `bt` alias for `where`
 * file-specified breakpoint looks on `sys.path`, `.py` can be skipped
 * enable/disable breakpoints, multiple (space separated list)
+
+## cmd.py
+
+### sources
+
+* https://docs.python.org/3/library/cmd.html
+* https://github.com/python/cpython/blob/3.7/Lib/cmd.py
+
+### what it does
+
+* creates a simple command-line interace (CLI) interpreter
+* creates a Read Evaluate Print Loop (REPL)
+* pases input as `foo *args` where `foo` is a command
+* commands are are defined as methods `do_foo`
+* provides help based on command-method's docstrings
+* handles empty-string command, default: repeat the last command
+* allows `!`-prefixed execution in a shell
+* manages command context-aware tab-completion (`complete_foo`)
+* allows pre- and post- command hooks
+* sets a default action for unrecognized commands
+* sets prompt, e.g. `(Pdb)`
+* output redirection defaults are `stdin`, `stderr`, `stdout`
+* formats help to terminal-friendly 80 characters
+* queues multi-line commands, e.g. code blocks
+* documentation page has a cute example `TurtleShell`
+
+## bdb.py
+
+### sources
+
+* https://docs.python.org/3/library/bdb.html
+* https://github.com/python/cpython/blob/3.7/Lib/bdb.py
+
+### what it does
+
+* defines `BdbQuit` exception to stop the debugger
+* defines `Breakpoint` class `(file, line)`
+* defines `Bdb` default Python debugger class, `skip` argument
+* 
 
 ## https://github.com/python/cpython/blob/master/Lib/pdb.py
 
