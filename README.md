@@ -41,10 +41,6 @@ Then you will also see that debugging is similar to playing such a game:
 * permadeath: "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
 
 
-### Main part
-
-* help commands
-
 ### Conclusion
 
 * Now you know what to do when you encounter a bug
