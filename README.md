@@ -18,20 +18,18 @@ While preparing this workshop I have looked at a number of debugging tutorials, 
 * An recap of PDB doc help page
 * A few examples of using debugger commands
 
-I decided to make my workshop slightly different.
+This workshop will be slightly different.
 
 ---
-There is a popular factoid:
+There is a silly factoid that we remember
 
-We remember...
-
-* ..30% of what we hear
-* ..50% of what  we see
-* ..80% of what we do.
-* ~~..95% of what we teach~~
+* 30% of what we hear
+* 50% of what  we see
+* 80% of what we do
+* ~~95% of what we teach~~
 ---
 
-That's why in this workshop we will work hands-on to solve a series of puzzles, each one focusing on some aspect of Python debugging.
+That's why in this workshop we will hands-on solve a series of puzzles, each one focusing on some aspect of Python debugging.
 
 How many of you have played Roguelikes, Multi-User Dungeons or (MUD) Interactive Fiction (IF)?
 
