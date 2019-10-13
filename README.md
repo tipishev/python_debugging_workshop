@@ -61,7 +61,7 @@ Here I combine notes and slides for my Python debugging workshop
   - easy to remember
   - linters complain
   - configure to the debugger of your choice
-  - `breakpoint(*args, **kwargs)`
+  - `breakpoint(*args, **kwargs)` useful for passing context=10
   - simple values `0` for none, `1` for default, `some.importable.callable`
 
 
