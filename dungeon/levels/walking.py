@@ -8,16 +8,19 @@ def check_password(player):
 
 
 def a_room(player):
-    _  # awesome! glad that you stepped in
+    _  # sweet! So glad that you stepped in
     _  # feel free to (s)tep instead of (n)ext
-    _  # for non-function lines the result is the same
+    _  # on non-calling lines the result is the same
 
-    _  # (s)tep
-    _  # by (s)tep
+    _  # (s)tep..
+    _  # by (s)tep..
+    _
+    _  # keep going with `Enter`
+    _  # remember, it just repeats the last command.
     _
     _  # you can skip many lines with `(unt)il <line number>`
-    _  # in 30 lines there's the level password
-    _  # get there with `unt 50`
+    _  # the ⅓ of level password is on line 50
+    _  # get there with `until 50`
     _
     _
     _
@@ -44,41 +47,56 @@ def a_room(player):
     _
     _
     _
+    _  # fluggaen
+    _  # pick it up: `!player.inventory.append('fluggaen')`
+    _  # the second part is on line 65, try the shorter `unt 65`
     _
     _
     _
-    _  # fluggaenkoecchicebolsen
-    _  # write it down: `!player.inventory.append('fluggaenkoecchicebolsen')`
+    _
+    _
+    _
+    _
+    _
+    _
+    _
+    _
+    _
+    _  # koecchi
+    _  # `!player.inventory[-1] += 'koecchi'
+    _  # the last part is on line 75  `(unt)il 75`
+    _
+    _
+    _
+    _
+    _
+    _
+    _
+    _  # cebolsen
+    _  # `!player.inventory[-1] += 'cebolsen'
 
-    _  # there's nothing more to see in this room
-    _
+
+    _  # there is nothing else to see in this room
     _  # you can fast-forward to the exit with (r)eturn
     _
     _
     _
+    _  # seriously, nothing to see...
+    _  # go to (r)eturn
+    _
+    _
+    _  # ok. Here's a joke.
+    _  # "Once a a programmer was told: 'while outside, buy milk'...
+    _  # ...he never returned."
+    _  #
+    _  # but you should. Please press `r` now.
     _
     _
     _
     _
     _
     _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
+    _  # Thank you for walking with us, buh-bye!
     return player  # either (n)ext or (s)tep will take you back
 
 
@@ -107,8 +125,9 @@ def walking_corridor(player):
 
     if check_password(player):  # the moment of truth...
 
-        player.inventory.append('walking key')  # woohoo!
-        return player
+        # Good job! You made it!
+        player.inventory.append('walking key')
+        return player  # press c to (c)ontinue
 
 
     raise Exception('You are not leaving!')
