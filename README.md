@@ -2,12 +2,45 @@
 
 Here I combine notes and slides for my Python debugging workshop
 
+# Transcript
 
-## Plan
+## Introduction
 
-### Introduction
+> "If you need a debugger, the error had happened much earlier."
 
-"if you need debugging something went wrong long before you hit the bug"
+Hello everyone! My name is Tim and in today's workshop I will talk about debugging Python.
+
+Edsger Dijkstra once stated "They are errors, not bugs"
+
+While preparing this workshop I have looked at a number of debugging tutorials, they all follow the same structure.
+
+* Don't use print
+* An recap of PDB doc help page
+* A few examples of using debugger commands
+
+I decided to make my workshop slightly different.
+
+---
+There is a popular factoid:
+
+We remember...
+
+* ..30% of what we hear
+* ..50% of what  we see
+* ..80% of what we do.
+* ~~..95% of what we teach~~
+---
+
+That's why in this workshop we will work hands-on to solve a series of puzzles, each one focusing on some aspect of Python debugging.
+
+How many of you have played Roguelikes, Multi-User Dungeons or (MUD) Interactive Fiction (IF)?
+
+Then you will also see that debugging is similar to playing such a game:
+
+* controlled with a few commands: "north, open, examine" vs "next, step, where"
+* the commands can be abbreviated: "(n)orth, (o)pen, e(x)amine" vs "(n)ext, (s)tep, w(here)"
+* most actions are irreversible: "items can be lost forever" vs "function calls cannot be undone"
+* permadeath: "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
 
 
 ### Main part
@@ -42,12 +75,8 @@ Here I combine notes and slides for my Python debugging workshop
   - avoiding bugs with isort, flake8, autopep8, messy room analogy
 
 
-
-
-
 ## Topics
 
-* pdb basic usage
 * useful aliases, combining, passing parameters
 * ;; multiple commands
 * pretty-print with pp
@@ -115,7 +144,6 @@ Here I combine notes and slides for my Python debugging workshop
 * code, variables, stack, breakpoints
 
 
-
 ## PDB help notes
 * make fancy debugger
 * warn about single-letter variables, use `!` to be sure
@@ -173,12 +201,10 @@ Notes on the latest PDB source.
   - use context size as a game mechanic aka light?
 * up and down the floors in stack, multiple floors aka elevator
 * Sphinx's puzzle with going back in time inside a function with `jump`
-* jump over pits
 * make a "look" command to check surroundings (local variables?)
 * pp a bag full of JSON
 * cannot modify the code, only .pdbrc
 * debugging inside a closure == inside the dragon's belly
-* enter to repeat command, keep walking
 * source the enemy to see weakness?
 * display/undisplay to check surroundings
 * `display` to check coin count, try multiple
@@ -262,6 +288,12 @@ So, without further ado we descend into the Dungeons of Doom.
 * use really useful aliases
   - examine `dict`
   - dump to file
+
+#### Examination
+
+* (a)rguments to see what was passed
+* `p`
+* `pp` a bag full of JSON
 
 
 ### Meta
