@@ -66,7 +66,7 @@ Then you will also see that debugging is similar to playing such a game:
   - print
   - pdb
   - ipdb
-  - pudb*
+  - pudb* / graphical / IDE
   - avoiding bugs with isort, flake8, autopep8, broken windows theory
 
 
@@ -79,6 +79,7 @@ Then you will also see that debugging is similar to playing such a game:
 * one-time breakpoints
 * watching variables with post-run commands
 * %debug iPython magic
+* pdb has no `context=10` option
 
 * `breakpoint()` in 3.7+
   - defaults to `pdb.set_trace`
