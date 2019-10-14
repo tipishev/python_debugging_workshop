@@ -15,7 +15,7 @@ Edsger Dijkstra once stated "They are errors, not bugs"
 While preparing this workshop I have looked at a number of debugging tutorials, they all follow the same structure.
 
 * Don't use print
-* An recap of PDB doc help page
+* A brief recap of PDB doc help page
 * A few examples of using debugger commands
 
 This workshop will be slightly different.
@@ -39,7 +39,6 @@ Then you will also see that debugging is similar to playing such a game:
 * the commands can be abbreviated: "(n)orth, (o)pen, e(x)amine" vs "(n)ext, (s)tep, w(here)"
 * most actions are irreversible: "items can be lost forever" vs "function calls cannot be undone"
 * permadeath: "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
-
 
 ### Conclusion
 
@@ -183,7 +182,32 @@ Then you will also see that debugging is similar to playing such a game:
 * defines `BdbQuit` exception to stop the debugger
 * defines `Breakpoint` class `(file, line)`
 * defines `Bdb` default Python debugger class, `skip` argument
-* 
+* `trace_dispatch(frame, event, arg)`
+  - line
+  - call
+  - return
+  - exception
+  - c_call
+  - c_return
+  - c_exception
+* `dispatch_{line, call, return, ...}`
+* stop_here/break_here/break_anywhere
+* `user_{call, line, return, exception}`
+* do_clear
+* `set_{step, next, return, until, trace, continue, quit}`
+* breakpoints manipulation:
+  - set_break
+  - clear_break
+  - clear_bpbynumber
+  - clear_all_file_breaks
+  - clear_all_breaks
+  - `get_{bpbynumber, break, breaks, file_breaks}`
+* stack trace presentation
+  - get_stack
+  - format_stack_entry
+* `run/runeval/runcall`
+* checkfuncname, effective, set_trace
+
 
 ## https://github.com/python/cpython/blob/master/Lib/pdb.py
 
