@@ -67,7 +67,7 @@ Then you will also see that debugging is similar to playing such a game:
   - pdb
   - ipdb
   - pudb*
-  - avoiding bugs with isort, flake8, autopep8, messy room analogy
+  - avoiding bugs with isort, flake8, autopep8, broken windows theory
 
 
 ## Topics
