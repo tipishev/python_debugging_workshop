@@ -105,7 +105,8 @@ def walking_corridor(player):
     _  # it can be abbreviated to `n`
     _  # let's go to the (n)ext line 3 more times
     _
-    _
+
+
     _  # you can also press `Enter`
     _  # this repeats the latest debugger command
     _  # ...which is (n)ext in our case
