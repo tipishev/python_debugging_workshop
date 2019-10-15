@@ -40,6 +40,19 @@ Then you will also see that debugging is similar to playing such a game:
 * most actions are irreversible: "items can be lost forever" vs "function calls cannot be undone"
 * permadeath: "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
 
+To add to similarity our codebases often remind dungeons that were built over years by programmers, some of whom have left the company and you need Git archeology to find whjat you need, but it's a topic from my other talk (link to git tips and tricks).
+
+A typical code dungeon looks like this:
+
+* a single point of entry
+* each function is a corridor
+* the more lines in a function the longer the corridor
+* calling a function within a function takes you one level lower
+* returning from a function takes you one level up
+* one function can have multiple return points
+* luckily Python has no GOTO so we don't have weird teleports
+* on the diagram the numbers are relative to function, therefore start from 1. In real code all functions could be defined in the same file and the actual start could be on any line, though lines are always consecutive.
+
 ### Conclusion
 
 * Now you know what to do when you encounter a bug
