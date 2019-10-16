@@ -273,7 +273,6 @@ Notes on the latest PDB source.
 * up and down the floors in stack, multiple floors aka elevator
 * Sphinx's puzzle with going back in time inside a function with `jump`
 * make a "look" command to check surroundings (local variables?)
-* pp a bag full of JSON
 * cannot modify the code, only .pdbrc
 * debugging inside a closure == inside the dragon's belly
 * source the enemy to see weakness?
@@ -363,8 +362,8 @@ So, without further ado we descend into the Dungeons of Doom.
 #### Examination
 
 * (a)rguments to see what was passed
-* `p`
-* `pp` a bag full of JSON
+* `p`  if you really miss that `print`
+* `pp` a bag full of JSON, arrange lines vertically for clue
 
 
 ### Meta
@@ -378,17 +377,14 @@ So, without further ado we descend into the Dungeons of Doom.
 
 ## Reading List
 
-* PDB help docs
+* https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
 * all the help tree in PDB's `h` menu
 * https://realpython.com/python-debugging-pdb/
 * https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
 * https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/
 * example .pdbrc https://nedbatchelder.com/blog/200704/my_pdbrc.html
 * iPDB (345 LOC): https://github.com/gotcha/ipdb
-* on bdb https://docs.python.org/3/library/bdb.html#module-bdb
-* on https://docs.python.org/3/library/cmd.html#module-cmd
 * David Beazley's cookbook, search for "frame", "debug", and "pdb"
 * look at https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
-* https://github.com/pablogsal/gdb-emoji
 * https://pbs.twimg.com/media/EFbZsS_W4AAQ5Sh?format=jpg&name=900x900
-* https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
+* https://github.com/pdbpp/pdbpp
