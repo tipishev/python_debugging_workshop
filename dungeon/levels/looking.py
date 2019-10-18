@@ -6,8 +6,8 @@ def looking_corridor(player):
     _  # there are a few ways to look at the source in PDB
     _  # type `list`
     _
-    _  # by default it shows you 11 lines
-    _  # current line, 5 above, and 5 below
+    _  # by default it shows you 11 lines:
+    _  # 5 lines above, current line, and 5 below
     _
     _
     _

@@ -4,9 +4,12 @@ Here I combine notes and slides for my Python debugging workshop
 
 # Transcript
 
-## Introduction
-
+## Quotes
 > "If you need a debugger, the error had happened much earlier."
+> "Debuggers don't remove bugs, they show them in slow-mo"  # TODO source
+
+
+## Introduction
 
 Hello everyone! My name is Tim and in today's workshop I will talk about debugging Python.
 
