@@ -1,15 +1,8 @@
+from mechanics import check_walking_password
 _ = None
 
 
-def check_password(player):
-    password = player.inventory.pop()
-    from hashlib import md5
-    password = password.encode('utf-8')
-    return md5(password).hexdigest() == '4c4e8ca78ae78388276d094f067a04fb'
-
-
-def a_room(player):
-    _  # sweet! So glad that you stepped in
+def a_room(player):  # sweet! So glad that you stepped in
     _  # feel free to (s)tep instead of (n)ext
     _  # on non-calling lines the result is the same
 
@@ -22,6 +15,13 @@ def a_room(player):
     _  # you can skip many lines with `(unt)il {line_number}`
     _  # the ⅓ of level password is on line 50
     _  # get there with `until 50`
+    _
+    _
+    _
+    _
+    _
+    _
+    _
     _
     _
     _
@@ -74,6 +74,7 @@ def a_room(player):
     _
     _  # cebolsen
     _  # `!player.inventory[-1] += 'cebolsen'
+    _  # pst! you can use up-arrow to reuse a typed command
 
     _  # there is nothing else to see in this room
     _  # you can fast-forward to the exit with (r)eturn
@@ -121,7 +122,7 @@ def walking_corridor(player):
 
     player = a_room(player)  # (s)tep inside
 
-    if check_password(player):  # the moment of truth...
+    if check_walking_password(player):  # the mome(n)t of truth...
 
         # Good job! You made it!
         player.inventory.append('walking key')
