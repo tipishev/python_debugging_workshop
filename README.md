@@ -7,13 +7,12 @@ Here I combine notes and slides for my Python debugging workshop
 ## Quotes
 > "If you need a debugger, the error had happened much earlier."
 > "Debuggers don't remove bugs, they show them in slow-mo"  # TODO source
-
+> "They are errors, not bugs" Edsger Dijkstra
 
 ## Introduction
 
 Hello everyone! My name is Tim and in today's workshop I will talk about debugging Python.
 
-Edsger Dijkstra once stated "They are errors, not bugs"
 
 While preparing this workshop I have looked at a number of debugging tutorials, they all follow the same structure.
 
@@ -21,7 +20,7 @@ While preparing this workshop I have looked at a number of debugging tutorials, 
 * A brief recap of PDB doc help page
 * A few examples of using debugger commands
 
-This workshop will be slightly different.
+This workshop will be slightly different
 
 ---
 There is a silly factoid that we remember
@@ -54,11 +53,26 @@ A typical code dungeon looks like this:
 * a single point of entry
 * each function is a corridor
 * the more lines in a function the longer the corridor
-* calling a function within a function takes you one level lower
+* calling a function within a function takes you one level deeper
 * returning from a function takes you one level up
 * one function can have multiple return points
 * luckily Python has no GOTO so we don't have weird teleports
 * on the diagram the numbers are relative to function, therefore start from 1. In real code all functions could be defined in the same file and the actual start could be on any line, though lines are always consecutive.
+
+
+Before we start, I am legally required to tell you why `print`-debugging is bad:
+
+* like Printgles, one is never enough
+* it will definitely get in production
+
+So, let's run the game
+
+```bash
+cd dungeon
+./play.py
+```
+
+
 
 ### Conclusion
 
@@ -81,7 +95,7 @@ A typical code dungeon looks like this:
 * ~~dungeon map~~ + lighting + jumping possibility
 * stacktrace stairs/elevator
 * walking n, s, unt, c, r
-* looking diagram, limited to 1 file, different listin ways
+* looking diagram, limited to 1 file, different listing ways
 * debugger skill-chart / snake-brain meme?
   - 1/0
   - print
@@ -108,6 +122,7 @@ A typical code dungeon looks like this:
   - raison d'être:
     * easy to remember
     * linters complain
+    * even JavaScript has it!
   - configure to the debugger of your choice
   - `breakpoint(*args, **kwargs)` useful for passing context=10
   - simple values `0` for none, `1` for default, `some.importable.callable`

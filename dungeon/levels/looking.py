@@ -114,17 +114,17 @@ def looking_corridor(player):  # please, (s)tep in!
     _
     _
     _  # yep, `longlist` shows you the whole function
-    _  # scroll up and confirm that the output starts with `def`
+    _  # scroll up and confirm that the output starts with 'def'
     _
-    _  # to stop yourself in front of password room
-    _  # type `(b)reakpoint 123` and `ll` again
+    _  # to stop yourself in front of the Password Room
+    _  # type `break 123` and `ll` again
     _  # then (l)ook at lines 1,2,3! `l 1,3`
     _
     return password_room(player)  # (i)f ready (s)tep in...
 
 
 def password_room(player):
-    if check_looking_password(player):  # press `(n)ext`...
+    if check_looking_password(player):  # press (n)ext
 
         # Once again, you have succeeded!!!
         player.inventory.append('looking key')
