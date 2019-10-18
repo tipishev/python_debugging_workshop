@@ -67,6 +67,7 @@ A typical code dungeon looks like this:
 
 ## Images
 
+* iPython iceberg dark internet
 * [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
 * how do we read stack overflow
 * how do we read github repositories (in relation to pudb)
