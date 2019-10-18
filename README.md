@@ -31,7 +31,11 @@ There is a silly factoid that we remember
 
 That's why in this workshop we will hands-on solve a series of puzzles, each one focusing on some aspect of Python debugging.
 
-How many of you have played Roguelikes, Multi-User Dungeons or (MUD) Interactive Fiction (IF)?
+How many of you have played MUDs?
+
+By the way, last year's Pycon had an awesome talk about Evennia, Python-based Multi-User Dungeons (MUD).
+
+What about Roguelikes or Interactive Fiction (IF)?
 
 Then you will also see that debugging is similar to playing such a game:
 
@@ -122,7 +126,7 @@ A typical code dungeon looks like this:
 
 ### iPdb tricks
 
-* autoreload
+* %autoreload
 * %debug% instead of .pm()
 * other magic commands?
 
@@ -260,6 +264,11 @@ Notes on the latest PDB source.
   - checks silencing and prompting
 * user_return
 
+### Python sys docs
+
+* `call_tracing` call from debugger checkpoint
+* `_current_frames`
+
 
 ## Dungeon game
 
@@ -369,12 +378,8 @@ So, without further ado we descend into the Dungeons of Doom.
 
 ### Meta
 
-* mention inspiration of nethack
-* remember the last year talk about Multi-user Dungeons (MUD)
 * analogy with building a dungeon at work
-* mention `l` (look or light), `u`, and `d` reminding of Interactive Fiction (IF)
-* mention git game
-* nethack
+* https://github.com/git-game/git-game
 
 ## Reading List
 
