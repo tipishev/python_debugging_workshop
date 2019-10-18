@@ -11,16 +11,16 @@ from levels import (
 player = Player(name='Tim')
 
 # provide with initial inventory
-#  player.inventory.append('walking key')
-player.inventory.append('looking key')
+player.inventory.append('walking key')
+# player.inventory.append('looking key')
 player.inventory.append('jumping key')
 
-breakpoint()
 # TODO move to main_corridor
 if not player.has('walking key'):
     player = walking_corridor(player)
 
 if not player.has('looking key'):
+    breakpoint()
     player = looking_corridor(player)
 
 if not player.has('jumping key'):

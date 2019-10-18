@@ -1,13 +1,23 @@
+# the password is 'spyglass'
+# `!player.inventory.append('spyglass')`
+# now feel free to `(c)ontinue`
+
+from mechanics import check_password
+
+
 _ = None
 
 
+def check_looking_password(player):
+    return check_password(player, '0a5d79f5655a4ace894b62c28ab11083')
+
+
 def looking_corridor(player):  # please, (s)tep in!
-    _  # there are a few ways to look at the source in PDB
+    _  # there are a few ways to look at the source in iPDB
     _  # type `list`
     _
     _  # by default it shows you 11 lines
-    _  # 5 above, current line (---->), and 5 below
-    _
+    _  # 5 above, current line (--->), and 5 below
     _  # abbreviate the command to `l` to see the next 11 lines
     _
     _
@@ -37,7 +47,7 @@ def looking_corridor(player):  # please, (s)tep in!
     _
     _  # you can always go back (or forward) with
     _  # `(l)ist {lineno}`
-    _  # for example `l 30`
+    _  # for example `l 39`
     _
     _
     _
@@ -50,41 +60,41 @@ def looking_corridor(player):  # please, (s)tep in!
     _
     _  # you can also specify the range
     _  # with `(l)ist {start_lineno},{last_lineno}`
-    _  # try `l 60,66`
+    _  # try `l 70,76`
     _
     _
     _
-    _
-    _
-    _
-    _  # <--- line 60
-    _
-    _  # since 60 < 66
-    _  # 60,66 was interpreted as range
-    _  # now try `l 70,10`
-    _
-    _  # <--- line 66
     _
     _
     _
     _  # <--- line 70
     _
+    _  # since 70 < 76
+    _  # 70,76 was interpreted as range
+    _  # now try `l 80,10`
     _
-    _  # since 70 > 10
-    _  # 70,10 was interpreted as
-    _  # "line 70 and 10 lines following it"
+    _  # <--- line 76
+    _
+    _
+    _
+    _  # <--- line 80
+    _
+    _
+    _  # since 80 > 10
+    _  # 80,10 was interpreted as
+    _  # "line 80 and 10 lines following it"
     _
     _  # press `l` or `Enter` to continue
     _
     _
-    _  # <--- line 70 + 10
+    _  # <--- line 80 + 10
     _
     _
     _
     _
     _  # finally, there is `longlist` command
     _  # abbreviated to `ll`
-    _  # it lists the whole current file
+    _  # it lists the whole function
     _
     _
     _
@@ -105,14 +115,21 @@ def looking_corridor(player):  # please, (s)tep in!
     _
     _
     _
-    _  # you can scroll up to the beginnging of the file
-    _  # by the way, the key is there, on the first line.
+    _  # yep, `longlist` shows you the whole function
+    _  # scroll up and confirm that the output starts with `def`
     _
     _
-    #  if check_password(player):  # the moment of truth...
+    _  # don't (s)tep further before you (l)ooked at lines 1,2,3!
+    _  # but before that, type `b 125` for a dramatic effect
+    _
+    return password_room(player)
 
-    #      # Good job! You made it!
-    #      player.inventory.append('walking key')
-    #      return player  # press c to (c)ontinue
 
-    raise Exception('You are not leaving!')
+def password_room(player):
+    if check_looking_password(player):  # press `(n)ext`...
+
+        # Once again, you have succeeded!!!
+        player.inventory.append('looking key')
+        return player  # press c to (c)ontinue
+
+    raise Exception('Incorrect Looking Password')

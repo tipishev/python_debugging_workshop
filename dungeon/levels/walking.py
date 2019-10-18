@@ -1,5 +1,10 @@
-from mechanics import check_walking_password
+from mechanics import check_password
+
 _ = None
+
+
+def check_walking_password(player):
+    return check_password(player,  '4c4e8ca78ae78388276d094f067a04fb')
 
 
 def a_room(player):  # sweet! So glad that you stepped in
@@ -15,11 +20,6 @@ def a_room(player):  # sweet! So glad that you stepped in
     _  # you can skip many lines with `(unt)il {line_number}`
     _  # the ⅓ of level password is on line 50
     _  # get there with `until 50`
-    _
-    _
-    _
-    _
-    _
     _
     _
     _

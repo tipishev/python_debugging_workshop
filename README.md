@@ -81,6 +81,7 @@ A typical code dungeon looks like this:
 * ~~dungeon map~~ + lighting + jumping possibility
 * stacktrace stairs/elevator
 * walking n, s, unt, c, r
+* looking diagram, limited to 1 file, different listin ways
 * debugger skill-chart / snake-brain meme?
   - 1/0
   - print

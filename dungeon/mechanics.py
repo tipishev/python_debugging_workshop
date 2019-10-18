@@ -18,9 +18,5 @@ def interact(*actors):
 def check_password(player, hexdigest):
     password = player.inventory.pop()
     from hashlib import md5
-    password = password.encode('utf-8')
+    password = password.encode('utf8')
     return md5(password).hexdigest() == hexdigest
-
-
-def check_walking_password(player):
-    return check_password(player,  '4c4e8ca78ae78388276d094f067a04fb')
