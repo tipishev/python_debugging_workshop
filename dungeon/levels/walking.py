@@ -19,7 +19,7 @@ def a_room(player):
     _  # keep going with `Enter`
     _  # remember, it just repeats the last command.
     _
-    _  # you can skip many lines with `(unt)il <line number>`
+    _  # you can skip many lines with `(unt)il {line_number}`
     _  # the ⅓ of level password is on line 50
     _  # get there with `until 50`
     _
@@ -110,8 +110,8 @@ def walking_corridor(player):
     _  # ...which is (n)ext in our case
 
     _  # if you go to the (n)ext line
-    _  # on a line with a function call
-    _  # it will execute behind the scenes
+    _  # on a line with a function call..
+    _  # ..it will execute behind the scenes
 
     player = a_room(player)  # go to the (n)ext line
     _
