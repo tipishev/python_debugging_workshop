@@ -1,5 +1,6 @@
 _ = None
 
+
 def check_password(player):
     password = player.inventory.pop()
     from hashlib import md5
@@ -21,7 +22,6 @@ def a_room(player):
     _  # you can skip many lines with `(unt)il <line number>`
     _  # the ⅓ of level password is on line 50
     _  # get there with `until 50`
-    _
     _
     _
     _
@@ -75,7 +75,6 @@ def a_room(player):
     _  # cebolsen
     _  # `!player.inventory[-1] += 'cebolsen'
 
-
     _  # there is nothing else to see in this room
     _  # you can fast-forward to the exit with (r)eturn
     _
@@ -106,7 +105,6 @@ def walking_corridor(player):
     _  # let's go to the (n)ext line 3 more times
     _
 
-
     _  # you can also press `Enter`
     _  # this repeats the latest debugger command
     _  # ...which is (n)ext in our case
@@ -123,12 +121,10 @@ def walking_corridor(player):
 
     player = a_room(player)  # (s)tep inside
 
-
     if check_password(player):  # the moment of truth...
 
         # Good job! You made it!
         player.inventory.append('walking key')
         return player  # press c to (c)ontinue
-
 
     raise Exception('You are not leaving!')

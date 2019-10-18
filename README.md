@@ -88,6 +88,7 @@ A typical code dungeon looks like this:
   - ipdb
   - pudb* / graphical / IDE
   - avoiding bugs with isort, flake8, autopep8, broken windows theory
+* PDB vs iPDB vs PUDB vs IDE
 
 
 ## Topics

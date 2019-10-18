@@ -19,6 +19,7 @@ if not player.has('walking key'):
     player = walking_corridor(player)
 
 if not player.has('looking key'):
+    breakpoint()
     player = looking_corridor(player)
 
 if not player.has('jumping key'):
