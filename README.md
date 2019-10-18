@@ -268,6 +268,17 @@ Notes on the latest PDB source.
 
 * `call_tracing` call from debugger checkpoint
 * `_current_frames`
+* `breakpointhook`
+* `displayhook` populates `_` variable
+* `excepthook(exc_type, exc_instance, traceback)`
+  - interactive: returns control to the shell
+  - program: exits
+* `exc_info` finds unhandled exception on stack.
+* original non-overriden values are stored in
+  - `sys.__breakpointhook__`
+  - `sys.__displayhook__`
+  - `sys.__excepthook__`
+  - `sys.__unraisablehook__`
 
 
 ## Dungeon game
