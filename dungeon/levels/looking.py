@@ -1,6 +1,6 @@
 # the password is 'spyglass'
 # `!player.inventory.append('spyglass')`
-# now feel free to `(c)ontinue`
+# `(c)ontinue` will take you to the breakpoint
 
 from mechanics import check_password
 
