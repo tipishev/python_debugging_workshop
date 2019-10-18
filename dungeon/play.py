@@ -1,30 +1,22 @@
 #!/usr/bin/env python3
 
 from player import Player
-from levels import (
-    jumping_corridor,
-    walking_corridor,
-    looking_corridor,
-)
+from levels import main_corridor
+
 
 # give your player a name
 player = Player(name='Tim')
 
 # provide with initial inventory
-player.inventory.append('walking key')
-# player.inventory.append('looking key')
-player.inventory.append('jumping key')
+player.inventory.extend([
+    'walking key',
+    #  'looking key',
+    'jumping key',
+])
 
-# TODO move to main_corridor
-if not player.has('walking key'):
-    player = walking_corridor(player)
-
-if not player.has('looking key'):
-    breakpoint()
-    player = looking_corridor(player)
-
-if not player.has('jumping key'):
-    player = jumping_corridor(player)  # you return as a jumpy person
+# the journey will change you
+breakpoint()
+player = main_corridor(player)  # (s)tep in carefully...
 
 # TODO add a proper challenge to get the Golden Python
 player.inventory.append('Golden Python')

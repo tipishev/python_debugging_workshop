@@ -113,16 +113,14 @@ def looking_corridor(player):  # please, (s)tep in!
     _
     _
     _
-    _
-    _
     _  # yep, `longlist` shows you the whole function
     _  # scroll up and confirm that the output starts with `def`
     _
+    _  # to stop yourself in front of password room
+    _  # type `(b)reakpoint 123` and `ll` again
+    _  # then (l)ook at lines 1,2,3! `l 1,3`
     _
-    _  # don't (s)tep further before you (l)ooked at lines 1,2,3!
-    _  # but before that, type `b 125` for a dramatic effect
-    _
-    return password_room(player)
+    return password_room(player)  # (i)f ready (s)tep in...
 
 
 def password_room(player):
