@@ -293,12 +293,12 @@ Notes on the latest PDB source.
 * `excepthook(exc_type, exc_instance, traceback)`
   - interactive: returns control to the shell
   - program: exits
-* `exc_info` finds unhandled exception on stack.
 * original non-overriden values are stored in
   - `sys.__breakpointhook__`
   - `sys.__displayhook__`
   - `sys.__excepthook__`
   - `sys.__unraisablehook__`
+* `exc_info` finds unhandled exception on stack.
 
 
 ## Dungeon game
@@ -404,7 +404,7 @@ So, without further ado we descend into the Dungeons of Doom.
 
 * (a)rguments to see what was passed
 * `p`  if you really miss that `print`
-* `pp` a bag full of JSON, arrange lines vertically for clue
+* `pp` a bag ~full of JSON~ of `dict`s, arrange lines vertically for clue
 
 
 ### Meta
