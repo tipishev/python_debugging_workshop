@@ -299,6 +299,9 @@ Notes on the latest PDB source.
   - `sys.__excepthook__`
   - `sys.__unraisablehook__`
 * `exc_info` finds unhandled exception on stack.
+* `sys._getframe([depth])`
+* `sys.gettrace()`
+* ` sys.__interactivehook__`
 
 
 ## Dungeon game
