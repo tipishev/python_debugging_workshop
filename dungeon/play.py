@@ -3,9 +3,7 @@
 from player import Player
 from levels import main_corridor
 
-'''
-Welcome to the game "The Quest for Golden Python"
-'''
+''' Welcome to the game "The Quest for Golden Python"!  '''
 
 # What's your character's name?
 player = Player(name='Tim')
@@ -19,8 +17,8 @@ player.inventory.extend([
     #  'jumping key',
 ])
 
-# that's where the game starts
-player = main_corridor(player)  # (s)tep in carefully...
+# the game starts here
+player = main_corridor(player)
 
 if player.has('Golden Python'):
     print('Congratulations, you got the Golden Python!')
