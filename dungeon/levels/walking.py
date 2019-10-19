@@ -47,7 +47,7 @@ def a_room(player):  # sweet! So glad that you stepped in
     _
     _
     _
-    _  # fluggaen
+    _  # "fluggaen"
     _  # pick it up: `!player.inventory.append('fluggaen')`
     _  # the second part is on line 65, try the shorter `unt 65`
     _
@@ -62,7 +62,7 @@ def a_room(player):  # sweet! So glad that you stepped in
     _
     _
     _
-    _  # koecchi
+    _  # "koecchi"
     _  # `!player.inventory[-1] += 'koecchi'
     _  # the last part is on line 75  `(unt)il 75`
     _
@@ -72,7 +72,7 @@ def a_room(player):  # sweet! So glad that you stepped in
     _
     _
     _
-    _  # cebolsen
+    _  # "cebolsen"
     _  # `!player.inventory[-1] += 'cebolsen'
     _  # pst! you can use up-arrow to reuse a typed command
 
