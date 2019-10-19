@@ -8,10 +8,10 @@ from levels import main_corridor
 # What's your character's name?
 player = Player(name='Tim')
 
-# What would you like to start with?
+# What will you take to the dungeon?
 player.inventory.extend([
-    'sword',
-    'shield',
+    'broomstick',
+    #  'shield',
     #  'walking key',
     #  'looking key',
     #  'jumping key',

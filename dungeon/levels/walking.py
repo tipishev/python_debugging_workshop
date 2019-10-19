@@ -3,6 +3,10 @@ from mechanics import check_password
 _ = None
 
 
+class TripAndFall(Exception):
+    ''' Don't put "walking" as a skill in your résumé yet '''
+
+
 def check_walking_password(player):
     return check_password(player,  '4c4e8ca78ae78388276d094f067a04fb')
 
@@ -20,10 +24,6 @@ def a_room(player):  # sweet! So glad that you stepped in
     _  # you can skip many lines with `(unt)il {line_number}`
     _  # the ⅓ of level password is on line 50
     _  # get there with `until 50`
-    _
-    _
-    _
-    _
     _
     _
     _
@@ -128,4 +128,4 @@ def walking_corridor(player):
         player.inventory.append('walking key')
         return player  # press c to (c)ontinue
 
-    raise Exception('You are not leaving!')
+    raise TripAndFall('Learn to walk before you run this code')
