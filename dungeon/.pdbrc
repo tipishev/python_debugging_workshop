@@ -1,9 +1,20 @@
 # Print instance variables (usage "pi classInst")
-alias pi for k in %1.__dict__.keys(): print("%1.",k,"=",%1.__dict__[k])
-# Print instance variables in self
+alias pi for k in sorted(vars(%1)): print(f"%1.{k}={vars(%1)[k]}")
+
+# Print instance variables in ~self~ player
 alias ps pi player
 
-alias inventory pp player.inventory
+# Inventory can be listed with inventory, inv, and i
+alias inventory !print('=Inventory=') ;; pp player.inventory
 alias inv inventory
 alias i inv
-alias iw print("=Weapons=\n") ;; pp [item for item in player.inventory if item in ['sword', 'dagger', 'whip']]
+
+# timestamp and dump objects to a file, e.g. `dump "captains log"`
+alias dump from datetime import datetime ;; with open('dump.txt', 'a+') as f: f.write(f'{datetime.now().isoformat()}\n{%*}\n\n')
+
+# dump stack
+alias dump_stack !from traceback import format_stack ;; dump format_stack()
+
+# combined commands, when no pdb available?
+alias nl n;;l
+alias sl s;;l

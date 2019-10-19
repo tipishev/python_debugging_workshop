@@ -10,7 +10,7 @@ player = Player(name='Tim')
 
 # What will you take to the dungeon?
 player.inventory.extend([
-    'broomstick',
+    #  'broomstick',
     #  'shield',
     #  'walking key',
     #  'looking key',
@@ -18,6 +18,7 @@ player.inventory.extend([
 ])
 
 # the game starts here
+breakpoint()
 player = main_corridor(player)
 
 if player.has('Golden Python'):

@@ -139,7 +139,7 @@ cd dungeon
 
 * post-mortem
 * debugging live in a closure
-* pickling traceback for later debugging
+* ~pickling traceback for later debugging~ not possible to pickle tracebacks
 * pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
 * pinfo, pinfo2: real story `DictWriter.field_names`
 * break
@@ -173,8 +173,6 @@ cd dungeon
 * `p`... why would I use it instead of !command?, I guess if one misses prints
 * `>>` marks current exception
 
-
-* TODO `post_mortem` STUDY sys.traceback!
 
 ## https://www.youtube.com/watch?v=mbdYATn7h6Q  Pudb tutorial from PyBay 2017
 
@@ -397,6 +395,7 @@ So, without further ado we descend into the Dungeons of Doom.
   - c(ont(inue))
 
 * start with pdb, show it's ugliness
+* show `nl`, `sl` to show how to make it better in absence of `ipdb`
 * continue with ipdb, show breakpoints(), mention production hooks
 
 #### Looking
