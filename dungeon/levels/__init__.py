@@ -15,4 +15,6 @@ def main_corridor(player):
     if not player.has('jumping key'):
         player = jumping_corridor(player)
 
+    # TODO add a proper final challenge
+    player.inventory.append('Golden Python')
     return player

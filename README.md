@@ -13,14 +13,13 @@ Here I combine notes and slides for my Python debugging workshop
 
 Hello everyone! My name is Tim and in today's workshop I will talk about debugging Python.
 
+While preparing this workshop I have looked at a number of debugging tutorials and they all follow the same structure.
 
-While preparing this workshop I have looked at a number of debugging tutorials, they all follow the same structure.
-
-* Don't use print
-* A brief recap of PDB doc help page
+* "Don't use print!"
+* A recap of PDB doc help page
 * A few examples of using debugger commands
 
-This workshop will be slightly different
+I tried to make this workshop slightly different
 
 ---
 There is a silly factoid that we remember
@@ -33,20 +32,20 @@ There is a silly factoid that we remember
 
 That's why in this workshop we will hands-on solve a series of puzzles, each one focusing on some aspect of Python debugging.
 
+How many of you have been there last year?
+Then you probably remember the talk about Evennia, Python-based Multi-User Dungeon (MUD) framework.
+
 How many of you have played MUDs?
-
-By the way, last year's Pycon had an awesome talk about Evennia, Python-based Multi-User Dungeons (MUD).
-
 What about Roguelikes or Interactive Fiction (IF)?
 
-Then you will also see that debugging is similar to playing such a game:
+Then you will also find using the debugging is similar to playing such a game:
 
 * controlled with a few commands: "north, open, examine" vs "next, step, where"
 * the commands can be abbreviated: "(n)orth, (o)pen, e(x)amine" vs "(n)ext, (s)tep, w(here)"
 * most actions are irreversible: "items can be lost forever" vs "function calls cannot be undone"
 * permadeath: "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
 
-To add to similarity our codebases often remind dungeons that were built over years by programmers, some of whom have left the company and you need Git archeology to find whjat you need, but it's a topic from my other talk (link to git tips and tricks).
+When we look at real life long-running codebases, the similarity to dungeons becomes inevitable. See for yourself, our codebases are built over years by multiple programmers, some of whom have left the company and you need Git archeology to find what you need, but it's a topic from my other talk (link to git tips and tricks).
 
 A typical code dungeon looks like this:
 
@@ -56,20 +55,28 @@ A typical code dungeon looks like this:
 * calling a function within a function takes you one level deeper
 * returning from a function takes you one level up
 * one function can have multiple return points
-* luckily Python has no GOTO so we don't have weird teleports
+* (luckily Python has no GOTO so we don't have weird teleports)
 * on the diagram the numbers are relative to function, therefore start from 1. In real code all functions could be defined in the same file and the actual start could be on any line, though lines are always consecutive.
 
 
 Before we start, I am legally required to tell you why `print`-debugging is bad:
 
-* like Printgles, one is never enough
-* it will definitely get in production
+* one is never enough: like Pringles, once you pop, you cannot stop
+* it will get in production, just search your codebase for those stray prints
 
-So, let's run the game
+By the way "it will get to production" applies not only to `print` statements, but also to anything you put in your code for debugging and fun. I call this the "The Law of Bearded Crab". When I was working for an entertainment event aggregator, we used silly fake events for testing. Ang one day, after an incorrect import, "the Concert of Bearded Crab" appeared on the main page.
+
+So, without further ado let's get to tutorial.
+
+We start by cloning the repository.
 
 ```bash
+git clone git@github.com:tipishev/python_debugging_workshop.git
+cd python_debugging_workshop
+virtualenv -p python 3.7 venv
+. venv/bin/activate
+pip install -r requirements.txt
 cd dungeon
-./play.py
 ```
 
 
