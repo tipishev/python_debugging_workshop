@@ -302,6 +302,10 @@ Notes on the latest PDB source.
 * `sys._getframe([depth])`
 * `sys.gettrace()`
 * ` sys.__interactivehook__`
+* these exist for `pdb.pm()` and `%debug`'s sake
+* `last_type`
+* `last_value`
+* `last_traceback`
 
 
 ## Dungeon game
@@ -363,13 +367,19 @@ So, without further ado we descend into the Dungeons of Doom.
   - unt(il)
   - c(ont(inue))
 
+* start with pdb, show it's ugliness
+* continue with ipdb, show breakpoints(), mention production hooks
+
 #### Looking
 
 * shows ways to list a file - l(ist)
   - just line
   - lines range
   - line with count
+  - longlist the whole function
 * look puzzle: look at line 42, look 42 lines lower, 47 higher, etc.
+* not so painful with `context`: demonstrate
+* not required for PUDB, demonstrate
 
 #### Fooscending
 

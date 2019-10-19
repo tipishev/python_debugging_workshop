@@ -9,8 +9,8 @@ player = Player(name='Tim')
 
 # provide with initial inventory
 player.inventory.extend([
-    'walking key',
-    #  'looking key',
+    # 'walking key',
+    'looking key',
     'jumping key',
 ])
 
