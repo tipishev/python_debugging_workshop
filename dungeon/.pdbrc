@@ -15,6 +15,13 @@ alias dump from datetime import datetime ;; with open('dump.txt', 'a+') as f: f.
 # dump stack
 alias dump_stack !from traceback import format_stack ;; dump format_stack()
 
-# combined commands, when no pdb available?
+# combined commands, ipdb.set_trace(context=10) is unavailable
 alias nl n;;l
 alias sl s;;l
+
+# fast up and down the stack
+alias uu u;;u
+alias dd d;;d
+
+alias uuu u;;u;;u
+alias ddd d;;d;;d

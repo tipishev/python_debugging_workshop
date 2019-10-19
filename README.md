@@ -430,10 +430,11 @@ So, without further ado we descend into the Dungeons of Doom.
 
 #### Aliasing
 
-* knapsack metaphor
+* knapsack metaphor, "but in-game inventory is not the only thing we take"
 * use really useful aliases
   - examine `dict`
   - dump to file
+* incremental introduction to aliases
 
 #### Examination
 
