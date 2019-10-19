@@ -303,9 +303,31 @@ Notes on the latest PDB source.
 * `sys.gettrace()`
 * ` sys.__interactivehook__`
 * these exist for `pdb.pm()` and `%debug`'s sake
-* `last_type`
-* `last_value`
-* `last_traceback`
+  - `last_type`
+  - `last_value`
+  - `last_traceback`
+* `ps1`, `ps2` can be dynamic in `interact` mode
+* `sys.settrace(tracefunc)`
+  - 'call'
+  - 'line'
+  - 'return'
+  - 'exception'
+  - 'opcode', `f_trace_opcodes=True'`
+* `tracebacklimit` default 1000
+
+
+### Python traceback docs
+* `print_tb(tb, limit=None, file=None)` file to object, alias?
+* `print_exception`
+* `print_exc` helper for `sys.exc_info()`
+* `print_stack`
+* `format_list/exception/exc/tb/stack`, as above, but just formats
+* `walk_stack/tb`
+* `TracebackException` lightweight exception wrapper
+* Syntax errors are treated slightly differently
+* StackSummary for nicely printing
+* FrameSummary
+
 
 
 ## Dungeon game
@@ -371,13 +393,6 @@ So, without further ado we descend into the Dungeons of Doom.
 * continue with ipdb, show breakpoints(), mention production hooks
 
 #### Looking
-
-* shows ways to list a file - l(ist)
-  - just line
-  - lines range
-  - line with count
-  - longlist the whole function
-* look puzzle: look at line 42, look 42 lines lower, 47 higher, etc.
 * not so painful with `context`: demonstrate
 * not required for PUDB, demonstrate
 
@@ -386,6 +401,7 @@ So, without further ado we descend into the Dungeons of Doom.
 * mention `a` arguments
 * show how to navigate up and down the stack
 * infinite recursion trap without base case, bottomless pit, actually 1000 calls bottom
+* `sys.setrecursionlimit`
 
 #### Running
 
