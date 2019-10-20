@@ -8,10 +8,11 @@ from levels.main import main_corridor
 # What's your character's name and starting items?
 player = Player(
     name='Tim',
-    inventory=[''],
+    inventory=['broomstick'],
 )
 
 # the game starts here
+import pdb; pdb.set_trace()
 player = main_corridor(player)
 
 if player.has('Golden Python'):

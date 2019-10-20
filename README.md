@@ -90,10 +90,33 @@ Let's run the game.
 ./play.py
 ```
 
-We immediately see an error. Luckily the error is descriptive enough to be fixed without a debugger or even.
+We immediately see an error. Let's look what happened in the `main_corridor`. Ok, we need to have at least something in our inventory. Let's take a broomstick, big enough to scare away a rat. By the way, here you can see how the `main_corridor` is structured, there are several branching functions, each focusing on some aspect of Python debugger. At the end of each sub-corridor we get a key. We need to collect them all to unlock the final challenge.
 
 
+Let's run the game again.
+```bash
+./play.py
+```
 
+Now we get a different error, now coming from the `walking_corridor`. Here we can finally start a debugger. Right before entering the `main_corridor`.
+
+How many of you use Python version less that 3.7?
+
+_raise hand, too_
+
+Good, before 3.7, starting a debugger takes more keystrokes.
+
+_type `import pdb; pdb.set_trace()` right before entering the main corridor_
+
+Now, when we run `play.py` we drop into debugger prompt.
+
+Here are a couple of immediately useful commands:
+
+* `list` to show the source code  _type it_ the arrow shows where we are
+* `step` to enter the function call _type it_ it takes us inside the corridor
+* `next` to advance to the next line _type it_
+
+To quit the debugger just press `q`, you see this Traceback because internally the debugger raises a special `bdb.BdbQuit` exception. The only exception it should not normally handle.
 
 To avoid bearded crab use git pre-commit hooks to clear
 
