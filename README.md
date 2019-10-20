@@ -45,9 +45,9 @@ Then you will also find using the debugging is similar to playing such a game:
 * most actions are irreversible: "items can be lost forever" vs "function calls cannot be undone"
 * permadeath: "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
 
-When we look at real life long-running codebases, the similarity to dungeons becomes inevitable. See for yourself, our codebases are built over years by multiple programmers, some of whom have left the company and you need Git archeology to find what you need, but it's a topic from my other talk (link to git tips and tricks).
+When we look at real life long-running codebases, the similarity to dungeons becomes inevitable. See for yourself, our codebases are built over years by multiple programmers, some of whom have left the company and you need Git archeology to find what you need, but it's a topic for another talk.
 
-A typical code dungeon looks like this:
+A typical code-dungeon looks like this:
 
 * a single point of entry
 * each function is a corridor
@@ -68,6 +68,8 @@ By the way "it will get to production" applies not only to `print` statements, b
 
 So, without further ado let's get to tutorial.
 
+## Main part
+
 We start by cloning the repository.
 
 ```bash
@@ -79,9 +81,26 @@ pip install -r requirements.txt
 cd dungeon
 ```
 
+Let's open `play.py`. Here we create a `Player` instance, with a name and empty starting inventory.
+
+All locations in the game are functions that accept the player instance as an argument and return it back, possibly modifying its state. Or don't return it and raise an exception instead. In `play.py` we enter the main_corridor from which all the other corridors branch. The goal of the game is to get the Golden Python.
+
+Let's run the game.
+```bash
+./play.py
+```
+
+We immediately see an error. Luckily the error is descriptive enough to be fixed without a debugger or even.
 
 
-### Conclusion
+
+
+To avoid bearded crab use git pre-commit hooks to clear
+
+* print
+* breakpoint
+
+## Conclusion
 
 * Now you know what to do when you encounter a bug
   - configure a debugger of choice: `pdb`, `ipdb`, or `pudb`
@@ -464,6 +483,7 @@ So, without further ado we descend into the Dungeons of Doom.
 
 ## Reading List
 
+* https://github.com/spiside/pdb-tutorial
 * all the help tree in PDB's `h` menu
 * https://realpython.com/python-debugging-pdb/
 * https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
