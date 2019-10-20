@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
 
-from player import Player
 from levels.main import main_corridor
+
+
+class Player:
+
+    def __init__(self, name, inventory=None):
+        self.name = name
+        self.inventory = inventory or []
+
 
 ''' Welcome to The Quest for Golden Python! '''
 
@@ -12,8 +19,8 @@ player = Player(
 )
 
 # the game starts here
-import pdb; pdb.set_trace()
+import ipdb; ipdb.set_trace(context=5)
 player = main_corridor(player)
 
-if player.has('Golden Python'):
+if 'Golden Python' in player.inventory:
     print('Congratulations, you got the Golden Python!')

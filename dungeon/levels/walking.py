@@ -63,7 +63,7 @@ def a_room(player):  # sweet! So glad that you stepped in
     _
     _
     _  # "koecchi"
-    _  # `!player.inventory[-1] += 'koecchi'
+    _  # `!player.inventory[-1] += 'koecchi'`
     _  # the last part is on line 75  `(unt)il 75`
     _
     _

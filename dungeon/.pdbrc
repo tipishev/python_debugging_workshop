@@ -1,4 +1,30 @@
-from datetime import datetime
+# combined commands, ipdb.set_trace(context=10) is unavailable
+alias nl n;;l
+alias sl s;;l
+
+
+
+# Inventory can be listed with inventory, inv, and i
+alias inventory !print('=Inventory=') ;; pp player.inventory
+alias inv inventory
+alias i inv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Print instance variables (usage "pi classInst")
 alias pi for k in sorted(vars(%1)): print(f"%1.{k}={vars(%1)[k]}")
@@ -6,20 +32,12 @@ alias pi for k in sorted(vars(%1)): print(f"%1.{k}={vars(%1)[k]}")
 # Print instance variables in ~self~ player
 alias ps pi player
 
-# Inventory can be listed with inventory, inv, and i
-alias inventory !print('=Inventory=') ;; pp player.inventory
-alias inv inventory
-alias i inv
-
 # timestamp and dump objects to a file, e.g. `dump "captains log"`
+from datetime import datetime
 alias dump with open('dump.txt', 'a+') as f: f.write(f'{datetime.now().isoformat()}\n{%*}\n\n')
 
 # dump stack
 alias dump_stack !from traceback import format_stack ;; dump format_stack()
-
-# combined commands, ipdb.set_trace(context=10) is unavailable
-alias nl n;;l
-alias sl s;;l
 
 # fast up and down the stack
 alias uu u;;u

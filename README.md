@@ -108,7 +108,13 @@ Good, before 3.7, starting a debugger takes more keystrokes.
 
 _type `import pdb; pdb.set_trace()` right before entering the main corridor_
 
-Now, when we run `play.py` we drop into debugger prompt.
+Now, when we run `play.py` we drop into Pdb prompt. For the record, Pdb is not my favourite debugger:
+
+* shows just one line of context
+* has poor tab-completion
+* does not support colors
+
+If I can, I use any other debugger. But in spite of all its shortcomings, Pdb has one killer feature: it is part of the standard library. So, if you ssh to a server, but have no permission to install a better debugger, you can still run Pdb.
 
 Here are a couple of immediately useful commands:
 
@@ -116,7 +122,31 @@ Here are a couple of immediately useful commands:
 * `step` to enter the function call _type it_ it takes us inside the corridor
 * `next` to advance to the next line _type it_
 
-To quit the debugger just press `q`, you see this Traceback because internally the debugger raises a special `bdb.BdbQuit` exception. The only exception it should not normally handle.
+These commands can also be abbreviated to `l`, `s`, and `n` respectively. We will talk more about these commands in the following exercises.
+
+As I mentioned earlier, PDB shows just the current line, so almost always we would like to go to the next line and see the code around it.
+We can do this by separting commands with double semicolon.
+
+```python
+n ;; l
+```
+
+We can also set these command as aliases:
+
+```python
+alias nl n;;l
+alias sl s;;l
+```
+
+We will talk about aliases later.
+To quit the debugger just type `q`. We see a Traceback because to stop, the debugger raises a special `bdb.BdbQuit` exception.
+
+For this exercise we will use `ipdb`, a 345-line wrapper around PDB that adds tab-completion, color, and multiline context support.
+
+For that we can add a couple of `i`s in the earlier breakpoint.  _add those 'i's_
+Now, all the goodness of iPython is available to us. Another improvement is that you can set how many lines of context you would like to see. _add context=5_
+
+Let's go through this level in ipdb.
 
 To avoid bearded crab use git pre-commit hooks to clear
 
