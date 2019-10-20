@@ -334,6 +334,20 @@ Notes on the latest PDB source.
 * FrameSummary
 
 
+### https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
+
+```
+# Install IPython: python3 -m pip install ipython
+
+import IPython
+from traitlets.config import get_config
+
+cfg = get_config()
+cfg.InteractiveShellEmbed.colors = "Linux"  # syntax highlighting
+cfg.InteractiveShellEmbed.confirm_exit = False
+
+alias interacti IPython.embed(config=cfg)
+```
 
 ## Dungeon game
 
@@ -450,7 +464,6 @@ So, without further ado we descend into the Dungeons of Doom.
 
 ## Reading List
 
-* https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
 * all the help tree in PDB's `h` menu
 * https://realpython.com/python-debugging-pdb/
 * https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa

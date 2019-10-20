@@ -1,3 +1,5 @@
+from datetime import datetime
+
 # Print instance variables (usage "pi classInst")
 alias pi for k in sorted(vars(%1)): print(f"%1.{k}={vars(%1)[k]}")
 
@@ -10,7 +12,7 @@ alias inv inventory
 alias i inv
 
 # timestamp and dump objects to a file, e.g. `dump "captains log"`
-alias dump from datetime import datetime ;; with open('dump.txt', 'a+') as f: f.write(f'{datetime.now().isoformat()}\n{%*}\n\n')
+alias dump with open('dump.txt', 'a+') as f: f.write(f'{datetime.now().isoformat()}\n{%*}\n\n')
 
 # dump stack
 alias dump_stack !from traceback import format_stack ;; dump format_stack()
