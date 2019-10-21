@@ -1,6 +1,7 @@
 from .walking import walking_corridor
 from .looking import looking_corridor
 from .jumping import jumping_corridor
+from .stacking import stacking_corridor
 
 
 class EatenByRat(Exception):

@@ -457,9 +457,9 @@ alias interacti IPython.embed(config=cfg)
 * source the enemy to see weakness?
 * display/undisplay to check surroundings
 * `display` to check coin count, try multiple
-* interact: a safespace to experiment
-* we can use `!` only n-times
-* morbid traceback pickling, black bag with another adventurer's traceback
+* interact: a safespace to experiment?
+* we can use `!` only n-times?
+* ~morbid traceback pickling, black bag with another adventurer's traceback~
 * narrate to sys/err?
 * flat structure: 3 dungeon branches, each with key, one final room
 * use ipdb.rc for provisioning
