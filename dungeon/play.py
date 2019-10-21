@@ -2,6 +2,8 @@
 
 from levels.main import main_corridor
 
+#  import sys
+#  sys.setrecursionlimit(3000)
 
 class Player:
 
@@ -19,7 +21,6 @@ player = Player(
 )
 
 # the game starts here
-import ipdb; ipdb.set_trace(context=5)
 player = main_corridor(player)
 
 if 'Golden Python' in player.inventory:

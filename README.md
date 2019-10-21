@@ -80,6 +80,8 @@ So, without further ado let's get to tutorial.
 
 ## Main part
 
+### Setup
+
 Does everyone have Python 3.7 + installed?
 
 We start by cloning the repository.
@@ -97,6 +99,8 @@ Let's open `play.py`. Here we create a `Player` instance, with a name and empty 
 
 All locations in the game are functions that accept the player instance as an argument and return it back, possibly modifying its state. Or don't return it and raise an exception instead. In `play.py` we enter the main_corridor from which all the other corridors branch. The goal of the game is to get the Golden Python.
 
+### First Run
+
 Let's run the game.
 ```bash
 ./play.py
@@ -104,6 +108,8 @@ Let's run the game.
 
 We immediately see an error. Let's look what happened in the `main_corridor`. Ok, we need to have at least something in our inventory. Let's take a broomstick, big enough to scare away a rat. By the way, here you can see how the `main_corridor` is structured, there are several branching functions, each focusing on some aspect of Python debugger. At the end of each sub-corridor we get a key. We need to collect them all to unlock the final challenge.
 
+
+### Walking
 
 Let's run the game again.
 ```bash
@@ -166,6 +172,22 @@ To avoid bearded crab use git pre-commit hooks to clear
 * print
 * breakpoint
 
+### Looking
+
+### Jumping
+
+In real world jumping helps to:
+
+* skip heavy operations
+* avoid broken code
+* go back if you forgot to check something
+
+
+### Stacking
+
+* alias for traceback size
+* Pdb commands
+
 ## Conclusion
 
 * Now you know what to do when you encounter a bug
@@ -196,7 +218,7 @@ To avoid bearded crab use git pre-commit hooks to clear
   - pudb* / graphical / IDE
   - avoiding bugs with isort, flake8, autopep8, broken windows theory
 * PDB vs iPDB vs PUDB vs IDE
-  - Pdb: upside: available everywhere, downside: very basic
+  - Pdb: upside: available everywhere, downside: very basic, rough on the edges shows bdb.Quit
   - iPdb: upside: can start as %debug from iPython, downside: none, it's my fave
   - Pudb: downside: no jumps, show github issue
   - IDE debuggers, downside: cannot run in terminal, loss of oldschool-cred
@@ -506,7 +528,9 @@ So, without further ado we descend into the Dungeons of Doom.
 * not so painful with `context`: demonstrate
 * not required for PUDB, demonstrate
 
-#### Fooscending
+#### Stacking
+
+* inspired by SCP-087
 
 * mention `a` arguments
 * show how to navigate up and down the stack
