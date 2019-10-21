@@ -5,13 +5,23 @@ Here I combine notes and slides for my Python debugging workshop
 # Transcript
 
 ## Quotes
-> "If you need a debugger, the error had happened much earlier."
 > "Debuggers don't remove bugs, they show them in slow-mo"  # TODO source
 > "They are errors, not bugs" Edsger Dijkstra
 
 ## Introduction
 
 Hello everyone! My name is Tim and in today's workshop I will talk about debugging Python.
+
+How many of you have used a debugger before?
+
+* <½ Awesome! It means that a lot of you will go to lunch with a new tool under your belt
+* >½ Nice! Then a lot of what I tell today will be a refresher, with a few tips and tricks on top.
+
+Let's talk about debugging in general. Some developers say they don't need a debugger in a scripting language, since they can just look at the source. On one hand it's true and there is a saying
+
+> "If you need a debugger, the error had happened much earlier."
+
+But on the other hand, a complex application, can be compared to a transit system. Of course, you have your source: the transit map and schedules. But would you bet your lunch money on the exact location of any given train? That is the problem, we want to see inside the black box and see the runtime state of our code.
 
 While preparing this workshop I have looked at a number of debugging tutorials and they all follow the same structure.
 
@@ -183,6 +193,11 @@ To avoid bearded crab use git pre-commit hooks to clear
   - pudb* / graphical / IDE
   - avoiding bugs with isort, flake8, autopep8, broken windows theory
 * PDB vs iPDB vs PUDB vs IDE
+  - Pdb: upside: available everywhere, downside: very basic
+  - iPdb: upside: can start as %debug from iPython, downside: none, it's my fave
+  - Pudb: downside: no jumps, show github issue
+  - IDE debuggers, downside: cannot run in terminal, loss of oldschool-cred
+
 
 
 ## Topics
