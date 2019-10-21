@@ -80,6 +80,8 @@ So, without further ado let's get to tutorial.
 
 ## Main part
 
+Does everyone have Python 3.7 + installed?
+
 We start by cloning the repository.
 
 ```bash
@@ -157,6 +159,7 @@ For that we can add a couple of `i`s in the earlier breakpoint.  _add those 'i's
 Now, all the goodness of iPython is available to us. Another improvement is that you can set how many lines of context you would like to see. _add context=5_
 
 Let's go through this level in ipdb.
+
 
 To avoid bearded crab use git pre-commit hooks to clear
 
