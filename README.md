@@ -226,6 +226,7 @@ In real world jumping helps to:
   - pdb
   - ipdb
   - pudb* / graphical / IDE
+  - broken Windows gag
   - avoiding bugs with isort, flake8, autopep8, broken windows theory
 * PDB vs iPDB vs PUDB vs IDE
   - Pdb: upside: available everywhere, downside: very basic, rough on the edges shows bdb.Quit
