@@ -21,7 +21,9 @@ Let's talk about debugging in general. Some developers say they don't need a deb
 
 > "If you need a debugger, the error had happened much earlier."
 
-But on the other hand, a complex application, can be compared to a transit system. Of course, you have your source: the transit map and schedules. But would you bet your lunch money on the exact location of any given train? That is the problem, we want to see inside the black box and see the runtime state of our code.
+But on the other hand, a complex application, can be compared to a transit system. Of course, you have your source: the transit map and schedules. But would you bet your lunch money on the exact location of any given train?
+
+That is the problem, we want to see inside the black box and see the runtime state of our code.
 
 While preparing this workshop I have looked at a number of debugging tutorials and they all follow the same structure.
 
@@ -29,7 +31,7 @@ While preparing this workshop I have looked at a number of debugging tutorials a
 * A recap of PDB doc help page
 * A few examples of using debugger commands
 
-I tried to make this workshop slightly different
+I tried to make this workshop a bit differently
 
 ---
 There is a silly factoid that we remember
@@ -42,8 +44,8 @@ There is a silly factoid that we remember
 
 That's why in this workshop we will hands-on solve a series of puzzles, each one focusing on some aspect of Python debugging.
 
-How many of you have been there last year?
-Then you probably remember the talk about Evennia, Python-based Multi-User Dungeon (MUD) framework.
+How many of you have been at last year's Pycon?
+Then you may remember the talk about Evennia, Python-based Multi-User Dungeon (MUD) framework.
 
 How many of you have played MUDs?
 What about Roguelikes or Interactive Fiction (IF)?
@@ -99,7 +101,7 @@ Let's open `play.py`. Here we create a `Player` instance, with a name and empty 
 
 All locations in the game are functions that accept the player instance as an argument and return it back, possibly modifying its state. Or don't return it and raise an exception instead. In `play.py` we enter the main_corridor from which all the other corridors branch. The goal of the game is to get the Golden Python.
 
-### First Run
+### Scare the Rat
 
 Let's run the game.
 ```bash
@@ -167,7 +169,8 @@ Now, all the goodness of iPython is available to us. Another improvement is that
 Let's go through this level in ipdb.
 
 
-To avoid bearded crab use git pre-commit hooks to clear
+
+To avoid the bearded crab problem use git pre-commit hooks to clear
 
 * print
 * breakpoint
@@ -187,13 +190,11 @@ In real world jumping helps to:
 
 * inspired by SCP-087
 * alias for traceback size
-  - `alias hd import traceback ;; p len(traceback.format_stack())`
 
 * Pdb commands
 
 * mention `a` arguments
 * show how to navigate up and down the stack
-* infinite recursion trap without base case, bottomless pit, actually 1000 calls bottom
 * `sys.setrecursionlimit`
 
 
