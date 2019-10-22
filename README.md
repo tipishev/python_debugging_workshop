@@ -10,73 +10,98 @@ Here I combine notes and slides for my Python debugging workshop
 
 ## Introduction
 
-Hello everyone! My name is Tim and in today's workshop I will talk about debugging Python.
+Hello everyone! My name is Tim and today I will talk about Python debugging.
 
-How many of you have used a debugger before?
+First of all, how many of you use a debugger in your daily workflow?
 
-* <½ Awesome! It means that a lot of you will go to lunch with a new tool under your belt
-* >½ Nice! Then a lot of what I tell today will be a refresher, with a few tips and tricks on top.
+* <½ Awesome! It means that a lot of you will go to lunch with a new tool under the belt.
+* >½ Nice! Then you already know quite a few things that I tell, and it will be a refresher, with a few tips and tricks on top.
 
-Let's talk about debugging in general. Some developers say they don't need a debugger in a scripting language, since they can just look at the source. On one hand it's true and there is a saying
+Some developers say they don't need a debugger in a scripting language, since they can just look at the source. On one hand it's true and there is a saying
 
 > "If you need a debugger, the error had happened much earlier."
 
+Meaning that someone had complicated the code so much that reading the source is not enough anymore.
+
 But on the other hand, a complex application, can be compared to a transit system. Of course, you have your source: the transit map and schedules. But would you bet your lunch money on the exact location of any given train?
 
-That is the problem, we want to see inside the black box and see the runtime state of our code.
+That is exactly the problem, we would like to see inside the black box and examine the runtime state of our code.
 
 While preparing this workshop I have looked at a number of debugging tutorials and they all follow the same structure.
 
 * "Don't use print!"
-* A recap of PDB doc help page
+* A recap of PDB documentation
 * A few examples of using debugger commands
 
 I tried to make this workshop a bit differently
 
+However, I have checked, I am legally required to shame you for `print`-debugging and exmplain what's wrong with it.
+
+First of all, one print is never enough, like Pringles, once you pop, you cannot stop
+You put one, it doesn't work, then you put another one, and yet another one. And to see your changes you need to restart your code every time, which can be quite slow, especially in a dockerized setup, and this is not what we want. We want a short feedback loop to test our theories as fast as we can.
+
+Another argument against `print`s is that they ofthen get into production code. If you don't believe me, just search your codebase.
+
+By the way "it will get to production" applies not only to `print` statements, but to any silly code and data. I call this the "The Law of Bearded Crab". When I was working for an events aggregator, we used silly fake events on staging. And guess what, one day, a misconfigured import, put "the Concert of Bearded Crab" on the main page.
+
+Finally, print is ofthen used to see if the code runs at all. It's such a waste, Python has a 3-character built-in for that.
+
+* the Redneck Breakpoint
+1/0
+
+it's very visible and unlike print it does not get lost in logging.
+
+Ok, now that we are done with print-shaming, let's get started.
+
 ---
-There is a silly factoid that we remember
+There is a silly factoid:
+
+we remember...
 
 * 30% of what we hear
 * 50% of what  we see
-* 80% of what we do
+* **80% of what we do**
 * ~~95% of what we teach~~
 ---
 
-That's why in this workshop we will hands-on solve a series of puzzles, each one focusing on some aspect of Python debugging.
+That's why we will work hands-on with a series of puzzles, each focusing on some aspect of debugging.
 
-How many of you have been at last year's Pycon?
-Then you may remember the talk about Evennia, Python-based Multi-User Dungeon (MUD) framework.
+How many of you were at last year's Pycon Sweden?
+
+Then you may remember the talk about Evennia, a Python-based Multi-User Dungeon framework.
 
 How many of you have played MUDs?
+
 What about Roguelikes or Interactive Fiction (IF)?
 
-Then you will also find using the debugging is similar to playing such a game:
+Then you will find console-debugging similar to playing such a game:
 
-* controlled with a few commands: "north, open, examine" vs "next, step, where"
-* the commands can be abbreviated: "(n)orth, (o)pen, e(x)amine" vs "(n)ext, (s)tep, w(here)"
-* most actions are irreversible: "items can be lost forever" vs "function calls cannot be undone"
-* permadeath: "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
+They are both...
 
-When we look at real life long-running codebases, the similarity to dungeons becomes inevitable. See for yourself, our codebases are built over years by multiple programmers, some of whom have left the company and you need Git archeology to find what you need, but it's a topic for another talk.
+* controlled with a few commands:
+  - "north, open, examine" vs "next, step, where"
+* the commands can be abbreviated:
+  - "(n)orth, (o)pen, e(x)amine" vs "(n)ext, (s)tep, w(here)"
+* some actions are irreversible:
+  - "items can be lost forever" vs "function calls cannot be undone"
+* permadeath:
+  - "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
+
+Funnily enough, when we look at our codebases, the similarity with dungeons becomes inevitable. See for yourself, our codebases are built over years by multiple programmers, and sometimes you need Git archeology to find what you need, but it's a topic from my another talk.
 
 A typical code-dungeon looks like this:
 
 * a single point of entry
 * each function is a corridor
-* the more lines in a function the longer the corridor
-* calling a function within a function takes you one level deeper
-* returning from a function takes you one level up
-* one function can have multiple return points
-* (luckily Python has no GOTO so we don't have weird teleports)
-* on the diagram the numbers are relative to function, therefore start from 1. In real code all functions could be defined in the same file and the actual start could be on any line, though lines are always consecutive.
+* the more lines there is in a function the longer the corridor
+* calling a function within a function takes you one level deeper down the stack
+* returning from a function takes you one level up, to the line where you entered
+* one function can have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit None.
+luckily there are no GOTO statements in Python, so we don't have weird teleports
+
+* One thing to note about this diagram the numbers are not the actual line numbers in the files, they are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines are always consecutive.
 
 
-Before we start, I am legally required to tell you why `print`-debugging is bad:
-
-* one is never enough: like Pringles, once you pop, you cannot stop
-* it will get in production, just search your codebase for those stray prints
-
-By the way "it will get to production" applies not only to `print` statements, but also to anything you put in your code for debugging and fun. I call this the "The Law of Bearded Crab". When I was working for an entertainment event aggregator, we used silly fake events for testing. Ang one day, after an incorrect import, "the Concert of Bearded Crab" appeared on the main page.
 
 So, without further ado let's get to tutorial.
 
