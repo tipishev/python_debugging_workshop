@@ -31,7 +31,7 @@ def staircase(player, floor=0):
         player.inventory.append('level key')
         return player  # you dash up the floors like a bullet
     try:
-        return staircase(player, floor=floor-1)  # we need to go deeper
+        return staircase(player, floor=floor-1)  # one need(s) to go deeper
     except RecursionError:
         import sys
         print(sys.getrecursionlimit())
@@ -49,7 +49,7 @@ def stacking_corridor(player):  # (s)tep in..
     player = underground_house(player)  # could the key be in(s)ide?
 
     if player.inventory.pop() == 'staircase key':
-        player = staircase(player)
+        player = staircase(player)  # now you can (s)tep inside
 
     player.inventory.append('stacking key')
     return player

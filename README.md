@@ -185,8 +185,18 @@ In real world jumping helps to:
 
 ### Stacking
 
+* inspired by SCP-087
 * alias for traceback size
+  - `alias hd import traceback ;; p len(traceback.format_stack())`
+
 * Pdb commands
+
+* mention `a` arguments
+* show how to navigate up and down the stack
+* infinite recursion trap without base case, bottomless pit, actually 1000 calls bottom
+* `sys.setrecursionlimit`
+
+
 
 ## Conclusion
 
@@ -528,14 +538,6 @@ So, without further ado we descend into the Dungeons of Doom.
 * not so painful with `context`: demonstrate
 * not required for PUDB, demonstrate
 
-#### Stacking
-
-* inspired by SCP-087
-
-* mention `a` arguments
-* show how to navigate up and down the stack
-* infinite recursion trap without base case, bottomless pit, actually 1000 calls bottom
-* `sys.setrecursionlimit`
 
 #### Running
 
