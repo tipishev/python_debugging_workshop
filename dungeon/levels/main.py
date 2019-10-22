@@ -14,14 +14,14 @@ def main_corridor(player):
     #      raise EatenByRat('Do not go empty-handed!')
 
     # TODO 'foo key' -> 'amulet of foo'
-    #  if 'walking key' not in player.inventory:
-    #      player = walking_corridor(player)
+    if 'walking key' not in player.inventory:
+        breakpoint()
+        player = walking_corridor(player)
 
     #  if 'looking key' not in player.inventory:
     #      player = looking_corridor(player)
 
     if 'stacking key' not in player.inventory:
-        breakpoint()
         player = stacking_corridor(player)
 
     #  if 'jumping key' not in player.inventory:
