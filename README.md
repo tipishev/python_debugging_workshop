@@ -515,7 +515,7 @@ alias interacti IPython.embed(config=cfg)
 * debugging inside a closure == inside the dragon's belly
 * source the enemy to see weakness?
 * display/undisplay to check surroundings
-* `display` to check coin count, try multiple
+* `display` to check coin count, try multiple, actually not necessary in 2.7, use commands to look at `Mock.call_count`
 * interact: a safespace to experiment?
 * we can use `!` only n-times?
 * ~morbid traceback pickling, black bag with another adventurer's traceback~
