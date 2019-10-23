@@ -35,7 +35,7 @@ While preparing this workshop I have looked at a number of debugging tutorials a
 
 I tried to make this workshop a bit differently
 
-However, I have checked, I am legally required to shame you for `print`-debugging and exmplain what's wrong with it.
+However, I am legally required to shame you for `print`-debugging and exmplain what's wrong with it.
 
 First of all, one print is never enough, like Pringles, once you pop, you cannot stop
 You put one, it doesn't work, then you put another one, and yet another one. And to see your changes you need to restart your code every time, which can be quite slow, especially in a dockerized setup, and this is not what we want. We want a short feedback loop to test our theories as fast as we can.
