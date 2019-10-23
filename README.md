@@ -332,7 +332,7 @@ In real world jumping helps to:
 
 ## PDB help notes
 * make fancy debugger
-* warn about single-letter variables, use `!` to be sure
+* warn about single-letter variables, use `!` to be sure, `list` can trip, so can one-letter vars
 * `bt` alias for `where`
 * file-specified breakpoint looks on `sys.path`, `.py` can be skipped
 * enable/disable breakpoints, multiple (space separated list)
