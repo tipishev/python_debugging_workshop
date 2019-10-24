@@ -139,14 +139,39 @@ Let's run the game.
 
 We immediately see an error. Let's look what happened in the `main_corridor`. Ok, we need to have at least something in our inventory. Let's take a broomstick, big enough to scare away a rat. By the way, here you can see how the `main_corridor` is structured, there are several levels, each focusing on some aspect of Python debugger. At the end of each we get an amulet. We need to collect them all to collect the Golden Python.
 
+### Walking
 
+Let's run the game again.
+
+```bash
+./play.py
+```
+
+Now we have a different error and can use a debugger.
+
+Now we get a different error, now coming from the `walking_corridor`. Here we can finally start a debugger. Right before entering the `main_corridor`.
+
+How many of you use Python version less that 3.7?
+
+_raise hand, too_
+
+Good, before 3.7, starting a debugger takes more keystrokes.
+
+_type `import pdb; pdb.set_trace()` right before entering the main corridor_
+
+Now, when we run `play.py` we drop into Pdb prompt. For the record, Pdb is not my favourite debugger:
+
+* shows just one line of context
+* has poor tab-completion
+* does not support colors
+
+If I can, I use any other debugger. But in spite of all its shortcomings, Pdb has one killer feature: it is part of the standard library. So, if you ssh to a server, but have no permission to install a better debugger, you can still run Pdb.
 
 As with most games, we need to start with the controls. There are 2 types of movement in the dungeon:
 
 * horizontal – within a single function
 * vertical – up and down the call stack
 
-### Walking
 
 Let's start with a quick tutorial on horizontal movement, since we will use the most.
 
@@ -180,28 +205,6 @@ We can also use command `until {line_number}` instead of typing `next` or `n`.
 We can press `next` and it wil
 
 
-Let's run the game again.
-```bash
-./play.py
-```
-
-Now we get a different error, now coming from the `walking_corridor`. Here we can finally start a debugger. Right before entering the `main_corridor`.
-
-How many of you use Python version less that 3.7?
-
-_raise hand, too_
-
-Good, before 3.7, starting a debugger takes more keystrokes.
-
-_type `import pdb; pdb.set_trace()` right before entering the main corridor_
-
-Now, when we run `play.py` we drop into Pdb prompt. For the record, Pdb is not my favourite debugger:
-
-* shows just one line of context
-* has poor tab-completion
-* does not support colors
-
-If I can, I use any other debugger. But in spite of all its shortcomings, Pdb has one killer feature: it is part of the standard library. So, if you ssh to a server, but have no permission to install a better debugger, you can still run Pdb.
 
 Here are a couple of immediately useful commands:
 
