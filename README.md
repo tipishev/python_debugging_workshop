@@ -3,16 +3,27 @@
 # Transcript
 
 ## Quotes
-> "Debuggers don't remove bugs, they show them in slow-mo"  # TODO source
-> "They are errors, not bugs" Edsger Dijkstra
+
+### Edsger Dijkstra
+
+> They are errors, not bugs.
+
+> If you want more effective programmers, you will discover that they should not waste their time debugging, they should not introduce the bugs to start with.
+
+### Unknown
+
+> Debuggers don't remove bugs. They only show them in slow motion.
 
 ## Introduction
 
 Hello everyone! My name is Tim and today I will talk about Python debugging.
 
+![Debugging Game](/images/debugging_game.png)
+
 First of all, how many of you use a debugger in your daily workflow?
 
 * \<½ Awesome! It means that a lot of you will go to lunch with a new tool under the belt.
+
 * \>½ Nice! Then you already know quite a few things that I tell, and it will be a refresher, with a few tips and tricks on top.
 
 Some developers say they don't need a debugger in a scripting language, since they can just look at the source. On one hand it's true and there is a saying
@@ -21,7 +32,11 @@ Some developers say they don't need a debugger in a scripting language, since th
 
 Meaning that someone had complicated the code so much that reading the source is not enough anymore.
 
+![Tunnelbana](/images/tunnelbana.png)
+
 But on the other hand, a complex application, can be compared to a transit system. Of course, you have your source: the transit map and schedules. But would you bet your lunch money on the exact location of any given train?
+
+![Rube Goldberg](/images/rube_goldberg.jpg)
 
 That is exactly the problem, we would like to see inside the black box and examine the runtime state of our code.
 
@@ -33,20 +48,25 @@ While preparing this workshop I have looked at a number of debugging tutorials a
 
 I tried to make this workshop a bit differently
 
-However, I am legally required to shame you for `print`-debugging and exmplain what's wrong with it.
-
 ![Boat vs Surf](/images/boat_vs_surf.jpg)
 
+However, I am legally required to shame you for `print`-debugging and exmplain what's wrong with it.
+
+
+![Printgles](/images/printgles.png)
 First of all, one print is never enough, like Pringles, once you pop, you cannot stop
 You put one, it doesn't work, then you put another one, and yet another one. And to see your changes you need to restart your code every time, which can be quite slow, especially in a dockerized setup, and this is not what we want. We want a short feedback loop to test our theories as fast as we can.
 
 Another argument against `print`s is that they ofthen get into production code. If you don't believe me, just search your codebase.
+
+![Bearded Crab](/images/crab.png)
 
 By the way "it will get to production" applies not only to `print` statements, but to any silly code and data. I call this the "The Law of Bearded Crab". When I was working for an events aggregator, we used silly fake events on staging. And guess what, one day, a misconfigured import, put "the Concert of Bearded Crab" on the main page.
 
 Finally, print is ofthen used to see if the code runs at all. It's such a waste, Python has a 3-character built-in for that.
 
 * the Redneck Breakpoint
+
 1/0
 
 it's very visible and unlike print it does not get lost in logging.
@@ -74,6 +94,8 @@ By the way, on last year's Pycon Sweden there was a great talk about Evennia, a 
 Funnily enough, when we look at our codebases, the similarity with dungeons becomes stronger. See for yourself, our codebases are built over years by multiple programmers, and sometimes you need Git archeology to dig up history, but it's a topic from my another talk.
 
 A typical code-dungeon looks like this:
+
+![Dungeon](/images/dungeon.png)
 
 * a single point of entry
 * each function is a corridor
@@ -115,10 +137,47 @@ Let's run the game.
 ./play.py
 ```
 
-We immediately see an error. Let's look what happened in the `main_corridor`. Ok, we need to have at least something in our inventory. Let's take a broomstick, big enough to scare away a rat. By the way, here you can see how the `main_corridor` is structured, there are several branching functions, each focusing on some aspect of Python debugger. At the end of each sub-corridor we get a key. We need to collect them all to unlock the final challenge.
+We immediately see an error. Let's look what happened in the `main_corridor`. Ok, we need to have at least something in our inventory. Let's take a broomstick, big enough to scare away a rat. By the way, here you can see how the `main_corridor` is structured, there are several levels, each focusing on some aspect of Python debugger. At the end of each we get an amulet. We need to collect them all to collect the Golden Python.
 
+
+
+As with most games, we need to start with the controls. There are 2 types of movement in the dungeon:
+
+* horizontal – within a single function
+* vertical – up and down the call stack
 
 ### Walking
+
+Let's start with a quick tutorial on horizontal movement, since we will use the most.
+
+![Next](/images/walking/1_next.png)
+
+The first command is called `next`, it simply takes us to the next line. Here and in following examples, blue shows the position before the command, the orange – the position after. So, if we were on line 42 and typed next, we are taken to line 43.
+
+![Next on call](/images/walking/2_on_fun.png)
+
+If we are on a line that makes a function call, we have 2 choices.
+
+![On fun next](/images/walking/3_on_fun_next.png)
+
+We can choose `next` and it the function executes behind the scenes and we continue in the current function.
+
+![On fun step](/images/walking/4_on_fun_step.png)
+
+Or we can type `step` and go one level down in the nested function and continue horizontal movement there.
+
+![Until](/images/walking/5_until.png)
+
+We can also use command `until {line_number}` instead of typing `next` or `n`.
+
+![Return](/images/walking/6_return.png)
+
+Or we can type `return` or `r` and stop just before returning to the function above.
+
+We can also use command `until {line_number}` instead of typing `next` or `n`.
+
+
+We can press `next` and it wil
 
 
 Let's run the game again.
@@ -608,3 +667,6 @@ So, without further ado we descend into the Dungeons of Doom.
 * https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/
 * iPDB (345 LOC): https://github.com/gotcha/ipdb
 * https://github.com/pdbpp/pdbpp
+
+## Used Materials
+TODO image sources, use tineye?
