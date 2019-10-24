@@ -79,8 +79,6 @@ def a_room(player):  # sweet! So glad that you stepped in
     _  # there is nothing else to see in this room
     _  # you can fast-forward to the exit with (r)eturn
     _
-    _
-    _
     _  # seriously, nothing to see...
     _  # go to (r)eturn
     _
@@ -91,7 +89,10 @@ def a_room(player):  # sweet! So glad that you stepped in
     _  #
     _  # but you should. Please press `r` now.
     _
-    _
+    _  # All right, enjoy a skip-rope workout!
+
+    for __ in range(1000):  # hop, bunny, hop!
+        _  # you can `(r)eturn` whenever you wish
     _
     _
     _
@@ -125,7 +126,7 @@ def walking_corridor(player):
     if check_walking_password(player):  # the mome(n)t of truth...
 
         # Good job! You made it!
-        player.inventory.append('walking key')
+        player.inventory.append('amulet of walking')
         return player  # press c to (c)ontinue
 
     raise TripAndFall('Learn to walk before you run this code')

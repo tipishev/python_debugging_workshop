@@ -127,7 +127,7 @@ def password_room(player):
     if check_looking_password(player):  # press (n)ext
 
         # Once again, you have succeeded!!!
-        player.inventory.append('looking key')
+        player.inventory.append('amulet of looking')
         return player  # press c to (c)ontinue
 
     raise Exception('Incorrect Looking Password')

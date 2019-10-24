@@ -10,23 +10,21 @@ class EatenByRat(Exception):
 
 def main_corridor(player):
 
-    #  if not player.inventory:
-    #      raise EatenByRat('Do not go empty-handed!')
+    if not player.inventory:
+        raise EatenByRat('Do not go empty-handed!')
 
-    # TODO 'foo key' -> 'amulet of foo'
-    if 'walking key' not in player.inventory:
+    if 'amulet of walking' not in player.inventory:
         breakpoint()
         player = walking_corridor(player)
 
-    #  if 'looking key' not in player.inventory:
-    #      player = looking_corridor(player)
+    if 'amulet of looking' not in player.inventory:
+        player = looking_corridor(player)
 
-    if 'stacking key' not in player.inventory:
+    if 'amulet of stacking' not in player.inventory:
         player = stacking_corridor(player)
 
-    #  if 'jumping key' not in player.inventory:
-    #      player = jumping_corridor(player)
-
+    if 'amulet of jumping' not in player.inventory:
+        player = jumping_corridor(player)
 
     # TODO add a proper final challenge as final room requiring all keys
     player.inventory.append('Golden Python')

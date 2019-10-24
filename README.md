@@ -503,7 +503,7 @@ alias interacti IPython.embed(config=cfg)
 * shorter feedback loop -> better debugger person
 * Pdb-precedence gotcha
 * listing 3rd party packages code
-* one-letter trap
+* one-letter trap, mimic!
 * `b` to list breakpoints
 * `cl(ear)` one or all breakpoints
 * `r` when you lose interest and just want it to be over, loop it

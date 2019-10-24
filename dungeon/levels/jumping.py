@@ -71,8 +71,8 @@ def jumping_corridor(player):
     # you nervously give the last item you got to the level guard...
     item = player.inventory.pop()
     if item in ('bread', 'beer'):
-        player.inventory.append('jumping key')
-        return player
+        player.inventory.append('amulet of jumping')
+        return player  # have a safe trip!
     else:
         raise KickedByGuard('Standing all day at the bottom of the file '
                             f'and all I get is a stupid "{item}"!')
