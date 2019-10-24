@@ -129,4 +129,4 @@ def walking_corridor(player):
         player.inventory.append('amulet of walking')
         return player  # press c to (c)ontinue
 
-    raise TripAndFall('Learn to walk before you run this code')
+    raise TripAndFall('Learn to walk before you run (this code)')

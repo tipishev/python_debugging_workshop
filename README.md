@@ -1,7 +1,5 @@
 # Python Debugging Workshop
 
-Here I combine notes and slides for my Python debugging workshop
-
 # Transcript
 
 ## Quotes
@@ -126,7 +124,7 @@ Let's open `play.py`. Here we create a `Player` instance, with a name and empty 
 
 All locations in the game are functions that accept the player instance as an argument and return it back, possibly modifying its state. Or don't return it and raise an exception instead. In `play.py` we enter the main_corridor from which all the other corridors branch. The goal of the game is to get the Golden Python.
 
-### Scare the Rat
+### Quest 0: Scare the Rat
 
 Let's run the game.
 ```bash
@@ -137,6 +135,7 @@ We immediately see an error. Let's look what happened in the `main_corridor`. Ok
 
 
 ### Walking
+
 
 Let's run the game again.
 ```bash
@@ -197,8 +196,8 @@ Let's go through this level in ipdb.
 
 To avoid the bearded crab problem use git pre-commit hooks to clear
 
-* print
-* breakpoint
+* `print`
+* `breakpoint` / `set_trace`
 
 ### Looking
 
@@ -207,7 +206,10 @@ To avoid the bearded crab problem use git pre-commit hooks to clear
 In real world jumping helps to:
 
 * skip heavy operations
-* avoid broken code
+* avoid network calls,
+
+combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))`
+
 * go back if you forgot to check something
 
 
@@ -216,7 +218,7 @@ In real world jumping helps to:
 * inspired by SCP-087
 * alias for traceback size
 
-* Pdb commands
+* Pdb commands for displaying current level
 
 * mention `a` arguments
 * show how to navigate up and down the stack
@@ -258,7 +260,7 @@ In real world jumping helps to:
   - Pdb: upside: available everywhere, downside: very basic, rough on the edges shows bdb.Quit
   - iPdb: upside: can start as %debug from iPython, downside: none, it's my fave
   - Pudb: downside: no jumps, show github issue
-  - IDE debuggers, downside: cannot run in terminal, loss of oldschool-cred
+  - IDE debuggers, no stray code, better display of variables, jump to source, downside: cannot run in terminal, loss of oldschool-cred, extra steps to connect remotely or inside a container
 
 
 
@@ -618,14 +620,9 @@ So, without further ado we descend into the Dungeons of Doom.
 * https://github.com/git-game/git-game
 
 ## Reading List
-
 * all the help tree in PDB's `h` menu
 * https://realpython.com/python-debugging-pdb/
 * https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
 * https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/
-* example .pdbrc https://nedbatchelder.com/blog/200704/my_pdbrc.html
 * iPDB (345 LOC): https://github.com/gotcha/ipdb
-* David Beazley's cookbook, search for "frame", "debug", and "pdb"
-* look at https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
-* https://pbs.twimg.com/media/EFbZsS_W4AAQ5Sh?format=jpg&name=900x900
 * https://github.com/pdbpp/pdbpp
