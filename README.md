@@ -501,6 +501,12 @@ alias interacti IPython.embed(config=cfg)
 ### https://github.com/spiside/pdb-tutorial
 
 * shorter feedback loop -> better debugger person
+* Pdb-precedence gotcha
+* listing 3rd party packages code
+* one-letter trap
+* `b` to list breakpoints
+* `cl(ear)` one or all breakpoints
+* `r` when you lose interest and just want it to be over, loop it
 
 
 
