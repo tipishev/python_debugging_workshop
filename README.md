@@ -51,26 +51,11 @@ it's very visible and unlike print it does not get lost in logging.
 
 Ok, now that we are done with print-shaming, let's get started.
 
----
-There is a silly factoid:
-
-we remember...
-
-* 30% of what we hear
-* 50% of what  we see
-* **80% of what we do**
-* ~~95% of what we teach~~
----
-
-That's why we will work hands-on with a series of puzzles, each focusing on some aspect of debugging.
+How many of you have played MUDs?
+What about Roguelikes or Interactive Fiction (IF)?
 
 How many of you were at last year's Pycon Sweden?
-
-Then you may remember the talk about Evennia, a Python-based Multi-User Dungeon framework.
-
-How many of you have played MUDs?
-
-What about Roguelikes or Interactive Fiction (IF)?
+Then you may well remember a talk about Evennia, a Python-based Multi-User Dungeon framework.
 
 Then you will find console-debugging similar to playing such a game:
 
@@ -85,7 +70,7 @@ They are both...
 * permadeath:
   - "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
 
-Funnily enough, when we look at our codebases, the similarity with dungeons becomes inevitable. See for yourself, our codebases are built over years by multiple programmers, and sometimes you need Git archeology to find what you need, but it's a topic from my another talk.
+Funnily enough, when we look at our codebases, the similarity with dungeons becomes stronger. See for yourself, our codebases are built over years by multiple programmers, and sometimes you need Git archeology to find what you need, but it's a topic from my another talk.
 
 A typical code-dungeon looks like this:
 
@@ -99,11 +84,9 @@ luckily there are no GOTO statements in Python, so we don't have weird teleports
 
 * One thing to note about this diagram the numbers are not the actual line numbers in the files, they are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines are always consecutive.
 
-
-
-So, without further ado let's get to tutorial.
-
 ## Main part
+
+If you want to follow along feel free to clone this repository.
 
 ### Setup
 
@@ -191,8 +174,6 @@ For that we can add a couple of `i`s in the earlier breakpoint.  _add those 'i's
 Now, all the goodness of iPython is available to us. Another improvement is that you can set how many lines of context you would like to see. _add context=5_
 
 Let's go through this level in ipdb.
-
-
 
 To avoid the bearded crab problem use git pre-commit hooks to clear
 
