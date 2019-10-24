@@ -12,8 +12,8 @@ Hello everyone! My name is Tim and today I will talk about Python debugging.
 
 First of all, how many of you use a debugger in your daily workflow?
 
-* <½ Awesome! It means that a lot of you will go to lunch with a new tool under the belt.
-* >½ Nice! Then you already know quite a few things that I tell, and it will be a refresher, with a few tips and tricks on top.
+* \<½ Awesome! It means that a lot of you will go to lunch with a new tool under the belt.
+* \>½ Nice! Then you already know quite a few things that I tell, and it will be a refresher, with a few tips and tricks on top.
 
 Some developers say they don't need a debugger in a scripting language, since they can just look at the source. On one hand it's true and there is a saying
 
@@ -35,6 +35,8 @@ I tried to make this workshop a bit differently
 
 However, I am legally required to shame you for `print`-debugging and exmplain what's wrong with it.
 
+![Boat vs Surf](/images/boat_vs_surf.jpg)
+
 First of all, one print is never enough, like Pringles, once you pop, you cannot stop
 You put one, it doesn't work, then you put another one, and yet another one. And to see your changes you need to restart your code every time, which can be quite slow, especially in a dockerized setup, and this is not what we want. We want a short feedback loop to test our theories as fast as we can.
 
@@ -54,9 +56,6 @@ Ok, now that we are done with print-shaming, let's get started.
 How many of you have played MUDs?
 What about Roguelikes or Interactive Fiction (IF)?
 
-How many of you were at last year's Pycon Sweden?
-Then you may well remember a talk about Evennia, a Python-based Multi-User Dungeon framework.
-
 Then you will find console-debugging similar to playing such a game:
 
 They are both...
@@ -70,7 +69,9 @@ They are both...
 * permadeath:
   - "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
 
-Funnily enough, when we look at our codebases, the similarity with dungeons becomes stronger. See for yourself, our codebases are built over years by multiple programmers, and sometimes you need Git archeology to find what you need, but it's a topic from my another talk.
+By the way, on last year's Pycon Sweden there was a great talk about Evennia, a Python-framework in which you can build your own Multi-User Dungeon.
+
+Funnily enough, when we look at our codebases, the similarity with dungeons becomes stronger. See for yourself, our codebases are built over years by multiple programmers, and sometimes you need Git archeology to dig up history, but it's a topic from my another talk.
 
 A typical code-dungeon looks like this:
 
@@ -79,8 +80,8 @@ A typical code-dungeon looks like this:
 * the more lines there is in a function the longer the corridor
 * calling a function within a function takes you one level deeper down the stack
 * returning from a function takes you one level up, to the line where you entered
-* one function can have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit None.
-luckily there are no GOTO statements in Python, so we don't have weird teleports
+* luckily there are no GOTO statements in Python, so each function has a single point of entry,
+* though it may have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit None.
 
 * One thing to note about this diagram the numbers are not the actual line numbers in the files, they are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines are always consecutive.
 

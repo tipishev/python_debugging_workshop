@@ -1,2 +1,0 @@
-PLUTONIUM_CRITICAL_MASS = 11  # kg
-
