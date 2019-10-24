@@ -498,6 +498,12 @@ cfg.InteractiveShellEmbed.confirm_exit = False
 alias interacti IPython.embed(config=cfg)
 ```
 
+### https://github.com/spiside/pdb-tutorial
+
+* shorter feedback loop -> better debugger person
+
+
+
 ## Dungeon game
 
 ### Ideas
@@ -607,7 +613,6 @@ So, without further ado we descend into the Dungeons of Doom.
 
 ## Reading List
 
-* https://github.com/spiside/pdb-tutorial
 * all the help tree in PDB's `h` menu
 * https://realpython.com/python-debugging-pdb/
 * https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
