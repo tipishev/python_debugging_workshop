@@ -225,13 +225,21 @@ alias nl n;;l
 alias sl s;;l
 ```
 
-We will talk about aliases later.
+We will talk about helpful aliases as we go.
+
 To quit the debugger just type `q`. We see a Traceback because to stop, the debugger raises a special `bdb.BdbQuit` exception.
 
 For this exercise we will use `ipdb`, a 345-line wrapper around PDB that adds tab-completion, color, and multiline context support.
 
 For that we can add a couple of `i`s in the earlier breakpoint.  _add those 'i's_
 Now, all the goodness of iPython is available to us. Another improvement is that you can set how many lines of context you would like to see. _add context=5_
+
+![Lighting](/images/lighting.png)
+
+In the game, context can be compared to how much of the corridow we can see. In default Pdb it's horrible: just one line and no syntax highlight, so it's black-and-white mole-vision. Things get better if we use `n ;; l` and `s ;; l` aliases, we see 11 lines, but again, no colors. Ipdb finally solves this problem by having proper syntax highlighting and `context`-kwarg, that you can use directly:
+
+`import ipdb; ipdb.set_trace(context=10)` or via a `breakpoint` built-in in Python 3.7: `breakpoint(context=10)`.
+
 
 Let's go through this level in ipdb.
 
@@ -265,7 +273,9 @@ combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))
 * show how to navigate up and down the stack
 * `sys.setrecursionlimit`
 
+## Preventing Bugs
 
+Be a patronizing twat and talk how it's better to write good code instead of fixing errors.
 
 ## Conclusion
 
