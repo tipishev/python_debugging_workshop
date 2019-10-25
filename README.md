@@ -320,6 +320,7 @@ Be a patronizing twat and talk how it's better to write good code instead of fix
 
 ## Topics
 
+* breakpoint regexp?
 * breapoints allow a test-journey:
   - instead of put print here, put print there.
   - put break here, check. Put break there, check
