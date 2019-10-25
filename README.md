@@ -320,9 +320,6 @@ Be a patronizing twat and talk how it's better to write good code instead of fix
 
 ## Topics
 
-* useful aliases, combining, passing parameters
-* ;; multiple commands
-* pretty-print with pp
 * `vars` built-in master race vs dirty `__dict__` peasants
 * one-time breakpoints
 * watching variables with post-run commands
@@ -355,6 +352,7 @@ Be a patronizing twat and talk how it's better to write good code instead of fix
 * mocking live code
 * PUDB
 * web-pdb `PYTHONBREAKPOINT=web_pdb.set_trace` for multithreaded
+* CMD, CMD2
 
 ### iPdb tricks
 
