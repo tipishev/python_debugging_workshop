@@ -320,6 +320,9 @@ Be a patronizing twat and talk how it's better to write good code instead of fix
 
 ## Topics
 
+* breapoints allow a test-journey:
+  - instead of put print here, put print there.
+  - put break here, check. Put break there, check
 * `vars` built-in master race vs dirty `__dict__` peasants
 * one-time breakpoints
 * watching variables with post-run commands
@@ -386,7 +389,7 @@ Be a patronizing twat and talk how it's better to write good code instead of fix
 
 ## PDB help notes
 * make fancy debugger
-* warn about single-letter variables, use `!` to be sure, `list` can trip, so can one-letter vars
+* warn about single-letter variables, use `!` to be sure, `list` can trip, so can one-letter vars, so can `args`
 * `bt` alias for `where`
 * file-specified breakpoint looks on `sys.path`, `.py` can be skipped
 * enable/disable breakpoints, multiple (space separated list)
