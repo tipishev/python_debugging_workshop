@@ -278,7 +278,7 @@ combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))
 
 ## Preventing Bugs
 
-Be a patronizing twat and talk how it's better to write good code instead of fixing errors.
+Be a condescending twat and talk how it's better to write good code instead of fixing errors.
 
 ## Conclusion
 
@@ -576,7 +576,7 @@ alias interacti IPython.embed(config=cfg)
 * `next` to stay local and avoid any foreign functions
 * `alias n next ;; list` -> `unalias n`
 * breakpoint condition, not line but function
-* (c)ontinue to the next breakpoint
+* (c)ontinue to the next breakpoint, nothing can stop it except bp or exception
 * put new breakpoint when a current stop brought no result
 * condition, enable, disable, clear
 * condition may be useful when a bug happens only on certain conditions, like looping over a bunch of records, and only orders from France are processed incrorrectly.
@@ -592,7 +592,10 @@ alias interacti IPython.embed(config=cfg)
 * frame is a data structure that python creates when calling a function and deletes when it returns
 * stack is a LIFO list of frames
 * stack overflow happens when there are more frames on the stack than it is allowed
-* `bt` is yet another silly alias for where
+* `bt` is yet another silly alias for `where`
+* check `help` or `help n`
+* `where` also shows the caller id of who called the whole shebang
+
 
 
 ## Dungeon game
