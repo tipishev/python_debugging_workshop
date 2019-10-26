@@ -65,6 +65,8 @@ By the way "it will get to production" applies not only to `print` statements, b
 
 Finally, print is ofthen used to see if the code runs at all. It's such a waste, Python has a 3-character built-in for that.
 
+One more argument for using a debugger is that you can easily look into runtime of not only your code, but also the one of 3rd parties, like Django and celery.
+
 * the Redneck Breakpoint
 
 1/0
@@ -232,7 +234,7 @@ We will talk about helpful aliases as we go.
 
 To quit the debugger just type `q`. We see a Traceback because to stop, the debugger raises a special `bdb.BdbQuit` exception.
 
-For this exercise we will use `ipdb`, a 345-line wrapper around PDB that adds tab-completion, color, and multiline context support.
+For this exercise we will use `ipdb`, a wrapper around PDB that adds tab-completion, color, and multiline context support.
 
 For that we can add a couple of `i`s in the earlier breakpoint.  _add those 'i's_
 Now, all the goodness of iPython is available to us. Another improvement is that you can set how many lines of context you would like to see. _add context=5_
@@ -595,8 +597,40 @@ alias interacti IPython.embed(config=cfg)
 * `bt` is yet another silly alias for `where`
 * check `help` or `help n`
 * `where` also shows the caller id of who called the whole shebang
+* print cheat sheet
 
+### https://github.com/pdbpp/pdbpp
+* module is also called `pdb.py`
+* sticky mode: same as showing context?
+* track draws a dependency graph and requires pypy
+* `display` exporessions should not have side effects
+* can open editor
+* can mark some frames as hidden using a decorator, don't display in stacktrace
+* avoids one-letter trap by preferring context variables to debugger commands, can override with `!!command`
+* shell shell_pp python ipython pdb ipdb pdb pdb_pp, common pattern
+* Disable `pdb.set_trace()`: any subsequent call to it will be ignored. Neat!
+* `@pdb.break_on_setattr(attrname, condition=always)` nice! Dungeon: someone renames player? Adds a curse? Warts?
+* setattr condition can discriminate between 2 instances of the same class
+* `break_on_setattr` can be attached even from within debugger. 
 
+#### Config
+* prompt
+* highlight
+* some colors settings
+* editor `vim` by default or `editor = "subl {filename}:{lineno}"`
+* hiding frames and showing their count, useful if you trust Django/celery or other 3rd party libraries
+* `setup(self, pdb)`
+* Pygments config, for example if you want `solarized` theme
+
+### https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
+
+* `python3 -mpdb play.py` for postmortem
+* it's better to avoid modifying the code with `breakpoint`/`set_trace`, less chance of committing to production
+* `l 1,999` to list the entire file
+* `b mymodule.function`
+* `r` to quickly get out if stepped in by mistake
+* `until` to get out of loops
+*
 
 ## Dungeon game
 
@@ -708,10 +742,8 @@ So, without further ado we descend into the Dungeons of Doom.
 
 ## Reading List
 * all the help tree in PDB's `h` menu
-* https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
 * https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/
 * iPDB (345 LOC): https://github.com/gotcha/ipdb
-* https://github.com/pdbpp/pdbpp
 
 ## Used Materials
 TODO image sources, use tineye?
