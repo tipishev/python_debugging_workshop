@@ -325,6 +325,7 @@ Be a patronizing twat and talk how it's better to write good code instead of fix
   - instead of put print here, put print there.
   - put break here, check. Put break there, check
 * `vars` built-in master race vs dirty `__dict__` peasants
+* `import pprint; pprint(self.__dict__)` vs `pp vars(self)`
 * one-time breakpoints
 * watching variables with post-run commands
 * %debug iPython magic
@@ -566,6 +567,32 @@ alias interacti IPython.embed(config=cfg)
 * `cl(ear)` one or all breakpoints
 * `r` when you lose interest and just want it to be over, loop it
 
+### https://realpython.com/python-debugging-pdb/ (amazingly useful)
+
+* debugger stops the program and asks what to do next
+* `breakpoint` is PEP553
+* `python -m pdb play.py arg1 arg2`
+* test an alternative implementation directly in the application
+* `next` to stay local and avoid any foreign functions
+* `alias n next ;; list` -> `unalias n`
+* breakpoint condition, not line but function
+* (c)ontinue to the next breakpoint
+* put new breakpoint when a current stop brought no result
+* condition, enable, disable, clear
+* condition may be useful when a bug happens only on certain conditions, like looping over a bunch of records, and only orders from France are processed incrorrectly.
+* break function_name:lineno to have enough vars for a condition check
+* `tbreak` self-destructs after entering
+* `until` stops on return
+* `until` to break out of loops
+* `display` can list current expressions, local for frame
+* `undisplay` can clear one or many expressions
+* display shows old value, neat!
+* display to create a "watch list"
+* stack, frame, where-output can be confusing, illustrate with image
+* frame is a data structure that python creates when calling a function and deletes when it returns
+* stack is a LIFO list of frames
+* stack overflow happens when there are more frames on the stack than it is allowed
+* `bt` is yet another silly alias for where
 
 
 ## Dungeon game
@@ -668,6 +695,7 @@ So, without further ado we descend into the Dungeons of Doom.
 * (a)rguments to see what was passed
 * `p`  if you really miss that `print`
 * `pp` a bag ~full of JSON~ of `dict`s, arrange lines vertically for clue
+* pprint sorts keys
 
 
 ### Meta
@@ -677,7 +705,6 @@ So, without further ado we descend into the Dungeons of Doom.
 
 ## Reading List
 * all the help tree in PDB's `h` menu
-* https://realpython.com/python-debugging-pdb/
 * https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
 * https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/
 * iPDB (345 LOC): https://github.com/gotcha/ipdb
