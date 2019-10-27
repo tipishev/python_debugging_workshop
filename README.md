@@ -150,9 +150,8 @@ Good, before 3.7, starting a debugger takes more keystrokes.
 _type `import pdb; pdb.set_trace()` right before entering the main corridor_
 
 Now, when we run `play.py` we drop into Pdb prompt. 
-Debugger stops the program and politely asks what to do next
-
-
+Debugger stops the program and politely asks what to do next.
+For example we can just exit the debugger with `quit` or `q`, or tell it to `continue`: the only thing that can stop it is a breakpoint or an unhandled exception.
 
 
 For the record, Pdb is not my favourite debugger:
@@ -181,7 +180,7 @@ If we are on a line that makes a function call, we have 2 choices.
 
 ![On fun next](/images/walking/3_on_fun_next.png)
 
-We can choose `next` and it the function executes behind the scenes and we continue in the current function.
+We can choose `next` and it the function executes behind the scenes and we continue in the current function. Think of next: "stay local and avoid any foreign functions"
 
 ![On fun step](/images/walking/4_on_fun_step.png)
 
@@ -190,6 +189,7 @@ Or we can type `step` and go one level down in the nested function and continue 
 ![Until](/images/walking/5_until.png)
 
 We can also use command `until {line_number}` instead of typing `next` or `n`.
+`until` stops on return, `until` to break out of loops
 
 ![Return](/images/walking/6_return.png)
 
@@ -261,6 +261,7 @@ To avoid the bearded crab problem use git pre-commit hooks to clear
 
 ### Stacking
 
+* `where` also shows the caller id of who called the whole shebang
 * Image: stacktrace stairs/elevator
 * inspired by SCP-087
 * alias for traceback size
@@ -307,12 +308,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 * https://github.com/git-game/git-game
 
-## Topics
-
-#### Quitting
-
-* show q(uit)
-
 ### Aliases
 
 * `alias` can take all arguments with `%*`
@@ -320,6 +315,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * `import pprint; pprint(self.__dict__)` vs `pp vars(self)`
 * knapsack metaphor, "but in-game inventory is not the only thing we take"
 * incremental introduction to aliases
+* `alias n next ;; list` -> `unalias n`
 
 ### Postmortem
 
@@ -327,7 +323,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * "I wish I was there when it happened!"
 * since it's postmortem, cannot follow the runtime, just observe the state at the moment of crash
 * multiple ways to start
-  - `python -m pdb|ipdb|pudb play.py` and crash
+  - `python -m pdb|ipdb|pudb play.py arg1 arg2` and crash
   - `import *db; *db.pm()` in interactive shell. Will use `sys.last_traceback` for examination
   - `%debug` in iPython
 
@@ -337,6 +333,10 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * `p`  if you really miss that `print`
 * `pp` a bag ~full of JSON~ of `dict`s, arrange lines vertically for clue
 * pprint sorts keys
+* `display` can list current expressions, local for frame
+* `undisplay` can clear one or many expressions
+* display shows old value, neat!
+* display to create a "watch list"
 
 
 ### Debug with access to source code
@@ -418,7 +418,9 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * `_` variable stores the result of previous ivocation
 * PUDB
 * web-pdb `PYTHONBREAKPOINT=web_pdb.set_trace` for multithreaded
-* breakpoint regexp?
+* condition may be useful when a bug happens only on certain conditions, like looping over a bunch of records, and only orders from France are processed incrorrectly.
+* it's better to avoid modifying the code with `breakpoint`/`set_trace`, less chance of committing to production
+* `python -m ipdb -c "b levels/main.py:13" -c "b levels/main.py:14" play.py`
 
 ### Debuggers comparisson
 
@@ -525,54 +527,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 ### Unknown
 
 > Debuggers don't remove bugs. They only show them in slow motion.
-
-
-### https://realpython.com/python-debugging-pdb/ (amazingly useful)
-
-* `python -m pdb play.py arg1 arg2`
-* test an alternative implementation directly in the application
-* `next` to stay local and avoid any foreign functions
-* `alias n next ;; list` -> `unalias n`
-* breakpoint condition, not line but function
-* (c)ontinue to the next breakpoint, nothing can stop it except bp or exception
-* put new breakpoint when a current stop brought no result
-* condition, enable, disable, clear
-* condition may be useful when a bug happens only on certain conditions, like looping over a bunch of records, and only orders from France are processed incrorrectly.
-* break function_name:lineno to have enough vars for a condition check
-* `tbreak` self-destructs after entering
-* `until` stops on return
-* `until` to break out of loops
-* `display` can list current expressions, local for frame
-* `undisplay` can clear one or many expressions
-* display shows old value, neat!
-* display to create a "watch list"
-* stack, frame, where-output can be confusing, illustrate with image
-* frame is a data structure that python creates when calling a function and deletes when it returns
-* stack is a LIFO list of frames
-* stack overflow happens when there are more frames on the stack than it is allowed
-* `bt` is yet another silly alias for `where`
-* check `help` or `help n`
-* `where` also shows the caller id of who called the whole shebang
-* print cheat sheet
-
-
-### https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
-
-* `python3 -mpdb play.py` for postmortem
-* it's better to avoid modifying the code with `breakpoint`/`set_trace`, less chance of committing to production
-* `l 1,999` to list the entire file
-* `b mymodule.function`
-* `r` to quickly get out if stepped in by mistake
-* `until` to get out of loops
-* `python -m ipdb -c "b levels/main.py:13" -c "b levels/main.py:14" play.py`
-* restart behavior is unclear, cannot recover after an exception
-* watch throuh commands, `silent` seems useless in my setup
-* `-m pdb` will drop in debugger on unhandled exceptions
-
-### https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/ 
-
-* in iPython: `debug fun(args)` drops into that function, super neat! What the hell will happen when you call it? No modifications
-* pdb++ may work better with Py2
 
 ## Used Materials
 TODO image sources, use tineye?

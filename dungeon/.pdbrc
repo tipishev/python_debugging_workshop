@@ -1,5 +1,10 @@
+# imports
 from datetime import datetime
 import traceback
+
+# when you want to see the whole file
+listall list 1,9999
+alias la listall
 
 # combined commands, ipdb.set_trace(context=10) is unavailable
 alias nl n;;l
