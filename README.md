@@ -189,7 +189,7 @@ We can choose `next` and it the function executes behind the scenes and we conti
 
 ![On fun step](/images/walking/4_on_fun_step.png)
 
-Or we can type `step` and go one level down in the nested function and continue horizontal movement there.
+Or we can type `step` and go vertically one level down in the nested function and continue horizontal movement there.
 
 ![Until](/images/walking/5_until.png)
 
