@@ -1,5 +1,9 @@
-What do you do when you see an exception stacktrace? Unless it's a simple error, you examine the runtime state that caused it. Many developers do that with print and logging, which works well for simple cases but becomes complex with more moving parts involved. Fortunately, there is a built-in debugger pdb, as well as an improved iPython-powered wrapper ipdb, which lets you pause a running program, read and change its state, and control the execution flow. Ipdb is also useful in postmortem mode: one can explore the whole stacktrace right after an exception and collect all the relevant information at once instead of printing one variable at a time.
+Python Debugging: Beyond print
 
-This workshop is a hands-on tutorial on ipdb in Python 3. The exercises include configuration, launching, and navigating ipdb. If we have enough time we may also look at how to extend the default debugger. The workshop aims to sharpen your debugging skills and to reduce the feedback time for testing bug origin theories. If you bring a laptop you can follow along, but you don't have to: the slides and code will be available on Github.
----
-Timofei Tipishev, Sportamore AB.
+What do you do when you see an exception stacktrace? Unless it is a simple error, you examine the runtime state that caused it. Many developers do that with print and logging, which works well for simple cases but becomes complex with more moving parts involved. Fortunately, there is a built-in Python debugger pdb and its improved iPython-powered wrapper ipdb, which lets you pause a running program, read and change its state, and even control the execution flow. Ipdb is most useful in post-mortem mode: one can explore the whole stacktrace after an exception has occurred and interactively collect all the relevant information in one go instead of printing one variable at a time.
+
+This workshop is a hands-on tutorial on ipdb in Python 3. The exercises include configuring, launching, and navigating ipdb. If we have enough time we may also look at how to extend the default debugger class. The workshop aims to sharpen your debugging skills by having a faster feedback loop in testing bug origin theories. Follow along if you bring a laptop, otherwise the code and slides will be posted on Github. Your system must have python 3.7, git and virtualenv installed.
+
+Audience level: Intermediate
+
+Speaker: Timofey Tipishev, Sportamore AB.
