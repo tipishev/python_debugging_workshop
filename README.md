@@ -17,7 +17,7 @@ Some developers say they don't need a debugger in a scripting language, since th
 
 > "If you need a debugger, the error had happened much earlier."
 
-Meaning that someone had complicated the code so much that reading the source is not enough anymore.
+Meaning that someone had complicated the code so much that reading the source does not help much.
 
 ![Tunnelbana](/images/tunnelbana.png)
 
@@ -25,23 +25,24 @@ But on the other hand, a complex application, can be compared to a transit syste
 
 ![Rube Goldberg](/images/rube_goldberg.jpg)
 
-That is exactly the problem, we would like to see inside the black box and examine the runtime state of our code.
+That is exactly the problem, that the debuggers solve. They allow us to see inside the black box and examine the runtime state of the code.
 
 While preparing this workshop I have looked at a number of debugging tutorials and they all follow the same structure.
 
-* "Don't use print!"
-* A recap of PDB documentation
-* A few examples of using debugger commands
+* They warn agains using `print` statements
+* They recap Pdb documentation
+* And show a few examples of using debugger commands
 
-I tried to make this workshop a bit differently
+I tried to make this workshop a bit differently: on top of the three points above we will also look at other Python debuggers and learn when it is better to use one or the other. Another thing that I will tell is useful tips and tricks.
 
 ### Print Considered Harmful
 
 ![Boat vs Surf](/images/boat_vs_surf.jpg)
 
-However, I am legally required to shame you for `print`-debugging and exmplain what's wrong with it.
+I am legally required to scorn you for `print`-debugging and explain what's wrong with it.
 
 ![Printgles](/images/printgles.png)
+
 First of all, one print is never enough, like Pringles, once you pop, you cannot stop
 You put one, it doesn't work, then you put another one, and yet another one. And to see your changes you need to restart your code every time, which can be quite slow, especially in a dockerized setup, and this is not what we want. We want a short feedback loop to test our theories as fast as we can.
 
@@ -49,17 +50,17 @@ Another argument against `print`s is that they ofthen get into production code. 
 
 ![Bearded Crab](/images/crab.png)
 
-By the way "it will get to production" applies not only to `print` statements, but to any silly code and data. I call this the "The Law of Bearded Crab". When I was working for an events aggregator, we used silly fake events on staging. And guess what, one day, a misconfigured import, put "the Concert of Bearded Crab" on the main page.
+By the way, "it will get to production" applies not only to `print` statements, but to any silly code and data. I call this phenomenon the "The Law of The Bearded Crab". When I was working for an entertainment events aggregator, we used silly fake events for testing our staging environment. And guess what, one day, a misconfigured import, uploaded "the Concert of The Bearded Crab" to the main page.
 
 One more argument for using a debugger is that you can easily look into runtime of not only your code, but also the one of 3rd parties, like Django and celery.
 
-Finally, print is ofthen used to see if the code runs at all. It's such a waste, Python has a 3-character built-in for that.
+Finally, `print` is very limitted in what it can do and is often used just to check whether the code runs at all. Using `print` for that is an overkill, there is a 3-character Python built-in function for that.
 
 Behold the mighty Redneck Breakpoint
 
 `1/0`
 
-unlike print it does not get lost in console output, it just crashes loudly and prodly.
+unlike print it does not get lost in console output, and you don't have to decorate it with `=...=` or `*...*` it just crashes your program loudly and proudly. If you have several places to check where they run, you can use `2/0`, `3/0`, etc.
 
 Ok, now that we are done with print-shaming, let's get started.
 
@@ -73,15 +74,16 @@ Then you will find console-debugging similar to playing such a game:
 They are both...
 
 * controlled with a few commands:
-  - "north, open, examine" vs "next, step, where"
+  - "north, open, examine" in games
+  - and "next, step, continue" in debugger
 * the commands can be abbreviated:
-  - "(n)orth, (o)pen, e(x)amine" vs "(n)ext, (s)tep, w(here)"
-* some actions are irreversible:
-  - "items can be lost forever" vs "function calls cannot be undone"
-* permadeath:
-  - "if you die you start from the beginning" vs "unhandled exceptions stop the debugger"
+  - In interactive fiction it is common to have `n` for (n)orth, `o` for (o)pen, and `x` for e(x)amine
+  - Python debugger has the same: `n` for (n)ext, `s` for (s)tep, and `c` for (c)continue
+* Both can be harsh:
+  - if you die in a game you start from the beginning
+  - unhandled exceptions stop the debugger
 
-By the way, on last year's Pycon Sweden there was a great talk about Evennia, a Python-framework in which you can build your own Multi-User Dungeon.
+By the way, if you are into text adventures, at last year's Pycon Sweden there was a great talk about Evennia, a Python MUD-framework.
 
 Funnily enough, when we look at our codebases, the similarity with dungeons becomes stronger. See for yourself, our codebases are built over years by multiple programmers, and sometimes you need Git archeology to dig up history, but it's a topic from my another talk.
 
@@ -95,17 +97,20 @@ A typical code-dungeon looks like this:
 * calling a function within a function takes you one level deeper down the stack
 * returning from a function takes you one level up, to the line where you entered
 * luckily there are no GOTO statements in Python, so each function has a single point of entry,
-* though it may have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit None.
+* though, it may have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit None.
+* One thing to note about this diagram is that numbers are not the actual line numbers in the files, they are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines are always consecutive.
 
-* One thing to note about this diagram the numbers are not the actual line numbers in the files, they are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines are always consecutive.
+Because of these similarities, I prepared a series of debugging exercises in a form of a small dungeon crawler.
 
 ### Installation
 
-If you want to follow along please clone this repository.
 
 Does everyone have Python 3.7+ installed?
 
-We start by cloning the repository.
+If you want to follow along, clone this repository from
+
+* https://github.com/tipishev/python_debugging_workshop
+* or here is a short link https://git.io/JeEhw
 
 ```bash
 git clone git@github.com:tipishev/python_debugging_workshop.git
