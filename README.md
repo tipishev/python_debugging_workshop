@@ -154,47 +154,26 @@ Now, when we run `play.py` we are greeted by the Pdb prompt.
 ./play.py
 ```
 
-Debugger stops the program at the `set_trace()` and politely asks us what to do next.
+Debugger stops the program right after the `set_trace()` line and politely asks us what to do next.
 
-For example we can just exit the debugger with `quit`
-
-_do that_
-
-or `q`
+For example we can just `quit` the debugger with `q`
 
 _do that_
 
-or tell it to `continue`
+or tell it to `continue` with `c`
 
 _do that_
 
-or `c`
+and happily crash at the exception.
 
-_do that_
+Not very useful. The fun starts when we learn to navigate our code dungeon.
 
-: the only thing that can stop it is a breakpoint or an unhandled exception.
-
-
-How many of you use Python version less that 3.7?
-
-_raise hand, too_
-
-Good, before 3.7, starting a debugger takes more keystrokes.
-For the record, Pdb is not my favourite debugger:
-
-* shows just one line of context
-* has poor tab-completion
-* does not support colors
-
-If I can, I use any other debugger. But in spite of all its shortcomings, Pdb has one killer feature: it is part of the standard library. So, if you ssh to a server, but have no permission to install a better debugger, you can still run Pdb.
-
-As with most games, we need to start with the controls. There are 2 types of movement in the dungeon:
+There are 2 types of movement:
 
 * horizontal – within a single function
 * vertical – up and down the call stack
 
-
-Let's start with a quick tutorial on horizontal movement, since we will use the most.
+Let's have a quick tutorial on moving within a single function:
 
 ![Next](/images/walking/1_next.png)
 
@@ -272,6 +251,21 @@ To avoid the bearded crab problem use git pre-commit hooks to clear
 * `print`
 * `breakpoint` / `set_trace`
 
+
+### Pdb bashing
+
+How many of you use Python version less that 3.7?
+
+_raise hand, too_
+
+Good, before 3.7, starting a debugger takes more keystrokes.
+For the record, Pdb is not my favourite debugger:
+
+* shows just one line of context
+* has poor tab-completion
+* does not support colors
+
+If I can, I use any other debugger. But in spite of all its shortcomings, Pdb has one killer feature: it is part of the standard library. So, if you ssh to a server, but have no permission to install a better debugger, you can still run Pdb.
 
 -----------------------------------------------------------
                 Here Be Dragons
