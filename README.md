@@ -363,7 +363,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 ### Anatomy of PDB
 * [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
 * debugger is extensible, `Pdb` class, `bdb` and `cmd` modules
-* CMD, CMD2
+* inherits from `cmd.Cmd` and `cmd.Bdb`
 
 #### CMD aside
 * client code spectrum:
@@ -374,6 +374,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * part of the standard library
 * creates a simple command-line interace (CLI) interpreter
 * documentation page has a cute example `TurtleShell`
+* Cmd2 is actually better, common pattern with standard implementations
 
 #### Bdb
 * defines `Breakpoint` class `(file, line)`
@@ -517,43 +518,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 
 ## Reading notes
-
-### https://github.com/python/cpython/blob/master/Lib/pdb.py
-
-Notes on the latest PDB source.
-
-* `find_function` uses `re`, delayed context manager
-* `getsourcelines` uses `inspect.findsource`, special logic for modules
-* `lasti2lineno` uses `dis.filndlinestarts`, what's `lasti`?
-* `_rstr` String that doesn't quote its repr., what is it for?
-* line_prefix
-
-#### class PDB
-
-* inherits from `cmd.Cmd` and `cmd.Bdb`
-* initializes both parents with relevant `__init__` args
-* prompt is initialized to `(Pdb) `
-* has dicts for aliases and displaying
-* `mainpytfile`/`wait_for_mainpyfile`
-* tries to use `readline` with a ridiculous regexp
-* successively reads global and local `.pdbrc`
-* has breakpoint-number-keyed dicts for
-  - commands
-  - commands_doprompt
-  - silent
-* flag and bp number for defining commands
-* `sigint_handler`
-* `reset` delegates to `bdb.Bdb`, calls `self.forget`
-* `self.forget` resets line number, stack, current index, frame, tb_lineno
-* `setup` forget(), `tb_lasti`, caches lineno, and `curframe.f_locals`
-* `execRcLines` check for `self.onecmd` and not comment (`'#'`)
-* overrides Bdb `.user_call`, `.user_line`, `.bp_commands`
-* bp_commands
-  - bdb sets self.current_bp
-  - checks self.commands
-  - one_cmd
-  - checks silencing and prompting
-* user_return
 
 ### Python sys docs
 
