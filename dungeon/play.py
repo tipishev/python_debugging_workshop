@@ -2,9 +2,6 @@
 
 from levels.main import main_corridor
 
-#  import sys
-#  sys.setrecursionlimit(3000)
-
 
 class Player:
 
@@ -18,7 +15,7 @@ class Player:
 # What's your character's name and starting items?
 player = Player(
     name='Tim',
-    inventory=['broomstick'],
+    inventory=['huge broomstick'],
 )
 
 # the game starts here

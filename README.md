@@ -122,42 +122,41 @@ cd dungeon
 
 Let's open `play.py` in your favourite text editor. Here we create a `Player` instance, with a name and an empty starting inventory. As you can see, the `Player` class itself is very simple.
 
-All locations in the game are functions that accept the player instance as an argument and hopefully return it back, possibly modifying its state. In `play.py` we enter the main_corridor from which all the other corridors branch. The goal of the game is to get the Golden Python, and possibly save the world.
+All locations in the game are functions that accept the player instance as an argument and hopefully return it back, possibly modifying its state, mostly the inventory. In `play.py` we enter the `main_corridor` from which all the other corridors branch. The goal of the game is to get the Golden Python, and possibly save the world.
 
 ### Quest 0: Scare the Rat
 
-Let's run the game.
+So, if everyone is ready, let's run the game.
+
 ```bash
 ./play.py
 ```
 
-We immediately see an error. Let's look what happened in the `main_corridor`. Ok, we need to have at least something in our inventory. Let's take a broomstick, big enough to scare away a rat. By the way, here you can see how the `main_corridor` is structured, there are several levels, each focusing on some aspect of Python debugger. At the end of each we get an amulet. We need to collect them all to collect the Golden Python.
+We immediately see an error, that happened in the `main_corridor`. The player was eaten by a rat. Looks like we need to have at least something in our inventory. Let's take a broomstick, big enough to scare the rat away. And run the the game again.
+
+```bash
+./play.py
+```
+
 
 ### Walking
 
-Let's run the game again.
 
-```bash
-./play.py
-```
+Now we have a different error and can finally use a debugger. There are a few ways to start it. In this example we can put a hardcoded breakpoint in our code right before the player enters the main corridor.
 
-Now we have a different error and can use a debugger.
 
-Now we get a different error, now coming from the `walking_corridor`. Here we can finally start a debugger. Right before entering the `main_corridor`.
+_type `import pdb; pdb.set_trace()` right before entering the main corridor_
+
+Now, when we run `play.py` we drop into Pdb prompt.
+Debugger stops the program and politely asks what to do next.
+For example we can just exit the debugger with `quit` or `q`, or tell it to `continue`: the only thing that can stop it is a breakpoint or an unhandled exception.
+
 
 How many of you use Python version less that 3.7?
 
 _raise hand, too_
 
 Good, before 3.7, starting a debugger takes more keystrokes.
-
-_type `import pdb; pdb.set_trace()` right before entering the main corridor_
-
-Now, when we run `play.py` we drop into Pdb prompt. 
-Debugger stops the program and politely asks what to do next.
-For example we can just exit the debugger with `quit` or `q`, or tell it to `continue`: the only thing that can stop it is a breakpoint or an unhandled exception.
-
-
 For the record, Pdb is not my favourite debugger:
 
 * shows just one line of context

@@ -25,6 +25,6 @@ def main_corridor(player):
     if 'amulet of jumping' not in player.inventory:
         player = jumping_corridor(player)
 
-    # TODO add a proper final challenge as final room requiring all keys
+    # TODO add a proper final challenge
     player.inventory.append('Golden Python')
     return player
