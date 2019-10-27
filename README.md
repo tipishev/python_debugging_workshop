@@ -322,6 +322,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 ## Topics
 
+* postmortem: "I wish I was there when it happened!"
 * breakpoint regexp?
 * breapoints allow a test-journey:
   - instead of put print here, put print there.
@@ -630,8 +631,12 @@ alias interacti IPython.embed(config=cfg)
 * `b mymodule.function`
 * `r` to quickly get out if stepped in by mistake
 * `until` to get out of loops
-* `python3 -mpdb -c "b 8" -cc script.py # sets a breakpoint on line 8 and runs the program`
-* 
+* `python -m ipdb -c "b levels/main.py:13" -c "b levels/main.py:14" play.py`
+* restart behavior is unclear, cannot recover after an exception
+* watch throuh commands, `silent` seems useless in my setup
+* `-m pdb` will drop in debugger on unhandled exceptions
+
+
 
 ## Dungeon game
 

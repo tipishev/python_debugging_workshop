@@ -5,6 +5,7 @@ from levels.main import main_corridor
 #  import sys
 #  sys.setrecursionlimit(3000)
 
+
 class Player:
 
     def __init__(self, name, inventory=None):

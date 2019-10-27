@@ -14,7 +14,6 @@ def main_corridor(player):
         raise EatenByRat('Do not go empty-handed!')
 
     if 'amulet of walking' not in player.inventory:
-        breakpoint()
         player = walking_corridor(player)
 
     if 'amulet of looking' not in player.inventory:
