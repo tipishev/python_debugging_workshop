@@ -1,7 +1,3 @@
-# imports
-from datetime import datetime
-import traceback
-
 # when you want to see the whole file
 listall list 1,9999
 alias la listall
@@ -22,18 +18,11 @@ alias pi for k in sorted(vars(%1)): print(f"%1.{k}={vars(%1)[k]}")
 alias ps pi player
 
 # timestamp and dump objects to a file, e.g. `dump "captains log"`
-alias dump with open('dump.txt', 'a+') as f: f.write(f'{datetime.now().isoformat()}\n{%*}\n\n')
+alias dump !from datetime import datetime ;; with open('dump.txt', 'a+') as f: f.write(f'{datetime.now().isoformat()}\n{%*}\n\n')
 
 # dump stack
 alias dump_stack !from traceback import format_stack ;; dump format_stack()
 
-# fast up and down the stack
-alias uu u;;u
-alias dd d;;d
-
-alias uuu u;;u;;u
-alias ddd d;;d;;d
-
 # show how deep is the stack
-alias howdeep p len(traceback.format_stack())
+alias howdeep !import traceback ;; p len(traceback.format_stack())
 alias hd howdeep
