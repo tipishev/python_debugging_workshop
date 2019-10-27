@@ -149,7 +149,13 @@ Good, before 3.7, starting a debugger takes more keystrokes.
 
 _type `import pdb; pdb.set_trace()` right before entering the main corridor_
 
-Now, when we run `play.py` we drop into Pdb prompt. For the record, Pdb is not my favourite debugger:
+Now, when we run `play.py` we drop into Pdb prompt. 
+Debugger stops the program and politely asks what to do next
+
+
+
+
+For the record, Pdb is not my favourite debugger:
 
 * shows just one line of context
 * has poor tab-completion
@@ -188,10 +194,12 @@ We can also use command `until {line_number}` instead of typing `next` or `n`.
 ![Return](/images/walking/6_return.png)
 
 Or we can type `return` or `r` and stop just before returning to the function above.
+Useful when we lose interest in the current function, got stuck in a loop, or stepped in the function by accident and would like to go back.
 
 We can also use command `until {line_number}` instead of typing `next` or `n`.
 
 We can press `next` and it wil
+
 
 Here are a couple of immediately useful commands:
 
@@ -333,6 +341,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 ### Debug with access to source code
 
+* PEP553
 * `breakpoint()` in 3.7+
   - defaults to `pdb.set_trace`
   - raison d'être:
@@ -490,6 +499,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 ### Dungeon Ideas
 
+* one-letter trap, mimic!
 * short commands: `l` - look, `a` - around
   - a,b,c for 3 rats doesn't work, tell about `!`
 * args, to see who entered the function/room with us
@@ -517,34 +527,8 @@ Be a condescending twat and talk how it's better to write good code instead of f
 > Debuggers don't remove bugs. They only show them in slow motion.
 
 
-### https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
-
-```
-# Install IPython: python3 -m pip install ipython
-
-import IPython
-from traitlets.config import get_config
-
-cfg = get_config()
-cfg.InteractiveShellEmbed.colors = "Linux"  # syntax highlighting
-cfg.InteractiveShellEmbed.confirm_exit = False
-
-alias interacti IPython.embed(config=cfg)
-```
-
-### https://github.com/spiside/pdb-tutorial
-
-* shorter feedback loop -> better debugger person
-* listing 3rd party packages code
-* one-letter trap, mimic!
-* `b` to list breakpoints
-* `cl(ear)` one or all breakpoints
-* `r` when you lose interest and just want it to be over, loop it
-
 ### https://realpython.com/python-debugging-pdb/ (amazingly useful)
 
-* debugger stops the program and asks what to do next
-* `breakpoint` is PEP553
 * `python -m pdb play.py arg1 arg2`
 * test an alternative implementation directly in the application
 * `next` to stay local and avoid any foreign functions
