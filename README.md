@@ -185,34 +185,51 @@ If we are on a line that makes a function call, we have 2 choices.
 
 ![On fun next](/images/walking/3_on_fun_next.png)
 
-We can choose `next` and it the function executes behind the scenes and we continue in the current function. Think of next: "stay local and avoid any foreign functions"
+We can choose `next` and the nested function executes behind the scenes and we continue to line 45. Think of next: "stay local and avoid any foreign functions"
 
 ![On fun step](/images/walking/4_on_fun_step.png)
 
-Or we can type `step` and go vertically one level down in the nested function and continue horizontal movement there.
+Or we can type `step` and go vertically one level down to line 17, inside the nested function and continue horizontal movement there.
 
 ![Until](/images/walking/5_until.png)
 
 We can also use command `until {line_number}` instead of typing `next` or `n`.
-`until` stops on return, `until` to break out of loops
+This command is useful for skipping loops. If lines 18 to 20 contained a loop, I would have to press `n` for each iteration.
+
+If a return happens before the `{line_number}`, debugger stops there. For example, if I accidentally type `until 210`, the debugger stops on line 23 and waits for the input.
 
 ![Return](/images/walking/6_return.png)
 
-Or we can type `return` or `r` and stop just before returning to the function above.
-Useful when we lose interest in the current function, got stuck in a loop, or stepped in the function by accident and would like to go back.
+If we specifically want to stop before returning to the function above, we can type `return` or `r`.
 
-We can also use command `until {line_number}` instead of typing `next` or `n`.
+`return` is useful when we lose interest in the current function, get stuck in a loop, or step in the nested function by accident.
 
-We can press `next` and it wil
+Let's try these commands in the debugger.
+We see that on this line the player is about to enter the `main_corridor` function, so we can `step` in. Now we see the definition of the `main_corridor`, we type `next` to go to the next line. Here we see the check for non-empty inventory, and finally the entrance to the `walking_corridor` where the error happens.
+
+Since we see that nothing stops us from getting to the  `walking_corridor`, let's move the `set_trace` there. And let's also add a couple `i`s in it.
+
+Notice the improvements:
+
+* we now have color
+* we see a bit more of the context
+
+Now let's step in the `walking_corridor` and get our first amulet.
+
+_go through walking corridor
+warn about single-letter variables, use `!` to be sure
+  - `c`, `n`, etc. but serves right, don't use one-letter variables
+  - `list`, `args` are more treacherous
+ _
+
+Now we can add the amulet to our inventory.
+
+The next level is about looking at the source code.
 
 
-Here are a couple of immediately useful commands:
+Now, all the goodness of iPython is available to us. Another improvement is that you can set how many lines of context you would like to see. _add context=5_
 
-* `list` to show the source code  _type it_ the arrow shows where we are
-* `step` to enter the function call _type it_ it takes us inside the corridor
-* `next` to advance to the next line _type it_
 
-These commands can also be abbreviated to `l`, `s`, and `n` respectively. We will talk more about these commands in the following exercises.
 
 As I mentioned earlier, PDB shows just the current line, so almost always we would like to go to the next line and see the code around it.
 We can do this by separting commands with double semicolon.
@@ -234,8 +251,6 @@ To quit the debugger just type `q`. We see a Traceback because to stop, the debu
 
 For this exercise we will use `ipdb`, a wrapper around PDB that adds tab-completion, color, and multiline context support.
 
-For that we can add a couple of `i`s in the earlier breakpoint.  _add those 'i's_
-Now, all the goodness of iPython is available to us. Another improvement is that you can set how many lines of context you would like to see. _add context=5_
 
 ![Lighting](/images/lighting.png)
 
@@ -272,12 +287,21 @@ If I can, I use any other debugger. But in spite of all its shortcomings, Pdb ha
 -----------------------------------------------------------
 
 ### Miscellaneous :-/
-* warn about single-letter variables, use `!` to be sure
-  - `c`, `n`, etc. but serves right, don't use one-letter variables
-  - `list`, `args` are more treacherous
 
 ### Looking
 * looking tutorial diagram, limited to 1 file, different listing ways
+
+# Examination
+
+* (a)rguments to see what was passed
+* `p`  if you really miss that `print`
+* `pp` a bag ~full of JSON~ of `dict`s, arrange lines vertically for clue
+* pprint sorts keys
+* `display` can list current expressions, local for frame
+* `undisplay` can clear one or many expressions
+* display shows old value, neat!
+* display to create a "watch list"
+
 
 ### Stacking
 
@@ -310,6 +334,34 @@ combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))
 
 * `run`, `runeval`, `runcall` are boring but useful with no access to code
 
+### Debug without access to source code
+* debugging live in a closure, when no better idea
+* shows 3 ways to run a command:
+  - run
+  - runeval
+  - runcall
+* example with running property: `ipdb.run('obj.property')`
+* mocking live code
+
+
+### Breakpoints
+* breapoints allow a test-journey:
+  - instead of put print here, restart, put print there, restart
+  - put break here, check. Put break there, check within a single run
+* one-time breakpoints
+* watching variables with post-run `commands`
+* %debug iPython magic
+* pinfo, pinfo2: real story `DictWriter.field_names`
+* break
+  - filename:lineno | function
+  - condition
+* tbreak aka tea break
+* `_` variable stores the result of previous ivocation
+* PUDB
+* web-pdb `PYTHONBREAKPOINT=web_pdb.set_trace` for multithreaded
+* condition may be useful when a bug happens only on certain conditions, like looping over a bunch of records, and only orders from France are processed incrorrectly.
+* it's better to avoid modifying the code with `breakpoint`/`set_trace`, less chance of committing to production
+* `python -m ipdb -c "b levels/main.py:13" -c "b levels/main.py:14" play.py`
 
 ### Preventing Bugs
 
@@ -347,17 +399,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
   - `import *db; *db.pm()` in interactive shell. Will use `sys.last_traceback` for examination
   - `%debug` in iPython
 
-# Examination
-
-* (a)rguments to see what was passed
-* `p`  if you really miss that `print`
-* `pp` a bag ~full of JSON~ of `dict`s, arrange lines vertically for clue
-* pprint sorts keys
-* `display` can list current expressions, local for frame
-* `undisplay` can clear one or many expressions
-* display shows old value, neat!
-* display to create a "watch list"
-
 
 ### Debug with access to source code
 
@@ -379,15 +420,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 ### Configuration
 * mostly useful for aliases
 * pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
-
-### Debug without access to source code
-* debugging live in a closure, when no better idea
-* shows 3 ways to run a command:
-  - run
-  - runeval
-  - runcall
-* example with running property: `ipdb.run('obj.property')`
-* mocking live code
 
 ### Anatomy of PDB
 * [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
@@ -423,24 +455,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
   - clear_all_breaks
   - `get_{bpbynumber, break, breaks, file_breaks}`
 
-### Breakpoints
-* breapoints allow a test-journey:
-  - instead of put print here, restart, put print there, restart
-  - put break here, check. Put break there, check within a single run
-* one-time breakpoints
-* watching variables with post-run `commands`
-* %debug iPython magic
-* pinfo, pinfo2: real story `DictWriter.field_names`
-* break
-  - filename:lineno | function
-  - condition
-* tbreak aka tea break
-* `_` variable stores the result of previous ivocation
-* PUDB
-* web-pdb `PYTHONBREAKPOINT=web_pdb.set_trace` for multithreaded
-* condition may be useful when a bug happens only on certain conditions, like looping over a bunch of records, and only orders from France are processed incrorrectly.
-* it's better to avoid modifying the code with `breakpoint`/`set_trace`, less chance of committing to production
-* `python -m ipdb -c "b levels/main.py:13" -c "b levels/main.py:14" play.py`
 
 ### Debuggers comparisson
 
