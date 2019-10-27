@@ -100,10 +100,9 @@ A typical code-dungeon looks like this:
 * though, it may have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit None.
 * One thing to note about this diagram is that numbers are not the actual line numbers in the files, they are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines are always consecutive.
 
-Because of these similarities, I prepared a series of debugging exercises in a form of a small dungeon crawler.
+Because of these similarities, I prepared a small game "The Quest for Golden Python", while going through it we will work with different aspects of using a debugger.
 
 ### Installation
-
 
 Does everyone have Python 3.7+ installed? It's not critical as long as you have Python3.
 
@@ -121,9 +120,9 @@ pip install -r requirements.pip
 cd dungeon
 ```
 
-Let's open `play.py`. Here we create a `Player` instance, with a name and empty starting inventory.
+Let's open `play.py` in your favourite text editor. Here we create a `Player` instance, with a name and an empty starting inventory. As you can see, the `Player` class itself is very simple.
 
-All locations in the game are functions that accept the player instance as an argument and return it back, possibly modifying its state. Or don't return it and raise an exception instead. In `play.py` we enter the main_corridor from which all the other corridors branch. The goal of the game is to get the Golden Python and save the world.
+All locations in the game are functions that accept the player instance as an argument and hopefully return it back, possibly modifying its state. In `play.py` we enter the main_corridor from which all the other corridors branch. The goal of the game is to get the Golden Python, and possibly save the world.
 
 ### Quest 0: Scare the Rat
 
