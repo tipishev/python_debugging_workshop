@@ -630,7 +630,8 @@ alias interacti IPython.embed(config=cfg)
 * `b mymodule.function`
 * `r` to quickly get out if stepped in by mistake
 * `until` to get out of loops
-*
+* `python3 -mpdb -c "b 8" -cc script.py # sets a breakpoint on line 8 and runs the program`
+* 
 
 ## Dungeon game
 
