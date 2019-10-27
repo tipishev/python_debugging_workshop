@@ -744,14 +744,10 @@ So, without further ado we descend into the Dungeons of Doom.
 * `pp` a bag ~full of JSON~ of `dict`s, arrange lines vertically for clue
 * pprint sorts keys
 
-
 ### Meta
 
 * analogy with building a dungeon at work
 * https://github.com/git-game/git-game
-
-## Reading List
-* https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/
 
 ## Used Materials
 TODO image sources, use tineye?
