@@ -105,7 +105,7 @@ Because of these similarities, I prepared a series of debugging exercises in a f
 ### Installation
 
 
-Does everyone have Python 3.7+ installed?
+Does everyone have Python 3.7+ installed? It's not critical as long as you have Python3.
 
 If you want to follow along, clone this repository from
 
@@ -115,9 +115,9 @@ If you want to follow along, clone this repository from
 ```bash
 git clone git@github.com:tipishev/python_debugging_workshop.git
 cd python_debugging_workshop
-virtualenv -p python 3.7 venv
+virtualenv -p python3.7 venv
 . venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.pip
 cd dungeon
 ```
 
