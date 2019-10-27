@@ -262,7 +262,7 @@ To avoid the bearded crab problem use git pre-commit hooks to clear
 
 * mention `a` arguments
 * show how to navigate up and down the stack
-* `sys.setrecursionlimit`
+* `sys.tracebacklimit` default 1000, `sys.setrecursionlimit`
 
 ### Jumping
 
@@ -518,38 +518,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 
 ## Reading notes
-
-### Python sys docs
-
-* `call_tracing` call from debugger checkpoint
-* `_current_frames`
-* `breakpointhook`
-* `displayhook` populates `_` variable
-* `excepthook(exc_type, exc_instance, traceback)`
-  - interactive: returns control to the shell
-  - program: exits
-* original non-overriden values are stored in
-  - `sys.__breakpointhook__`
-  - `sys.__displayhook__`
-  - `sys.__excepthook__`
-  - `sys.__unraisablehook__`
-* `exc_info` finds unhandled exception on stack.
-* `sys._getframe([depth])`
-* `sys.gettrace()`
-* ` sys.__interactivehook__`
-* these exist for `pdb.pm()` and `%debug`'s sake
-  - `last_type`
-  - `last_value`
-  - `last_traceback`
-* `ps1`, `ps2` can be dynamic in `interact` mode
-* `sys.settrace(tracefunc)`
-  - 'call'
-  - 'line'
-  - 'return'
-  - 'exception'
-  - 'opcode', `f_trace_opcodes=True'`
-* `tracebacklimit` default 1000
-
 
 ### Python traceback docs
 * `print_tb(tb, limit=None, file=None)` file to object, alias?
