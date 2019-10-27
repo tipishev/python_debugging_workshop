@@ -636,6 +636,10 @@ alias interacti IPython.embed(config=cfg)
 * watch throuh commands, `silent` seems useless in my setup
 * `-m pdb` will drop in debugger on unhandled exceptions
 
+### https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/ 
+
+* in iPython: `debug fun(args)` drops into that function, super neat! What the hell will happen when you call it? No modifications
+* pdb++ may work better with Py2
 
 
 ## Dungeon game
@@ -747,9 +751,7 @@ So, without further ado we descend into the Dungeons of Doom.
 * https://github.com/git-game/git-game
 
 ## Reading List
-* all the help tree in PDB's `h` menu
 * https://blog.ironboundsoftware.com/2016/10/31/6-quick-python-debugging-tips/
-* iPDB (345 LOC): https://github.com/gotcha/ipdb
 
 ## Used Materials
 TODO image sources, use tineye?
