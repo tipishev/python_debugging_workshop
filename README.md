@@ -158,19 +158,19 @@ Debugger stops the program at the `set_trace()` and politely asks us what to do 
 
 For example we can just exit the debugger with `quit`
 
-__do that__
+_do that_
 
 or `q`
 
-__do that__
+_do that_
 
 or tell it to `continue`
 
-__do that__
+_do that_
 
 or `c`
 
-__do that__
+_do that_
 
 : the only thing that can stop it is a breakpoint or an unhandled exception.
 

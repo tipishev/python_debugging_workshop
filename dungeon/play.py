@@ -14,11 +14,12 @@ class Player:
 
 # What's your character's name and starting items?
 player = Player(
-    name='',
-    inventory=[''],
+    name='Time',
+    inventory=['broom'],
 )
 
 # the game starts here
+import pdb; pdb.set_trace()
 player = main_corridor(player)
 
 if 'Golden Python' in player.inventory:
