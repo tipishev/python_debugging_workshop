@@ -129,7 +129,7 @@ All locations in the game are functions that accept the player instance as an ar
 So, if everyone is ready, let's run the game.
 
 ```bash
-./play.py
+python play.py
 ```
 
 We immediately see an error, that happened in the `main_corridor`. The player was eaten by a rat. Looks like we need to have at least something in our inventory. Let's take a broomstick, big enough to scare the rat away. And run the the game again.
@@ -138,18 +138,41 @@ We immediately see an error, that happened in the `main_corridor`. The player wa
 ./play.py
 ```
 
-
 ### Walking
 
 
-Now we have a different error and can finally use a debugger. There are a few ways to start it. In this example we can put a hardcoded breakpoint in our code right before the player enters the main corridor.
+Having a broom helped, but now we see a different error and can finally use a debugger. There are different ways to start it. In this example we can put a hardcoded breakpoint in our code right before the player enters the main corridor.
 
 
-_type `import pdb; pdb.set_trace()` right before entering the main corridor_
+_type `import pdb; pdb.set_trace()` right above `player = main_corridor(player)`_
 
-Now, when we run `play.py` we drop into Pdb prompt.
-Debugger stops the program and politely asks what to do next.
-For example we can just exit the debugger with `quit` or `q`, or tell it to `continue`: the only thing that can stop it is a breakpoint or an unhandled exception.
+You don't have to worry about `ImportError`: `pdb` is in the standard library.
+
+Now, when we run `play.py` we are greeted by the Pdb prompt.
+
+```bash
+./play.py
+```
+
+Debugger stops the program at the `set_trace()` and politely asks us what to do next.
+
+For example we can just exit the debugger with `quit`
+
+__do that__
+
+or `q`
+
+__do that__
+
+or tell it to `continue`
+
+__do that__
+
+or `c`
+
+__do that__
+
+: the only thing that can stop it is a breakpoint or an unhandled exception.
 
 
 How many of you use Python version less that 3.7?
