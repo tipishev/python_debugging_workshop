@@ -14,7 +14,7 @@ class Player:
 
 # What's your character's name and starting items?
 player = Player(
-    name='Time',
+    name='Tim',
     inventory=[
         'broom',
         'amulet of walking',
