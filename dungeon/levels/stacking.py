@@ -1,7 +1,8 @@
 _ = None
 
-UH_DESCR = 'You hear funky loops'
-DH_DESCR = 'The silky groove makes you want to dance'
+
+UH_DESCR = 'You hear funky underground loops'
+DH_DESCR = 'Smooth deep bassline surrounds you'
 
 
 class GotTired(Exception):
@@ -21,7 +22,7 @@ def underground_house(player, description=UH_DESCR):
     _  # check (w)here you are now
 
     _  # unfortunately no key here
-    player = deep_house(player)  # must be there.
+    player = deep_house(player)  # the key must be there!
     return player
 
 
@@ -42,7 +43,7 @@ def stacking_corridor(player):  # (s)tep in..
 
     _  # check (w)here you are now
 
-    _ # you find a stairwell door
+    _  # you find a staircase door
     if player.inventory.pop() == 'staircase key':
         player = staircase(player)  # unfortunately it's locked
 

@@ -128,6 +128,6 @@ def password_room(player):
 
         # Once again, you have succeeded!!!
         player.inventory.append('amulet of looking')
-        return player  # press c to (c)ontinue
+        return player  # press q to quit
 
     raise Exception('Incorrect Looking Password')

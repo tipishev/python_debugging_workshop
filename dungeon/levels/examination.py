@@ -1,3 +1,5 @@
+_ = None
+
 bag_of_dicts = [
     {
         'one': 'in',
@@ -19,3 +21,11 @@ bag_of_dicts = [
     },
     {'own': 'bag'},
 ]
+
+
+def examination_corridor(player):
+    _
+    _
+    _
+    player.append('amulet of examination')
+    return player

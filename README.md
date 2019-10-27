@@ -222,10 +222,13 @@ warn about single-letter variables, use `!` to be sure
   - `list`, `args` are more treacherous
  _
 
-Now we can add the amulet to our inventory.
+Now we can add the 'amulet of walking' to our inventory.
 
-The next level is about looking at the source code.
 
+Let's go to the next level and see how to navigate vertically in the call stack.
+
+
+The next level is about listing the source code.
 
 Now, all the goodness of iPython is available to us. Another improvement is that you can set how many lines of context you would like to see. _add context=5_
 
@@ -254,7 +257,7 @@ For this exercise we will use `ipdb`, a wrapper around PDB that adds tab-complet
 
 ![Lighting](/images/lighting.png)
 
-In the game, context can be compared to how much of the corridow we can see. In default Pdb it's horrible: just one line and no syntax highlight, so it's black-and-white mole-vision. Things get better if we use `n ;; l` and `s ;; l` aliases, we see 11 lines, but again, no colors. Ipdb finally solves this problem by having proper syntax highlighting and `context`-kwarg, that you can use directly:
+In the game, context can be compared to how much of the corridor we can see. In default Pdb it's horrible: just one line and no syntax highlight, so it's black-and-white mole-vision. Things get better if we use `n ;; l` and `s ;; l` aliases, we see 11 lines, but again, no colors. Ipdb finally solves this problem by having proper syntax highlighting and `context`-kwarg, that you can use directly:
 
 `import ipdb; ipdb.set_trace(context=10)` or via a `breakpoint` built-in in Python 3.7: `breakpoint(context=10)`.
 
@@ -310,9 +313,7 @@ If I can, I use any other debugger. But in spite of all its shortcomings, Pdb ha
 * inspired by SCP-087
 * alias for traceback size
 * `import pdb; pdb.Pdb(skip=['django.*']).set_trace()`
-
 * Pdb commands for displaying current level
-
 * mention `a` arguments
 * show how to navigate up and down the stack
 * `sys.tracebacklimit` default 1000, `sys.setrecursionlimit`
@@ -470,7 +471,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
   * can start as `%debug` from iPython or `debug function(args, **kwargs)`
   * tab-completion
   * colors
-  - requires iPython 
+  - requires iPython
   - no extended functionality as in Pdb++
 
 #### Pudb:
@@ -478,7 +479,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
   * Shows the whole source
   * Shows source, vars, stack, breakpoints, console on the same screen
   - ∓ uses `Vi`-style navigation
-  - works better on bigger screens 
+  - works better on bigger screens
   - no jumps https://github.com/inducer/pudb/issues/129
   * watch-statements
   * code, variables, stack, breakpoints
@@ -494,7 +495,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
   * better display of variables
   * jump to source
   - cannot run in terminal
-  - extra steps for remote or container debugging 
+  - extra steps for remote or container debugging
   - loss of oldschool-cred
 
 * Image: debugger skill-chart
@@ -514,7 +515,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * can mark some frames as hidden using a decorator, don't display in stacktrace
 * shell shell_pp python ipython pdb ipdb pdb pdb_pp, common pattern
 * setattr condition can discriminate between 2 instances of the same class
-* `break_on_setattr` can be attached even from within debugger. 
+* `break_on_setattr` can be attached even from within debugger.
 
 #### Config
 * prompt
