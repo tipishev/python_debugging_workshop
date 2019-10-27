@@ -375,6 +375,24 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * creates a simple command-line interace (CLI) interpreter
 * documentation page has a cute example `TurtleShell`
 
+#### Bdb
+* defines `Breakpoint` class `(file, line)`
+* `trace_dispatch(frame, event, arg)`
+  - line
+  - call
+  - return
+  - exception
+  - c_call
+  - c_return
+  - c_exception
+* breakpoints manipulation:
+  - set_break
+  - clear_break
+  - clear_bpbynumber
+  - clear_all_file_breaks
+  - clear_all_breaks
+  - `get_{bpbynumber, break, breaks, file_breaks}`
+
 ### Breakpoints
 * breapoints allow a test-journey:
   - instead of put print here, restart, put print there, restart
@@ -499,45 +517,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 
 ## Reading notes
-
-### bdb.py
-
-#### sources
-
-* https://docs.python.org/3/library/bdb.html
-* https://github.com/python/cpython/blob/3.7/Lib/bdb.py
-
-#### what it does
-
-* defines `BdbQuit` exception to stop the debugger
-* defines `Breakpoint` class `(file, line)`
-* defines `Bdb` default Python debugger class, `skip` argument
-* `trace_dispatch(frame, event, arg)`
-  - line
-  - call
-  - return
-  - exception
-  - c_call
-  - c_return
-  - c_exception
-* `dispatch_{line, call, return, ...}`
-* stop_here/break_here/break_anywhere
-* `user_{call, line, return, exception}`
-* do_clear
-* `set_{step, next, return, until, trace, continue, quit}`
-* breakpoints manipulation:
-  - set_break
-  - clear_break
-  - clear_bpbynumber
-  - clear_all_file_breaks
-  - clear_all_breaks
-  - `get_{bpbynumber, break, breaks, file_breaks}`
-* stack trace presentation
-  - get_stack
-  - format_stack_entry
-* `run/runeval/runcall`
-* checkfuncname, effective, set_trace
-
 
 ### https://github.com/python/cpython/blob/master/Lib/pdb.py
 
