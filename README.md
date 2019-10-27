@@ -1,20 +1,8 @@
 # Python Debugging Workshop
 
-# Transcript
+## Transcript
 
-## Quotes
-
-### Edsger Dijkstra
-
-> They are errors, not bugs.
-
-> If you want more effective programmers, you will discover that they should not waste their time debugging, they should not introduce the bugs to start with.
-
-### Unknown
-
-> Debuggers don't remove bugs. They only show them in slow motion.
-
-## Introduction
+### Introduction
 
 Hello everyone! My name is Tim and today I will talk about Python debugging.
 
@@ -23,7 +11,6 @@ Hello everyone! My name is Tim and today I will talk about Python debugging.
 First of all, how many of you use a debugger in your daily workflow?
 
 * \<½ Awesome! It means that a lot of you will go to lunch with a new tool under the belt.
-
 * \>½ Nice! Then you already know quite a few things that I tell, and it will be a refresher, with a few tips and tricks on top.
 
 Some developers say they don't need a debugger in a scripting language, since they can just look at the source. On one hand it's true and there is a saying
@@ -48,10 +35,11 @@ While preparing this workshop I have looked at a number of debugging tutorials a
 
 I tried to make this workshop a bit differently
 
+### Print Considered Harmful
+
 ![Boat vs Surf](/images/boat_vs_surf.jpg)
 
 However, I am legally required to shame you for `print`-debugging and exmplain what's wrong with it.
-
 
 ![Printgles](/images/printgles.png)
 First of all, one print is never enough, like Pringles, once you pop, you cannot stop
@@ -63,17 +51,19 @@ Another argument against `print`s is that they ofthen get into production code. 
 
 By the way "it will get to production" applies not only to `print` statements, but to any silly code and data. I call this the "The Law of Bearded Crab". When I was working for an events aggregator, we used silly fake events on staging. And guess what, one day, a misconfigured import, put "the Concert of Bearded Crab" on the main page.
 
-Finally, print is ofthen used to see if the code runs at all. It's such a waste, Python has a 3-character built-in for that.
-
 One more argument for using a debugger is that you can easily look into runtime of not only your code, but also the one of 3rd parties, like Django and celery.
 
-* the Redneck Breakpoint
+Finally, print is ofthen used to see if the code runs at all. It's such a waste, Python has a 3-character built-in for that.
 
-1/0
+Behold the mighty Redneck Breakpoint
 
-it's very visible and unlike print it does not get lost in logging.
+`1/0`
+
+unlike print it does not get lost in console output, it just crashes loudly and prodly.
 
 Ok, now that we are done with print-shaming, let's get started.
+
+### Debugging as Text Adventure
 
 How many of you have played MUDs?
 What about Roguelikes or Interactive Fiction (IF)?
@@ -109,13 +99,11 @@ A typical code-dungeon looks like this:
 
 * One thing to note about this diagram the numbers are not the actual line numbers in the files, they are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines are always consecutive.
 
-## Main part
+### Installation
 
-If you want to follow along feel free to clone this repository.
+If you want to follow along please clone this repository.
 
-### Setup
-
-Does everyone have Python 3.7 + installed?
+Does everyone have Python 3.7+ installed?
 
 We start by cloning the repository.
 
@@ -130,7 +118,7 @@ cd dungeon
 
 Let's open `play.py`. Here we create a `Player` instance, with a name and empty starting inventory.
 
-All locations in the game are functions that accept the player instance as an argument and return it back, possibly modifying its state. Or don't return it and raise an exception instead. In `play.py` we enter the main_corridor from which all the other corridors branch. The goal of the game is to get the Golden Python.
+All locations in the game are functions that accept the player instance as an argument and return it back, possibly modifying its state. Or don't return it and raise an exception instead. In `play.py` we enter the main_corridor from which all the other corridors branch. The goal of the game is to get the Golden Python and save the world.
 
 ### Quest 0: Scare the Rat
 
@@ -203,10 +191,7 @@ Or we can type `return` or `r` and stop just before returning to the function ab
 
 We can also use command `until {line_number}` instead of typing `next` or `n`.
 
-
 We can press `next` and it wil
-
-
 
 Here are a couple of immediately useful commands:
 
@@ -253,22 +238,17 @@ To avoid the bearded crab problem use git pre-commit hooks to clear
 * `print`
 * `breakpoint` / `set_trace`
 
+
+---------------------------------------------------------------------------------------------------
+                                      Here Be Dragons
+---------------------------------------------------------------------------------------------------
+
 ### Looking
-
-### Jumping
-
-In real world jumping helps to:
-
-* skip heavy operations
-* avoid network calls,
-
-combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))`
-
-* go back if you forgot to check something
-
+* looking tutorial diagram, limited to 1 file, different listing ways
 
 ### Stacking
 
+* Image: stacktrace stairs/elevator
 * inspired by SCP-087
 * alias for traceback size
 
@@ -278,11 +258,25 @@ combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))
 * show how to navigate up and down the stack
 * `sys.setrecursionlimit`
 
-## Preventing Bugs
+### Jumping
+
+* In real world jumping helps to skip
+  - network calls
+  - initialization before debug-section
+  - expensive computation in loops
+
+combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))`
+
+* go back if you forgot to check something
+
+* pudb jump not working https://github.com/inducer/pudb/pull/306
+
+
+### Preventing Bugs
 
 Be a condescending twat and talk how it's better to write good code instead of fixing errors.
 
-## Conclusion
+### Conclusion
 
 * Now you know what to do when you encounter a bug
   - configure a debugger of choice: `pdb`, `ipdb`, or `pudb`
@@ -293,46 +287,43 @@ Be a condescending twat and talk how it's better to write good code instead of f
   - set up useful aliases (which?)
   - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
 
-
-## Images
-
-* iPython iceberg dark internet
-* [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
-* how do we read stack overflow
-* how do we read github repositories (in relation to pudb)
-* ~~dungeon map~~ + lighting + jumping possibility
-* stacktrace stairs/elevator
-* walking n, s, unt, c, r
-* looking diagram, limited to 1 file, different listing ways
-* debugger skill-chart / snake-brain meme?
-  - 1/0
-  - print
-  - pdb
-  - ipdb
-  - pudb* / graphical / IDE
-  - broken Windows gag
-  - avoiding bugs with isort, flake8, autopep8, broken windows theory
-* PDB vs iPDB vs PUDB vs IDE
-  - Pdb: upside: available everywhere, downside: very basic, rough on the edges shows bdb.Quit
-  - iPdb: upside: can start as %debug from iPython, downside: none, it's my fave
-  - Pudb: downside: no jumps, show github issue
-  - IDE debuggers, no stray code, better display of variables, jump to source, downside: cannot run in terminal, loss of oldschool-cred, extra steps to connect remotely or inside a container
-
-
+* If you like to gamify tools learning: https://github.com/git-game/git-game
 
 ## Topics
 
-* postmortem: "I wish I was there when it happened!"
-* breakpoint regexp?
-* breapoints allow a test-journey:
-  - instead of put print here, put print there.
-  - put break here, check. Put break there, check
+#### Quitting
+
+* show q(uit)
+
+### Aliases
+
 * `vars` built-in master race vs dirty `__dict__` peasants
 * `import pprint; pprint(self.__dict__)` vs `pp vars(self)`
-* one-time breakpoints
-* watching variables with post-run commands
-* %debug iPython magic
-* pdb has no `context=10` option
+* knapsack metaphor, "but in-game inventory is not the only thing we take"
+* use really useful aliases
+  - examine `dict`
+  - dump to file
+* incremental introduction to aliases
+
+### Postmortem
+
+* Source Code 2011 movie
+* "I wish I was there when it happened!"
+* since it's postmortem, cannot follow the runtime, just observe the state at the moment of crash
+* multiple ways to start
+  - `python -m pdb|ipdb|pudb play.py` and crash
+  - `import *db; *db.pm()` in interactive shell. Will use `sys.last_traceback` for examination
+  - `%debug` in iPython
+
+# Examination
+
+* (a)rguments to see what was passed
+* `p`  if you really miss that `print`
+* `pp` a bag ~full of JSON~ of `dict`s, arrange lines vertically for clue
+* pprint sorts keys
+
+
+### Debug with access to source code
 
 * `breakpoint()` in 3.7+
   - defaults to `pdb.set_trace`
@@ -346,11 +337,31 @@ Be a condescending twat and talk how it's better to write good code instead of f
   - `export PYTHONBREAKPOINT=ipdb.set_trace`
   - `export PYTHONBREAKPOINT=pudb.set_trace`
   - `export PYTHONBREAKPOINT=0` to ignore breakpoints
+* something to hook onto, `None`
 
-* post-mortem
-* debugging live in a closure
-* ~pickling traceback for later debugging~ not possible to pickle tracebacks
+### Configuring a debugger
 * pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
+
+### Debug without access to source code
+* debugging live in a closure
+* shows 3 ways to run a command:
+  - run
+  - runeval
+  - runcall
+* example with running property: `ipdb.run('obj.property')`
+* ! is guard, running python commands is forbidden "magic"
+
+### Anatomy of PDB
+* [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
+* CMD, CMD2
+
+### Breakpoints
+* breapoints allow a test-journey:
+  - instead of put print here, put print there.
+  - put break here, check. Put break there, check
+* one-time breakpoints
+* watching variables with post-run commands
+* %debug iPython magic
 * pinfo, pinfo2: real story `DictWriter.field_names`
 * break
   - filename:lineno | function
@@ -360,15 +371,61 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * mocking live code
 * PUDB
 * web-pdb `PYTHONBREAKPOINT=web_pdb.set_trace` for multithreaded
-* CMD, CMD2
+* breakpoint regexp?
+
+### Debuggers comparisson
+
+* PDB vs iPDB vs PDB++ vs PUDB vs IDE
+  - Pdb: upside: available everywhere, downside: very basic, rough on the edges shows bdb.Quit
+  - iPdb: upside: can start as %debug from iPython, downside: none, it's my fave
+  - Pudb: downside: no jumps: https://github.com/inducer/pudb/issues/129
+  - Pdbpp: downside? hijacks PDB
+  - IDE debuggers, no stray code, better display of variables, jump to source, downside: cannot run in terminal, loss of oldschool-cred, extra steps to connect remotely or inside a container
+* Image: debugger skill-chart
+  - 1/0
+  - print
+  - pdb
+  - ipdb / pdbpp
+  - pudb* / graphical / IDE
+  - avoiding bugs with isort, flake8, autopep8
 
 ### iPdb tricks
 
 * %autoreload
 * %debug% instead of .pm()
-* other magic commands?
 
-## https://docs.python.org/3/library/pdb.html notes
+## Dungeon game Ideas
+
+* short commands: `l` - look, `a` - around
+  - a,b,c for 3 rats doesn't work, tell about `!`
+* args, to see who entered the function/room with us
+* hide function arguments with *args and **kwargs
+* increase context lines number, picture of a knight opening visor
+  - use context size as a game mechanic aka light?
+* Sphinx's puzzle with going back in time inside a function with `jump`
+* make a "look" command to check surroundings (local variables?)
+* debugging inside a closure == inside the dragon's belly
+* source the enemy to see weakness?
+* display/undisplay to check surroundings
+* `display` to check coin count, try multiple, actually not necessary in 2.7, use commands to look at `Mock.call_count`
+* condition can be decreasing health.
+
+## Quotes
+
+### Edsger Dijkstra
+
+> They are errors, not bugs.
+
+> If you want more effective programmers, you will discover that they should not waste their time debugging, they should not introduce the bugs to start with.
+
+### Unknown
+
+> Debuggers don't remove bugs. They only show them in slow motion.
+
+
+## Reading notes
+
+### https://docs.python.org/3/library/pdb.html notes
 
 * debugger is extensible, `Pdb` class, `bdb` and `cmd` modules
 * `ipdb.run('dungeon.main()')`
@@ -385,28 +442,28 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * `>>` marks current exception
 
 
-## https://www.youtube.com/watch?v=mbdYATn7h6Q  Pudb tutorial from PyBay 2017
+### https://www.youtube.com/watch?v=mbdYATn7h6Q  Pudb tutorial from PyBay 2017
 
 * one `print` is never enough, will definitely get in production, war story about bearded crab
 * watch-statements
 * code, variables, stack, breakpoints
 
 
-## PDB help notes
+### PDB help notes
 * make fancy debugger
 * warn about single-letter variables, use `!` to be sure, `list` can trip, so can one-letter vars, so can `args`
 * `bt` alias for `where`
 * file-specified breakpoint looks on `sys.path`, `.py` can be skipped
 * enable/disable breakpoints, multiple (space separated list)
 
-## cmd.py
+### cmd.py
 
-### sources
+#### sources
 
 * https://docs.python.org/3/library/cmd.html
 * https://github.com/python/cpython/blob/3.7/Lib/cmd.py
 
-### what it does
+#### what it does
 
 * creates a simple command-line interace (CLI) interpreter
 * creates a Read Evaluate Print Loop (REPL)
@@ -424,14 +481,14 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * queues multi-line commands, e.g. code blocks
 * documentation page has a cute example `TurtleShell`
 
-## bdb.py
+### bdb.py
 
-### sources
+#### sources
 
 * https://docs.python.org/3/library/bdb.html
 * https://github.com/python/cpython/blob/3.7/Lib/bdb.py
 
-### what it does
+#### what it does
 
 * defines `BdbQuit` exception to stop the debugger
 * defines `Breakpoint` class `(file, line)`
@@ -463,7 +520,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * checkfuncname, effective, set_trace
 
 
-## https://github.com/python/cpython/blob/master/Lib/pdb.py
+### https://github.com/python/cpython/blob/master/Lib/pdb.py
 
 Notes on the latest PDB source.
 
@@ -473,7 +530,7 @@ Notes on the latest PDB source.
 * `_rstr` String that doesn't quote its repr., what is it for?
 * line_prefix
 
-### class PDB
+#### class PDB
 
 * inherits from `cmd.Cmd` and `cmd.Bdb`
 * initializes both parents with relevant `__init__` args
@@ -640,114 +697,6 @@ alias interacti IPython.embed(config=cfg)
 
 * in iPython: `debug fun(args)` drops into that function, super neat! What the hell will happen when you call it? No modifications
 * pdb++ may work better with Py2
-
-
-## Dungeon game
-
-### Ideas
-
-* short commands: `l` - look, `a` - around
-  - a,b,c for 3 rats doesn't work, tell about `!`
-* args, to see who entered the function/room with us
-* hide function arguments with *args and **kwargs
-* increase context lines number, picture of a knight opening visor
-  - use context size as a game mechanic aka light?
-* up and down the floors in stack, multiple floors aka elevator
-* Sphinx's puzzle with going back in time inside a function with `jump`
-* make a "look" command to check surroundings (local variables?)
-* cannot modify the code, only .pdbrc
-* debugging inside a closure == inside the dragon's belly
-* source the enemy to see weakness?
-* display/undisplay to check surroundings
-* `display` to check coin count, try multiple, actually not necessary in 2.7, use commands to look at `Mock.call_count`
-* interact: a safespace to experiment?
-* we can use `!` only n-times?
-* ~morbid traceback pickling, black bag with another adventurer's traceback~
-* narrate to sys/err?
-* flat structure: 3 dungeon branches, each with key, one final room
-* use ipdb.rc for provisioning
-* use termcolor?
-* aliases for solving puzzles
-* bottomless pit of recursion missing a basecase
-* use money mechanic to buy a key or get killed by a shopkeep
-
-* all deaths are preventable with proper preparation!!!
-* hm... maybe passwords to avoid redoing boring exercises
-* condition can be decreasing health.
-
-### Realized notes
-* launching `./dungeon.py` seems the easiest
-* `__` works quite well for a filler
-* uranium coins? fix by rewriting pickup-hook
-* use emojis, e.g. hearts for health status
-
-
-### Description
-
-So, without further ado we descend into the Dungeons of Doom.
-
-### Locations
-
-#### Quitting
-
-* show q(uit)
-
-#### Walking
-
-* demonstrates
-  - n(ext)
-  - s(tep)
-  - r(eturn)
-  - unt(il)
-  - c(ont(inue))
-
-* start with pdb, show it's ugliness
-* show `nl`, `sl` to show how to make it better in absence of `ipdb`
-* continue with ipdb, show breakpoints(), mention production hooks
-
-#### Looking
-* not so painful with `context`: demonstrate
-* not required for PUDB, demonstrate
-
-
-#### Running
-
-* shows 3 ways to run a command:
-  - run
-  - runeval
-  - runcall
-* example with running property: `ipdb.run('obj.property')`
-* ! is guard, running python commands is forbidden "magic"
-* something to hook onto
-
-#### Jumping
-
-* jumping is useful to skip
-  - expensive computation in loops
-  - initialization before debug-section
-  - network calls
-* pudb jump https://github.com/inducer/pudb/pull/306
-
-
-#### Aliasing
-
-* knapsack metaphor, "but in-game inventory is not the only thing we take"
-* use really useful aliases
-  - examine `dict`
-  - dump to file
-* incremental introduction to aliases
-
-#### Examination
-
-* (a)rguments to see what was passed
-* `p`  if you really miss that `print`
-* `pp` a bag ~full of JSON~ of `dict`s, arrange lines vertically for clue
-* pprint sorts keys
-
-### Meta
-
-* analogy with building a dungeon at work
-* https://github.com/git-game/git-game
 
 ## Used Materials
 TODO image sources, use tineye?
