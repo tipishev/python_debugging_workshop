@@ -239,9 +239,9 @@ To avoid the bearded crab problem use git pre-commit hooks to clear
 * `breakpoint` / `set_trace`
 
 
----------------------------------------------------------------------------------------------------
-                                      Here Be Dragons
----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
+                Here Be Dragons
+-----------------------------------------------------------
 
 ### Looking
 * looking tutorial diagram, limited to 1 file, different listing ways
@@ -287,7 +287,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
   - set up useful aliases (which?)
   - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
 
-* If you like to gamify tools learning: https://github.com/git-game/git-game
+* https://github.com/git-game/git-game
 
 ## Topics
 
@@ -300,9 +300,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * `vars` built-in master race vs dirty `__dict__` peasants
 * `import pprint; pprint(self.__dict__)` vs `pp vars(self)`
 * knapsack metaphor, "but in-game inventory is not the only thing we take"
-* use really useful aliases
-  - examine `dict`
-  - dump to file
 * incremental introduction to aliases
 
 ### Postmortem
@@ -332,24 +329,25 @@ Be a condescending twat and talk how it's better to write good code instead of f
     * linters complain
     * even JavaScript has it!
   - configure to the debugger of your choice
-  - `breakpoint(*args, **kwargs)` useful for passing context=10
+  - `breakpoint(*args, **kwargs)` useful for passing `context=10`
   - simple values `0` for none, `1` for default, `some.importable.callable`
   - `export PYTHONBREAKPOINT=ipdb.set_trace`
   - `export PYTHONBREAKPOINT=pudb.set_trace`
   - `export PYTHONBREAKPOINT=0` to ignore breakpoints
 * something to hook onto, `None`
 
-### Configuring a debugger
+### Configuration
+* mostly useful for aliases
 * pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
 
 ### Debug without access to source code
-* debugging live in a closure
+* debugging live in a closure, when no better idea
 * shows 3 ways to run a command:
   - run
   - runeval
   - runcall
 * example with running property: `ipdb.run('obj.property')`
-* ! is guard, running python commands is forbidden "magic"
+* mocking live code
 
 ### Anatomy of PDB
 * [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
@@ -357,10 +355,10 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 ### Breakpoints
 * breapoints allow a test-journey:
-  - instead of put print here, put print there.
-  - put break here, check. Put break there, check
+  - instead of put print here, restart, put print there, restart
+  - put break here, check. Put break there, check within a single run
 * one-time breakpoints
-* watching variables with post-run commands
+* watching variables with post-run `commands`
 * %debug iPython magic
 * pinfo, pinfo2: real story `DictWriter.field_names`
 * break
@@ -368,7 +366,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
   - condition
 * tbreak aka tea break
 * `_` variable stores the result of previous ivocation
-* mocking live code
 * PUDB
 * web-pdb `PYTHONBREAKPOINT=web_pdb.set_trace` for multithreaded
 * breakpoint regexp?
@@ -376,25 +373,79 @@ Be a condescending twat and talk how it's better to write good code instead of f
 ### Debuggers comparisson
 
 * PDB vs iPDB vs PDB++ vs PUDB vs IDE
-  - Pdb: upside: available everywhere, downside: very basic, rough on the edges shows bdb.Quit
-  - iPdb: upside: can start as %debug from iPython, downside: none, it's my fave
-  - Pudb: downside: no jumps: https://github.com/inducer/pudb/issues/129
-  - Pdbpp: downside? hijacks PDB
-  - IDE debuggers, no stray code, better display of variables, jump to source, downside: cannot run in terminal, loss of oldschool-cred, extra steps to connect remotely or inside a container
+
+#### Pdb
+  * available everywhere
+  * simple
+  - very basic, rough on the edges shows bdb.Quit
+  - no color
+
+#### iPdb
+  * can start as `%debug` from iPython or `debug function(args, **kwargs)`
+  * tab-completion
+  * colors
+  - requires iPython 
+  - no extended functionality as in Pdb++
+
+#### Pudb:
+  * Graphical
+  * Shows the whole source
+  * Shows source, vars, stack, breakpoints, console on the same screen
+  - ∓ uses `Vi`-style navigation
+  - works better on bigger screens 
+  - no jumps https://github.com/inducer/pudb/issues/129
+
+#### Pdbpp
+  * avoids one-letter trap by preferring context variables to debugger commands, can override with `!!command`
+  * Disable `pdb.set_trace()`: any subsequent call to it will be ignored
+  * `@pdb.break_on_setattr(attrname, condition=always)`
+  - hijacks Pdb name
+
+#### IDE/Visual debuggers
+  * no stray code
+  * better display of variables
+  * jump to source
+  - cannot run in terminal
+  - extra steps for remote or container debugging 
+  - loss of oldschool-cred
+
 * Image: debugger skill-chart
   - 1/0
   - print
   - pdb
-  - ipdb / pdbpp
+  - ipdb / pdb++
   - pudb* / graphical / IDE
   - avoiding bugs with isort, flake8, autopep8
+
+### Pdb++
+
+* sticky mode: same as showing context?
+* track draws a dependency graph and requires pypy
+* `display` expressions should not have side effects
+* can open editor
+* can mark some frames as hidden using a decorator, don't display in stacktrace
+* shell shell_pp python ipython pdb ipdb pdb pdb_pp, common pattern
+* setattr condition can discriminate between 2 instances of the same class
+* `break_on_setattr` can be attached even from within debugger. 
+
+#### Config
+* prompt
+* highlight
+* some colors settings
+* editor `vim` by default or `editor = "subl {filename}:{lineno}"`
+* hiding frames and showing their count, useful if you trust Django/celery or other 3rd party libraries
+* `setup(self, pdb)`
+* Pygments config, for example if you want `solarized` theme
+
+
+#### Pudb
 
 ### iPdb tricks
 
 * %autoreload
 * %debug% instead of .pm()
 
-## Dungeon game Ideas
+### Dungeon Ideas
 
 * short commands: `l` - look, `a` - around
   - a,b,c for 3 rats doesn't work, tell about `!`
@@ -657,28 +708,6 @@ alias interacti IPython.embed(config=cfg)
 * `where` also shows the caller id of who called the whole shebang
 * print cheat sheet
 
-### https://github.com/pdbpp/pdbpp
-* module is also called `pdb.py`
-* sticky mode: same as showing context?
-* track draws a dependency graph and requires pypy
-* `display` exporessions should not have side effects
-* can open editor
-* can mark some frames as hidden using a decorator, don't display in stacktrace
-* avoids one-letter trap by preferring context variables to debugger commands, can override with `!!command`
-* shell shell_pp python ipython pdb ipdb pdb pdb_pp, common pattern
-* Disable `pdb.set_trace()`: any subsequent call to it will be ignored. Neat!
-* `@pdb.break_on_setattr(attrname, condition=always)` nice! Dungeon: someone renames player? Adds a curse? Warts?
-* setattr condition can discriminate between 2 instances of the same class
-* `break_on_setattr` can be attached even from within debugger. 
-
-#### Config
-* prompt
-* highlight
-* some colors settings
-* editor `vim` by default or `editor = "subl {filename}:{lineno}"`
-* hiding frames and showing their count, useful if you trust Django/celery or other 3rd party libraries
-* `setup(self, pdb)`
-* Pygments config, for example if you want `solarized` theme
 
 ### https://www.codementor.io/stevek/advanced-python-debugging-with-pdb-g56gvmpfa
 
