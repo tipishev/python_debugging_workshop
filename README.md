@@ -400,6 +400,8 @@ Be a condescending twat and talk how it's better to write good code instead of f
   - ∓ uses `Vi`-style navigation
   - works better on bigger screens 
   - no jumps https://github.com/inducer/pudb/issues/129
+  * watch-statements
+  * code, variables, stack, breakpoints
 
 #### Pdbpp
   * avoids one-letter trap by preferring context variables to debugger commands, can override with `!!command`
@@ -481,13 +483,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 
 ## Reading notes
-
-### https://www.youtube.com/watch?v=mbdYATn7h6Q  Pudb tutorial from PyBay 2017
-
-* one `print` is never enough, will definitely get in production, war story about bearded crab
-* watch-statements
-* code, variables, stack, breakpoints
-
 
 ### PDB help notes
 * make fancy debugger
