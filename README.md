@@ -271,6 +271,10 @@ combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))
 
 * pudb jump not working https://github.com/inducer/pudb/pull/306
 
+### Running
+
+* `run`, `runeval`, `runcall` are boring but useful with no access to code
+
 
 ### Preventing Bugs
 
@@ -297,6 +301,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 ### Aliases
 
+* `alias` can take all arguments with `%*`
 * `vars` built-in master race vs dirty `__dict__` peasants
 * `import pprint; pprint(self.__dict__)` vs `pp vars(self)`
 * knapsack metaphor, "but in-game inventory is not the only thing we take"
@@ -351,6 +356,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 ### Anatomy of PDB
 * [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
+* debugger is extensible, `Pdb` class, `bdb` and `cmd` modules
 * CMD, CMD2
 
 ### Breakpoints
@@ -475,23 +481,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 
 ## Reading notes
-
-### https://docs.python.org/3/library/pdb.html notes
-
-* debugger is extensible, `Pdb` class, `bdb` and `cmd` modules
-* `ipdb.run('dungeon.main()')`
-* envoke as a script `python3 -m ipdb dungeon.py`
-* auto-restart program, preserves breakpoints
-* `run` set breakpoints, accepts globals and locals kwargs, code object
-* `runeval` returns the expression result. Ok.
-* `runcall` to run a callable
-* `run`, `runeval`, `runcall` are boring but useful with no access to code
-* `set_trace` FTW, could not test header in `ipdb`
-* `alias` can take all arguments with `%*`
-* `interact` what's the use?
-* `p`... why would I use it instead of !command?, I guess if one misses prints
-* `>>` marks current exception
-
 
 ### https://www.youtube.com/watch?v=mbdYATn7h6Q  Pudb tutorial from PyBay 2017
 
