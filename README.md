@@ -517,21 +517,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 > Debuggers don't remove bugs. They only show them in slow motion.
 
 
-## Reading notes
-
-### Python traceback docs
-* `print_tb(tb, limit=None, file=None)` file to object, alias?
-* `print_exception`
-* `print_exc` helper for `sys.exc_info()`
-* `print_stack`
-* `format_list/exception/exc/tb/stack`, as above, but just formats
-* `walk_stack/tb`
-* `TracebackException` lightweight exception wrapper
-* Syntax errors are treated slightly differently
-* StackSummary for nicely printing
-* FrameSummary
-
-
 ### https://www.nnja.io/post/2019/djangocon-2019-goodbye-print-hello-debugger/
 
 ```
