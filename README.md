@@ -243,6 +243,11 @@ To avoid the bearded crab problem use git pre-commit hooks to clear
                 Here Be Dragons
 -----------------------------------------------------------
 
+### Miscellaneous :-/
+* warn about single-letter variables, use `!` to be sure
+  - `c`, `n`, etc. but serves right, don't use one-letter variables
+  - `list`, `args` are more treacherous
+
 ### Looking
 * looking tutorial diagram, limited to 1 file, different listing ways
 
@@ -251,6 +256,7 @@ To avoid the bearded crab problem use git pre-commit hooks to clear
 * Image: stacktrace stairs/elevator
 * inspired by SCP-087
 * alias for traceback size
+* `import pdb; pdb.Pdb(skip=['django.*']).set_trace()`
 
 * Pdb commands for displaying current level
 
@@ -484,13 +490,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 ## Reading notes
 
-### PDB help notes
-* make fancy debugger
-* warn about single-letter variables, use `!` to be sure, `list` can trip, so can one-letter vars, so can `args`
-* `bt` alias for `where`
-* file-specified breakpoint looks on `sys.path`, `.py` can be skipped
-* enable/disable breakpoints, multiple (space separated list)
-
 ### cmd.py
 
 #### sources
@@ -655,7 +654,6 @@ alias interacti IPython.embed(config=cfg)
 ### https://github.com/spiside/pdb-tutorial
 
 * shorter feedback loop -> better debugger person
-* Pdb-precedence gotcha
 * listing 3rd party packages code
 * one-letter trap, mimic!
 * `b` to list breakpoints
