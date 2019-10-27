@@ -365,6 +365,16 @@ Be a condescending twat and talk how it's better to write good code instead of f
 * debugger is extensible, `Pdb` class, `bdb` and `cmd` modules
 * CMD, CMD2
 
+#### CMD aside
+* client code spectrum:
+  - simple script
+  - command with arguments
+  - Command line environment
+  - Graphical wrapper
+* part of the standard library
+* creates a simple command-line interace (CLI) interpreter
+* documentation page has a cute example `TurtleShell`
+
 ### Breakpoints
 * breapoints allow a test-journey:
   - instead of put print here, restart, put print there, restart
@@ -489,31 +499,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 
 ## Reading notes
-
-### cmd.py
-
-#### sources
-
-* https://docs.python.org/3/library/cmd.html
-* https://github.com/python/cpython/blob/3.7/Lib/cmd.py
-
-#### what it does
-
-* creates a simple command-line interace (CLI) interpreter
-* creates a Read Evaluate Print Loop (REPL)
-* pases input as `foo *args` where `foo` is a command
-* commands are are defined as methods `do_foo`
-* provides help based on command-method's docstrings
-* handles empty-string command, default: repeat the last command
-* allows `!`-prefixed execution in a shell
-* manages command context-aware tab-completion (`complete_foo`)
-* allows pre- and post- command hooks
-* sets a default action for unrecognized commands
-* sets prompt, e.g. `(Pdb)`
-* output redirection defaults are `stdin`, `stderr`, `stdout`
-* formats help to terminal-friendly 80 characters
-* queues multi-line commands, e.g. code blocks
-* documentation page has a cute example `TurtleShell`
 
 ### bdb.py
 
