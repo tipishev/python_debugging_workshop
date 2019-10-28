@@ -289,12 +289,10 @@ If I can, I use any other debugger. But in spite of all its shortcomings, Pdb ha
                 Here Be Dragons
 -----------------------------------------------------------
 
-### Miscellaneous :-/
-
 ### Looking
 * looking tutorial diagram, limited to 1 file, different listing ways
 
-# Examination
+### Examination
 
 * (a)rguments to see what was passed
 * `p`  if you really miss that `print`
