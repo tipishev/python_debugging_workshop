@@ -41,33 +41,36 @@ I tried to make this workshop a bit differently: on top of the three points abov
 
 Now I am legally required to scorn you for `print`-debugging and explain what's wrong with it.
 
+First of all, `print` is very limitted in what it can do and is often used just to check whether the code runs at all. Using `print` for that is an overkill, there is a 3-character Python built-in function for that.
+
+`1/0`
+
+Also known as the Redneck Breakpoint
+
+unlike print it does not get lost in console output, you don't have to decorate it with `=================` or `***************` it just crashes your program loudly and proudly. If you need more than one, use `2/0`, `3/0`, etc.
+
 <img src="/images/printgles.png" width="400" title="Printgles">
 
-First of all, one print is never enough, like Pringles, once you pop, you cannot stop
-You put one, it doesn't work, then you put another one, and yet another one. And to see your changes you need to restart your code every time, which can be quite slow, especially in a dockerized setup, and this is not what we want. We want a short feedback loop to test our theories as fast as we can.
+Secondly, one print is never enough, like Pringles, once you pop, you cannot stop
+You put one, it doesn't work, then you put another one, and yet another one. And to see changes you need to restart your code every time, which may be quite slow, for example in Docker. We want a short feedback loop to test our bug-origing theories as fast as we can without breaking the flow of thought.
 
-Another argument against `print`s is that they ofthen get into production code. If you don't believe me, just search your codebase.
+Another argument against `print`s is that they ofthen get into production code. If you don't believe me, just search your codebase git history.
 
 <img src="/images/crab.png" width="400" title="Bearded Crab">
 
 By the way, "it will get to production" applies not only to `print` statements, but to any silly code and data. I call this phenomenon the "The Law of The Bearded Crab". When I was working for an entertainment events aggregator, we used silly fake events for testing our staging environment. And guess what, one day, a misconfigured import, uploaded "the Concert of The Bearded Crab" to the main page.
 
-One more argument for using a debugger is that you can easily look into runtime of not only your code, but also the one of 3rd parties, like Django and celery.
+Finally, a debugger allows to explore not only your code, but also 3rd party modules, like Django and Celery.
 
-Finally, `print` is very limitted in what it can do and is often used just to check whether the code runs at all. Using `print` for that is an overkill, there is a 3-character Python built-in function for that.
-
-Behold the mighty Redneck Breakpoint
-
-`1/0`
-
-unlike print it does not get lost in console output, and you don't have to decorate it with `===============` or `***************` it just crashes your program loudly and proudly. If you have several places to check where they run, you can use `2/0`, `3/0`, etc.
-
-Ok, now that we are done with print-shaming, let's get started.
+So, next time your fingers type `print`, please stop and put a debugger breakpoint instead.
 
 ### Debugging as Text Adventure
 
-How many of you have played MUDs?
-What about Roguelikes or Interactive Fiction (IF)?
+Ok, enough with `print`-shaming.
+
+![Text Adventures](/images/text_adventures.jpeg)
+
+How many people in this room have played text adventure games such as MUDs, Roguelikes, or Interactive Fiction?
 
 Then you will find console-debugging similar to playing such a game:
 
