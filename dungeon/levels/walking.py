@@ -8,7 +8,7 @@ class TripAndFall(Exception):
 
 
 def check_walking_password(player):
-    return check_password(player,  '4c4e8ca78ae78388276d094f067a04fb')
+    return check_password(player,  '8daa34c8e8e1cf098158f4ef2699598e')
 
 
 def a_room(player):  # sweet! So glad that you stepped in
@@ -22,8 +22,8 @@ def a_room(player):  # sweet! So glad that you stepped in
     _  # remember, it just repeats the la(s)t command.
     _
     _  # you can skip many lines with `(unt)il {line_number}`
-    _  # the hint for password is on line 50
-    _  # get there with `until 50`
+    _  # the password hint is on line 42
+    _  # get there with `until 42`
     _
     _
     _
@@ -39,34 +39,17 @@ def a_room(player):  # sweet! So glad that you stepped in
     _
     _
     _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _  # What's the short form of `until`?
-    _  # pick it up: `!player.inventory.append('{answer}')`
+    _  # A European mole, also the short form of command `until`
+    _  # pick it up: `!player.inventory.append(answer)`
     _
     _  # By the way, `!` is your friend
-    _  # type `m = "mimic"` and call locals()
+    _  # type `m = "mimic"` and call `locals()`
+    _  # now type `n = "naga"`..
+    _  # .. and  call `locals()`
+    _  # `n` was a mimic!
+    _  # the debugger prefers own commands to Python
+    _  # so prefix Python code with `!`
     _
-    _  # "koecchi"
-    _  # `!player.inventory[-1] += 'koecchi'`
-    _  # the last part is on line 75  `(unt)il 75`
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _  # "cebolsen"
-    _  # `!player.inventory[-1] += 'cebolsen'
-    _  # pst! you can use up-arrow to reuse a typed command
-
     _  # there is nothing else to see in this room
     _  # you can fast-forward to the exit with (r)eturn
     _
@@ -74,8 +57,8 @@ def a_room(player):  # sweet! So glad that you stepped in
     _  # go to (r)eturn
     _
     _
-    _  # ok. Here's a joke.
-    _  # "Once a a programmer was told: 'while outside, buy milk'...
+    _  # ok. Here's a bad joke.
+    _  # "A programmer got an SMS: 'while outside, buy milk'...
     _  # ...he never returned."
     _  #
     _  # but you should. Please press `r` now.
@@ -84,7 +67,6 @@ def a_room(player):  # sweet! So glad that you stepped in
 
     for __ in range(1000):  # hop, bunny, hop!
         _  # you can `(r)eturn` whenever you wish
-    _
     _
     _
     _
@@ -108,7 +90,7 @@ def walking_corridor(player):
 
     player = a_room(player)  # go to the (n)ext line
     _
-    _  # what did this room do to you?
+    _  # what has happened in this room?
     _  # we'll never know...
     _  # unless we (s)tep into it
 

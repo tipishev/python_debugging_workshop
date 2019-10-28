@@ -26,7 +26,6 @@ player = Player(
 )
 
 # the game starts here
-import ipdb; ipdb.set_trace()
 player = main_corridor(player)
 
 if 'Golden Python' in player.inventory:
