@@ -21,8 +21,8 @@ def that_one_module(player, hint):  # unwillingly (s)tep in..
     _  # this is the rock bottom
     _  # but you can still go (u)p and (d)own
     _  #
-    _  # the real hint is 2 levels (u)p, just (a)sk `locals()`
-    return player  # check your inventory before goi(n)g up!
+    _  # the real hint is `(u)p 2` levels, just (a)sk `locals()`
+    return player  # put the hint in your inventory before goi(n)g up!
 
 
 def legacy_from_3_years_ago(player, hint):
