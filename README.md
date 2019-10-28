@@ -228,12 +228,13 @@ Since you see how the game is structured we can move `set_trace()` directly in t
 
 Let's go to the next level and see how to navigate vertically in the call stack.
 
+_go through stacking corridor
+ mention (a)rgs and how they are local to each frame
+ _
 
 The next level is about listing the source code.
 
-Now, all the goodness of iPython is available to us. Another improvement is that you can set how many lines of context you would like to see. _add context=5_
-
-
+<img src="/images/lighting.png" width="400" title="Lighting">
 
 As I mentioned earlier, PDB shows just the current line, so almost always we would like to go to the next line and see the code around it.
 We can do this by separting commands with double semicolon.
@@ -256,7 +257,6 @@ To quit the debugger just type `q`. We see a Traceback because to stop, the debu
 For this exercise we will use `ipdb`, a wrapper around PDB that adds tab-completion, color, and multiline context support.
 
 
-<img src="/images/lighting.png" width="400" title="Lighting">
 
 In the game, context can be compared to how much of the corridor we can see. In default Pdb it's horrible: just one line and no syntax highlight, so it's black-and-white mole-vision. Things get better if we use `n ;; l` and `s ;; l` aliases, we see 11 lines, but again, no colors. Ipdb finally solves this problem by having proper syntax highlighting and `context`-kwarg, that you can use directly:
 
