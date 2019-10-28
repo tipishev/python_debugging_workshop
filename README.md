@@ -234,7 +234,7 @@ _go through stacking corridor
 
 The next level is about listing the source code.
 
-<img src="/images/lighting.png" width="400" title="Lighting">
+<img src="/images/lighting.png" width="640" title="Lighting">
 
 As I mentioned earlier, PDB shows just the current line, so almost always we would like to go to the next line and see the code around it.
 We can do this by separting commands with double semicolon.
