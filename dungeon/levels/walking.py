@@ -19,10 +19,10 @@ def a_room(player):  # sweet! So glad that you stepped in
     _  # by (s)tep..
     _
     _  # keep going with `Enter`
-    _  # remember, it just repeats the last command.
+    _  # remember, it just repeats the la(s)t command.
     _
     _  # you can skip many lines with `(unt)il {line_number}`
-    _  # the ⅓ of level password is on line 50
+    _  # the hint for password is on line 50
     _  # get there with `until 50`
     _
     _
@@ -47,20 +47,11 @@ def a_room(player):  # sweet! So glad that you stepped in
     _
     _
     _
-    _  # "fluggaen"
-    _  # pick it up: `!player.inventory.append('fluggaen')`
-    _  # the second part is on line 65, try the shorter `unt 65`
+    _  # What's the short form of `until`?
+    _  # pick it up: `!player.inventory.append('{answer}')`
     _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
+    _  # By the way, `!` is your friend
+    _  # type `m = "mimic"` and call locals()
     _
     _  # "koecchi"
     _  # `!player.inventory[-1] += 'koecchi'`

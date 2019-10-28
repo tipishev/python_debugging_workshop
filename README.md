@@ -186,7 +186,7 @@ If we are on a line that makes a function call, we have 2 choices.
 
 ![On fun next](/images/walking/3_on_fun_next.png)
 
-We can choose `next` and the nested function executes behind the scenes and we continue to line 45. Think of next: "stay local and avoid any foreign functions"
+We can choose `next` and the nested function runs behind the scenes and we continue to line 45. Think of next: "stay local and avoid any foreign functions"
 
 ![On fun step](/images/walking/4_on_fun_step.png)
 
@@ -206,9 +206,8 @@ If we specifically want to stop before returning to the function above, we can t
 `return` is useful when we lose interest in the current function, get stuck in a loop, or step in the nested function by accident.
 
 Let's try these commands in the debugger.
-We see that on this line the player is about to enter the `main_corridor` function, so we can `step` in. Now we see the definition of the `main_corridor`, we type `next` to go to the next line. Here we see the check for non-empty inventory, and finally the entrance to the `walking_corridor` where the error happens.
 
-Since we see that nothing stops us from getting to the  `walking_corridor`, let's move the `set_trace` there. And let's also add a couple `i`s in it.
+But before we do that, let's get some light. By default Pdb shows just the current line, so we will have to use `l` a lot. Instead, we can use an iPdb, an improved version of Pdb. For that we just add a couple of `i`s to our hardcoded breakpoint.
 
 Notice the improvements:
 
