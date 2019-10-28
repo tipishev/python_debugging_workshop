@@ -1,4 +1,4 @@
-# the password is 'spyglass'
+# the password is 'spyglass', sorry no time for puzzle
 # `!player.inventory.append('spyglass')`
 # `(c)ontinue` will take you to the breakpoint
 
@@ -45,7 +45,7 @@ def looking_corridor(player):  # please, (s)tep in!
     _
     _
     _
-    _  # you can always go back (or forward) with
+    _  # if missed something, go back (or forward) with
     _  # `(l)ist {lineno}`
     _  # for example `l 39`
     _

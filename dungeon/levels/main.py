@@ -21,6 +21,7 @@ def main_corridor(player):
         player = stacking_corridor(player)
 
     if 'amulet of looking' not in player.inventory:
+        breakpoint()
         player = looking_corridor(player)
 
     if 'amulet of examination' not in player.inventory:

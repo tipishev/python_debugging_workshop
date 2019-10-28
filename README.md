@@ -86,7 +86,7 @@ They are both...
   - if you die in a game you start from the beginning
   - unhandled exceptions stop the debugger
 
-Funnily enough, when we look at our codebases, the similarity with dungeons becomes only stronger. See for yourself, our codebases are built over years by multiple programmers, and sometimes you need Git archeology to dig up history, but it's a topic from my another talk.
+Funnily enough, when we look at our codebases, the similarity with dungeons becomes only stronger. See for yourself, we and our colleagues build them over years, and sometimes we do Git archeology to (dig up history)[https://github.com/tipishev/git_workshop].
 
 A typical code-dungeon looks like this:
 
@@ -216,11 +216,12 @@ Notice the improvements:
 
 Now let's step in the `walking_corridor` and get our first amulet.
 
-_go through walking corridor
+_
+go through walking corridor
 warn about `!`
   - `c`, `n`, etc. serves right, don't use one-letter variables
   - `list`, `args` are more treacherous
- _
+_
 
 Now we can add the 'amulet of walking' to our inventory.
 
@@ -228,15 +229,47 @@ Since you see how the game is structured we can move `set_trace()` directly in t
 
 Let's go to the next level and see how to navigate vertically in the call stack.
 
-_go through stacking corridor
+_
+go through stacking corridor
  mention (a)rgs and how they are local to each frame
- _
+ where shows who called the whole shebang
+_
 
-The next level is about listing the source code.
+Now, let's add the "amulet of stacking" to our evergrowing collection and and see what fails next.
+
+How many of you use Python version less that 3.7?
+
+_raise hand, too_
+
+But when we switch to Python 3.7, we can start using a builtin keyword `breakpoint()`.
+
+It was introduced in PEP553 because..
+
+* The linter complains about multiple statements on one line
+* It's short and easy to remember
+* Even JavaScript has a `debugger` builtin
+
+Let's put it by the entrance to the corridor of looking.
+
+It defaults to `pdb.set_trace`  __demonstrate__
+To configure it use `export PYTHONBREAKPOINT=`...
+
+* 0 for ignoring breakpoints, can be a last line of defence in Production code
+* "" (unset) for default Pdb
+* dotted path to a debugger callable
+  - `ipdb.set_trace` for iPdb
+  - `pudb.set_trace` for Pudb (we'll look at it later)
+
+Nice thing is that breakpoint passes args and kwargs to the handler, so we can for example set context size for iPdb.
+
+_demonstrate with context=7_
+
+Since we talk about showing context, here is an illustration of context showing in Pdb and iPdb.
 
 <img src="/images/lighting.png" width="640" title="Lighting">
 
-As I mentioned earlier, PDB shows just the current line, so almost always we would like to go to the next line and see the code around it.
+By defaul, PDB shows just the current line and no color, so almost always we would like to go to the next line and see the code around it.
+
 We can do this by separting commands with double semicolon.
 
 ```python
@@ -250,48 +283,16 @@ alias nl n;;l
 alias sl s;;l
 ```
 
-We will talk about helpful aliases as we go.
-
-To quit the debugger just type `q`. We see a Traceback because to stop, the debugger raises a special `bdb.BdbQuit` exception.
-
-For this exercise we will use `ipdb`, a wrapper around PDB that adds tab-completion, color, and multiline context support.
-
-
-
-In the game, context can be compared to how much of the corridor we can see. In default Pdb it's horrible: just one line and no syntax highlight, so it's black-and-white mole-vision. Things get better if we use `n ;; l` and `s ;; l` aliases, we see 11 lines, but again, no colors. Ipdb finally solves this problem by having proper syntax highlighting and `context`-kwarg, that you can use directly:
-
-`import ipdb; ipdb.set_trace(context=10)` or via a `breakpoint` built-in in Python 3.7: `breakpoint(context=10)`.
-
-
-Let's go through this level in ipdb.
-
-To avoid the bearded crab problem use git pre-commit hooks to clear
-
-* `print`
-* `breakpoint` / `set_trace`
-
-
-### Pdb bashing
-
-How many of you use Python version less that 3.7?
-
-_raise hand, too_
-
-Good, before 3.7, starting a debugger takes more keystrokes.
-For the record, Pdb is not my favourite debugger:
-
-* shows just one line of context
-* has poor tab-completion
-* does not support colors
-
 If I can, I use any other debugger. But in spite of all its shortcomings, Pdb has one killer feature: it is part of the standard library. So, if you ssh to a server, but have no permission to install a better debugger, you can still run Pdb.
+
+iPdb gives us both color vision and more context.
+
+
+So, let's go through looking level.
 
 -----------------------------------------------------------
                 Here Be Dragons
 -----------------------------------------------------------
-
-### Looking
-* looking tutorial diagram, limited to 1 file, different listing ways
 
 ### Examination
 
@@ -304,18 +305,6 @@ If I can, I use any other debugger. But in spite of all its shortcomings, Pdb ha
 * display shows old value, neat!
 * display to create a "watch list"
 
-
-### Stacking
-
-* `where` also shows the caller id of who called the whole shebang
-* Image: stacktrace stairs/elevator
-* inspired by SCP-087
-* alias for traceback size
-* `import pdb; pdb.Pdb(skip=['django.*']).set_trace()`
-* Pdb commands for displaying current level
-* mention `a` arguments
-* show how to navigate up and down the stack
-* `sys.tracebacklimit` default 1000, `sys.setrecursionlimit`
 
 ### Jumping
 
@@ -339,7 +328,6 @@ ipdb.runcall(process_events, datetime(2019, 10, 28, 7, 0), datetime(2019, 10, 28
 ```
 it was a celery task, so I put a breakpoint to avoid the celery dispact resolving shim sham shimmy, advice: with much wrapping put a breakpoint where you are sure it will reach.
 `b 108,statistic_type=='spam'`
-
 
 ### Debug without access to source code
 * debugging live in a closure, when no better idea
@@ -372,20 +360,8 @@ it was a celery task, so I put a breakpoint to avoid the celery dispact resolvin
 
 ### Preventing Bugs
 
-Be a condescending twat and talk how it's better to write good code instead of fixing errors.
+Talk how it's better to write good code instead of fixing errors.
 
-### Conclusion
-
-* Now you know what to do when you encounter a bug
-  - configure a debugger of choice: `pdb`, `ipdb`, or `pudb`
-  - insert a breakpoint
-  - if it's live use one of `run`, `runeval`, or `runcall` or `set_trace` in a closure
-
-* Call to action
-  - set up useful aliases (which?)
-  - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
-
-* https://github.com/git-game/git-game
 
 ### Aliases
 
@@ -408,21 +384,6 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 
 ### Debug with access to source code
-
-* PEP553
-* `breakpoint()` in 3.7+
-  - defaults to `pdb.set_trace`
-  - raison d'être:
-    * easy to remember
-    * linters complain
-    * even JavaScript has it!
-  - configure to the debugger of your choice
-  - `breakpoint(*args, **kwargs)` useful for passing `context=10`
-  - simple values `0` for none, `1` for default, `some.importable.callable`
-  - `export PYTHONBREAKPOINT=ipdb.set_trace`
-  - `export PYTHONBREAKPOINT=pudb.set_trace`
-  - `export PYTHONBREAKPOINT=0` to ignore breakpoints
-* something to hook onto, `None`
 
 ### Configuration
 * mostly useful for aliases
@@ -465,6 +426,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 ### Debuggers comparisson
 
+* Talk in spectrum Availability -> Features
 * PDB vs iPDB vs PDB++ vs PUDB vs IDE
 
 #### Pdb
@@ -503,6 +465,7 @@ Be a condescending twat and talk how it's better to write good code instead of f
   - cannot run in terminal
   - extra steps for remote or container debugging
   - loss of oldschool-cred
+  - they cost money?
 
 * Image: debugger skill-chart
   - 1/0
@@ -542,20 +505,24 @@ Be a condescending twat and talk how it's better to write good code instead of f
 
 ### Dungeon Ideas
 
-* one-letter trap, mimic!
-* short commands: `l` - look, `a` - around
-  - a,b,c for 3 rats doesn't work, tell about `!`
-* args, to see who entered the function/room with us
-* hide function arguments with *args and **kwargs
-* increase context lines number, picture of a knight opening visor
-  - use context size as a game mechanic aka light?
-* Sphinx's puzzle with going back in time inside a function with `jump`
-* make a "look" command to check surroundings (local variables?)
 * debugging inside a closure == inside the dragon's belly
 * source the enemy to see weakness?
 * display/undisplay to check surroundings
 * `display` to check coin count, try multiple, actually not necessary in 2.7, use commands to look at `Mock.call_count`
-* condition can be decreasing health.
+
+### Conclusion
+
+* Now you know what to do when you encounter a bug
+  - configure a debugger of choice: `pdb`, `ipdb`, or `pudb`
+  - insert a breakpoint
+  - if it's live use one of `run`, `runeval`, or `runcall` or `set_trace` in a closure
+
+* Call to action
+  - set up useful aliases (which?)
+  - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
+
+* https://github.com/git-game/git-game
+
 
 ## Quotes
 

@@ -18,8 +18,9 @@ player = Player(
     inventory=[
         'broom',
         'amulet of walking',
-        # 'amulet of stacking',
+        'amulet of stacking',
         # 'amulet of looking',
+        # 'amulet of jumping',
         # 'amulet of examination',
         # 'amulet of breaking',
     ],
