@@ -19,7 +19,7 @@ Some developers say they don't need a debugger in a scripting language, since th
 
 Meaning that someone had complicated the code so much that reading the source does not help much.
 
-![Tunnelbana](/images/tunnelbana.png)
+<img src="/images/tunnelbana.png" width="400" title="Tunnelbana">
 
 But on the other hand, a complex application, can be compared to a transit system. Of course, you have your source: the transit map and schedules. But would you bet your lunch money on the exact location of any given train?
 
@@ -48,7 +48,7 @@ You put one, it doesn't work, then you put another one, and yet another one. And
 
 Another argument against `print`s is that they ofthen get into production code. If you don't believe me, just search your codebase.
 
-![Bearded Crab](/images/crab.png)
+<img src="/images/crab.png" width="400" title="Bearded Crab">
 
 By the way, "it will get to production" applies not only to `print` statements, but to any silly code and data. I call this phenomenon the "The Law of The Bearded Crab". When I was working for an entertainment events aggregator, we used silly fake events for testing our staging environment. And guess what, one day, a misconfigured import, uploaded "the Concert of The Bearded Crab" to the main page.
 
