@@ -76,7 +76,7 @@ Then you will find console-debugging similar to playing such a game:
 
 They are both...
 
-* controlled with a few commands:
+* controlled with just a few commands:
   - "north, open, examine" in games
   - and "next, step, continue" in debugger
 * the commands can be abbreviated:
@@ -95,13 +95,13 @@ A typical code-dungeon looks like this:
 * a single point of entry
 * each function is a corridor
 * the more lines there is in a function the longer the corridor
-* calling a function within a function takes you one level deeper down the stack
-* returning from a function takes you one level up, to the line where you entered
+* calling a function within a function takes you one level deeper down the call stack
+* returning from a function returns you one level up, to the line where you entered
 * luckily there are no GOTO statements in Python, so each function has a single point of entry,
 * though, it may have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit None.
-* One thing to note about this diagram is that numbers are not the actual line numbers in the files, they are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines are always consecutive.
+* On this diagram the numbers are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines in a function are always consecutive.
 
-Because of these similarities, I prepared a small game "The Quest for Golden Python", while going through it we will work with different aspects of using a debugger.
+For your entertainment I prepared a small game "The Quest for Golden Python", while going through it we will work with different aspects of using a debugger.
 
 ### Installation
 
@@ -121,9 +121,9 @@ pip install -r requirements.pip
 cd dungeon
 ```
 
-Let's open `play.py` in your favourite text editor. Here we create a `Player` instance, with a name and an empty starting inventory. As you can see, the `Player` class itself is very simple.
+Before we start, let's edit `play.py`. Here we create an instance of `Player` with a name and an empty starting inventory. As you can see, the `Player` class itself is very simple.
 
-All locations in the game are functions that accept the player instance as an argument and hopefully return it back, possibly modifying its state, mostly the inventory. In `play.py` we enter the `main_corridor` from which all the other corridors branch. The goal of the game is to get the Golden Python, and possibly save the world.
+All locations in the game are functions to which we pass the player instance and hopefully get it back. The game starts with enterng `main_corridor` from which all the other corridors branch. The goal of the game is to obtain the Golden Python, and possibly save the world.
 
 ### Quest 0: Scare the Rat
 
@@ -141,27 +141,21 @@ We immediately see an error, that happened in the `main_corridor`. The player wa
 
 ### Walking
 
-Having a broom helped, but now we hit a different error and can use a debugger. There are a few ways to start a debugger, depending on how much control you have over soure code.
-
-* hardcoded breakpoint in code
-  - `import *db; *db.set_trace()` where `*db` is your favourite debug
-* 
-
-
+Having a broom helped, but now we hit a different error and can use a debugger. There are a few ways to start a debugger, depending on how much control you have over the source code. Here we are in full control, so let's put a hadcoded breakpoint, right before entering the main corridor.
 
 _type `import pdb; pdb.set_trace()` right above `player = main_corridor(player)`_
 
 You don't have to worry about `ImportError`: `pdb` is in the standard library.
 
-Now, when we run `play.py` we are greeted by the Pdb prompt.
 
 ```bash
 ./play.py
 ```
 
-Debugger stops the program right after the `set_trace()` line and politely asks us what to do next.
+Now, when we run `play.py` we are greeted by the Pdb prompt.
+Debugger becomes our Dungeon Master, stops the program right after the breakpoint and politely asks us what to do next.
 
-For example we can just `quit` the debugger with `q`
+First of all, we can just `quit` the debugger with `q`
 
 _do that_
 
@@ -169,16 +163,18 @@ or tell it to `continue` with `c`
 
 _do that_
 
-and happily crash at the exception.
+and inevitably crash with the same error as before.
 
-Not very useful. The fun starts when we learn to navigate our code dungeon.
+Or we can look around us, with `l`, the full command, however, is not `look` but `list`.
+
+The real fun begins when we learn to navigate our code dungeon.
 
 There are 2 types of movement:
 
 * horizontal – within a single function
 * vertical – up and down the call stack
 
-Let's have a quick tutorial on moving within a single function:
+Let's have an overview of moving within a single function:
 
 ![Next](/images/walking/1_next.png)
 
