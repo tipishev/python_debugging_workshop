@@ -6,7 +6,7 @@
 
 Hello everyone! My name is Tim and today I will talk about Python debugging.
 
-![Debugging Game](/images/debugging_game.png)
+<img src="/images/debugging_game.png" width="400" title="Debugging Game">
 
 First of all, how many of you use a debugger in your daily workflow?
 
@@ -23,7 +23,7 @@ Meaning that someone had complicated the code so much that reading the source do
 
 But on the other hand, a complex application, can be compared to a transit system. Of course, you have your source: the transit map and schedules. But would you bet your lunch money on the exact location of any given train?
 
-![Rube Goldberg](/images/rube_goldberg.jpg)
+<img src="/images/rube_goldberg.jpg" width="400" title="Rube Goldberg">
 
 That is exactly the problem, that the debuggers solve. They allow us to see inside the black box and examine the runtime state of the code.
 
@@ -257,7 +257,7 @@ To quit the debugger just type `q`. We see a Traceback because to stop, the debu
 For this exercise we will use `ipdb`, a wrapper around PDB that adds tab-completion, color, and multiline context support.
 
 
-![Lighting](/images/lighting.png)
+<img src="/images/lighting.png" width="400" title="Lighting">
 
 In the game, context can be compared to how much of the corridor we can see. In default Pdb it's horrible: just one line and no syntax highlight, so it's black-and-white mole-vision. Things get better if we use `n ;; l` and `s ;; l` aliases, we see 11 lines, but again, no colors. Ipdb finally solves this problem by having proper syntax highlighting and `context`-kwarg, that you can use directly:
 
