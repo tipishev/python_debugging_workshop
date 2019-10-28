@@ -1,56 +1,47 @@
+from mechanics import check_password
+
 _ = None
 
 
-UH_DESCR = 'You hear funky underground loops'
-DH_DESCR = 'Smooth deep bassline surrounds you'
+class LostInLegacyCode(Exception):
+    ''' and another one bites the dust of this ancient code '''
 
 
-class GotTired(Exception):
-    ''' Sometimes we overestimate our strength '''
+MAYBE_HINT_1 = "When lazy and don't know go to Stack O......."
+MAYBE_HINT_2 = "Hints' wording is a silly whim, my favourite editor is V.."
+MAYBE_HINT_3 = "Could it be a real hint? when using Python don't use p...."
 
 
-def deep_house(player, description=DH_DESCR):
-    _  # even though you are at the bottom
-    _  # you can still travel (u)p and d(own) the stack
-
-    player.inventory.append('staircase key')  # ah, here it is!
-    return player
+def check_stacking_password(player):
+    return check_password(player, '129e8109f319870e328cc7a1d5b5cae3')
 
 
-def underground_house(player, description=UH_DESCR):
-    _
-    _  # check (w)here you are now
-
-    _  # unfortunately no key here
-    player = deep_house(player)  # the key must be there!
-    return player
-
-
-def staircase(player, floor=0):
-    if floor < -3000:
-        # you finally made it!
-        player.inventory.append('level key')
-        return player  # you dash up the floors like a bullet
-    try:
-        return staircase(player, floor=floor-1)  # one need(s) to go deeper
-    except RecursionError:
-        import sys
-        print(sys.getrecursionlimit())
-        raise GotTired(f'You fell asleep on the {floor}th floor')
+def that_one_module(player, hint):  # unwillingly (s)tep in..
+    _  # check (w)here you are
+    _  # this is the rock bottom
+    _  # but you can still go (u)p and (d)own
+    _  #
+    _  # the real hint is 2 levels (u)p, just (a)sk `locals()`
+    return player  # check your inventory before goi(n)g up!
 
 
-def stacking_corridor(player):  # (s)tep in..
+def legacy_from_3_years_ago(player, hint):
+    # it gets only wor(s)e
+    return that_one_module(player, MAYBE_HINT_3)
 
-    _  # check (w)here you are now
 
-    _  # you find a staircase door
-    if player.inventory.pop() == 'staircase key':
-        player = staircase(player)  # unfortunately it's locked
+def your_last_summer_code(player, hint):
+    # it doe(s)n't end here!
+    return legacy_from_3_years_ago(player, hint=MAYBE_HINT_2)
 
-    player = underground_house(player)  # could the key be in(s)ide?
 
-    if player.inventory.pop() == 'staircase key':
-        player = staircase(player)  # now you can (s)tep inside
+def stacking_corridor(player):  # you (s)tep in
+    # and (s)lip into...
+    player = your_last_summer_code(player, hint=MAYBE_HINT_1)
 
-    player.inventory.append('stacking key')
-    return player
+    if check_stacking_password(player):  # what's (n)ext?
+        # Excellent!
+        player.inventory.append('amulet of stacking')
+        return player  # press q to (q)uit
+
+    raise LostInLegacyCode('Your mind overflows')

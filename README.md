@@ -217,13 +217,14 @@ Notice the improvements:
 Now let's step in the `walking_corridor` and get our first amulet.
 
 _go through walking corridor
-warn about single-letter variables, use `!` to be sure
-  - `c`, `n`, etc. but serves right, don't use one-letter variables
+warn about `!`
+  - `c`, `n`, etc. serves right, don't use one-letter variables
   - `list`, `args` are more treacherous
  _
 
 Now we can add the 'amulet of walking' to our inventory.
 
+Since you see how the game is structured we can move `set_trace()` directly in the main corridor. And while we are at it, let's give us even more light with `context=5`
 
 Let's go to the next level and see how to navigate vertically in the call stack.
 

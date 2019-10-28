@@ -1,7 +1,7 @@
 from .walking import walking_corridor
+from .stacking import stacking_corridor
 from .looking import looking_corridor
 from .jumping import jumping_corridor
-from .stacking import stacking_corridor
 from .examination import examination_corridor
 
 
@@ -18,6 +18,7 @@ def main_corridor(player):
         player = walking_corridor(player)
 
     if 'amulet of stacking' not in player.inventory:
+        import ipdb; ipdb.set_trace(context=5)
         player = stacking_corridor(player)
 
     if 'amulet of looking' not in player.inventory:
