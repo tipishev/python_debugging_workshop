@@ -39,7 +39,7 @@ I tried to make this workshop a bit differently: on top of the three points abov
 
 ![Boat vs Surf](/images/boat_vs_surf.jpg)
 
-I am legally required to scorn you for `print`-debugging and explain what's wrong with it.
+Now I am legally required to scorn you for `print`-debugging and explain what's wrong with it.
 
 ![Printgles](/images/printgles.png)
 
@@ -60,7 +60,7 @@ Behold the mighty Redneck Breakpoint
 
 `1/0`
 
-unlike print it does not get lost in console output, and you don't have to decorate it with `=...=` or `*...*` it just crashes your program loudly and proudly. If you have several places to check where they run, you can use `2/0`, `3/0`, etc.
+unlike print it does not get lost in console output, and you don't have to decorate it with `===============` or `***************` it just crashes your program loudly and proudly. If you have several places to check where they run, you can use `2/0`, `3/0`, etc.
 
 Ok, now that we are done with print-shaming, let's get started.
 
@@ -83,9 +83,7 @@ They are both...
   - if you die in a game you start from the beginning
   - unhandled exceptions stop the debugger
 
-By the way, if you are into text adventures, at last year's Pycon Sweden there was a great talk about Evennia, a Python MUD-framework.
-
-Funnily enough, when we look at our codebases, the similarity with dungeons becomes stronger. See for yourself, our codebases are built over years by multiple programmers, and sometimes you need Git archeology to dig up history, but it's a topic from my another talk.
+Funnily enough, when we look at our codebases, the similarity with dungeons becomes only stronger. See for yourself, our codebases are built over years by multiple programmers, and sometimes you need Git archeology to dig up history, but it's a topic from my another talk.
 
 A typical code-dungeon looks like this:
 
@@ -132,7 +130,7 @@ So, if everyone is ready, let's run the game.
 python play.py
 ```
 
-We immediately see an error, that happened in the `main_corridor`. The player was eaten by a rat. Looks like we need to have at least something in our inventory. Let's take a broomstick, big enough to scare the rat away. And run the the game again.
+We immediately see an error, that happened in the `main_corridor`. The player was eaten by a rat. Looks like we need to have at least something in our inventory. Let's take something, let's say a big broomstick, to scare the rat away. And run the the game again.
 
 ```bash
 ./play.py
@@ -140,8 +138,12 @@ We immediately see an error, that happened in the `main_corridor`. The player wa
 
 ### Walking
 
+Having a broom helped, but now we hit a different error and can use a debugger. There are a few ways to start a debugger, depending on how much control you have over soure code.
 
-Having a broom helped, but now we see a different error and can finally use a debugger. There are different ways to start it. In this example we can put a hardcoded breakpoint in our code right before the player enters the main corridor.
+* hardcoded breakpoint in code
+  - `import *db; *db.set_trace()` where `*db` is your favourite debug
+* 
+
 
 
 _type `import pdb; pdb.set_trace()` right above `player = main_corridor(player)`_
@@ -334,6 +336,13 @@ combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))
 ### Running
 
 * `run`, `runeval`, `runcall` are boring but useful with no access to code
+* `runcall` is good:
+```
+ipdb.runcall(process_events, datetime(2019, 10, 28, 7, 0), datetime(2019, 10, 28, 7, 18), push=False)
+```
+it was a celery task, so I put a breakpoint to avoid the celery dispact resolving shim sham shimmy, advice: with much wrapping put a breakpoint where you are sure it will reach.
+`b 108,statistic_type=='spam'`
+
 
 ### Debug without access to source code
 * debugging live in a closure, when no better idea
