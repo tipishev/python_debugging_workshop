@@ -371,17 +371,20 @@ Talk how it's better to write good code instead of fixing errors.
 * knapsack metaphor, "but in-game inventory is not the only thing we take"
 * incremental introduction to aliases
 * `alias n next ;; list` -> `unalias n`
+* even if you cannot write to `.pdbrc`, keep your local config up-to-date and paste the aliases file in remote Pdb-shells, after all it's just a list of legal debugger commands.
 
 ### Postmortem
 
 * Source Code 2011 movie
 * "I wish I was there when it happened!"
-* since it's postmortem, cannot follow the runtime, just observe the state at the moment of crash
+* since it's postmortem, cannot follow the control, just observe the state at the moment of crash.
 * multiple ways to start
   - `python -m pdb|ipdb|pudb play.py arg1 arg2` and crash
   - `import *db; *db.pm()` in interactive shell. Will use `sys.last_traceback` for examination
   - `%debug` in iPython
+* when a long-running script crashes in your shell, type `%debug` and walk up the stack and see what happened. It may give insights on what was the error about. Not so long ago, I was fetching events from our partner and ran postmortem on a failed script, it showed me the exact URL on which the connection was reset, so I could continue from that exact spot.
 
+### strace?
 
 ### Debug with access to source code
 
@@ -518,7 +521,8 @@ Talk how it's better to write good code instead of fixing errors.
   - if it's live use one of `run`, `runeval`, or `runcall` or `set_trace` in a closure
 
 * Call to action
-  - set up useful aliases (which?)
+  - install `ipdb`, `pudb`, and `pdbpp` in all environments where you are allowed to run a Python shell
+  - add useful aliases to a .pdbrc file, to not type `pp vars(self)` all the time
   - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
 
 * https://github.com/git-game/git-game
