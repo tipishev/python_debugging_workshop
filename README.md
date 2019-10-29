@@ -254,13 +254,13 @@ Let's put it by the entrance to the corridor of looking.
 It defaults to `pdb.set_trace`  __demonstrate__
 To configure it use `export PYTHONBREAKPOINT=`...
 
-* 0 for ignoring breakpoints, can be a last line of defence in Production code
 * "" (unset) for default Pdb
+* 0 for ignoring breakpoints, can be the last line of defence in Production environment.
 * dotted path to a debugger callable
   - `ipdb.set_trace` for iPdb
   - `pudb.set_trace` for Pudb (we'll look at it later)
 
-Nice thing is that breakpoint passes args and kwargs to the handler, so we can for example set context size for iPdb.
+`breakpoint` passes args and kwargs to the handler, so we can put `breakpoint(context=7)` will make iPdb show 10 lines of context.
 
 _demonstrate with context=7_
 
@@ -268,25 +268,28 @@ Since we talk about showing context, here is an illustration of context showing 
 
 <img src="/images/lighting.png" width="640" title="Lighting">
 
-By defaul, PDB shows just the current line and no color, so almost always we would like to go to the next line and see the code around it.
+If we use the dungeon metaphor, context is how much of surroundings you can see.
 
-We can do this by separting commands with double semicolon.
+By defaul, PDB shows just the current line, so often we would type `l` after `n` or `s`.
+We can turn this into a one liner with double-semicolon:
 
 ```python
-n ;; l
+n;;l
+s;;l
 ```
 
-We can also set these command as aliases:
+We can also set aliases:
 
 ```python
 alias nl n;;l
 alias sl s;;l
 ```
 
-If I can, I use any other debugger. But in spite of all its shortcomings, Pdb has one killer feature: it is part of the standard library. So, if you ssh to a server, but have no permission to install a better debugger, you can still run Pdb.
+Finally, for maximum slack, save the aliases to `.pdbrc` to load them at debugger start.
+
+I don't use Pdb unless nothing better is installed, however, Pdb has one killer feature: it is in the standard library. So, if you ssh to a server, have no install permissions, you can still run Pdb.
 
 iPdb gives us both color vision and more context.
-
 
 So, let's go through looking level.
 

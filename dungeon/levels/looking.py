@@ -128,6 +128,7 @@ def password_room(player):
 
         # Once again, you have succeeded!!!
         player.inventory.append('amulet of looking')
+        # you also unlock a cheatcode! `alias la l 1,9999`
         return player  # press q to quit
 
     raise Exception('Incorrect Looking Password')
