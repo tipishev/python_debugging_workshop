@@ -160,11 +160,11 @@ Debugger becomes our Dungeon Master, stops the program right after the breakpoin
 
 First of all, we can just `quit` the debugger with `q`
 
-_do that_
+__do that__
 
 or tell it to `continue` with `c`
 
-_do that_
+__do that__
 
 and inevitably crash with the same error as before.
 
@@ -219,12 +219,7 @@ Notice the improvements:
 
 Now let's step in the `walking_corridor` and get our first amulet.
 
-_
-go through walking corridor
-warn about `!`
-  - `c`, `n`, etc. serves right, don't use one-letter variables
-  - `list`, `args` are more treacherous
-_
+__ go through walking corridor: warn about `!`, `c`, `n`, etc. serves right, don't use one-letter variables, `list`, `args` are more treacherous__
 
 Now we can add the 'amulet of walking' to our inventory.
 
