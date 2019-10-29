@@ -19,9 +19,9 @@ player = Player(
         'broom',
         'amulet of walking',
         'amulet of stacking',
-        # 'amulet of looking',
-        # 'amulet of jumping',
+        'amulet of looking',
         # 'amulet of examination',
+        # 'amulet of jumping',
         # 'amulet of breaking',
     ],
 )

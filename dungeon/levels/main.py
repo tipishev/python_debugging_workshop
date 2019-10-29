@@ -3,6 +3,7 @@ from .stacking import stacking_corridor
 from .looking import looking_corridor
 from .jumping import jumping_corridor
 from .examination import examination_corridor
+from .breaking import breaking_corridor
 
 
 class EatenByRat(Exception):
@@ -21,7 +22,6 @@ def main_corridor(player):
         player = stacking_corridor(player)
 
     if 'amulet of looking' not in player.inventory:
-        breakpoint()
         player = looking_corridor(player)
 
     if 'amulet of examination' not in player.inventory:
@@ -29,6 +29,12 @@ def main_corridor(player):
 
     if 'amulet of jumping' not in player.inventory:
         player = jumping_corridor(player)
+
+    if 'amulet of breaking' not in player.inventory:
+        player = breaking_corridor(player)
+
+    #  if 'amulet of calling' not in player.inventory:
+    #      player = calling_corridor(player)
 
     player.inventory.append('Golden Python')  # you earned it!
     return player

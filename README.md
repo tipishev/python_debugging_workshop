@@ -58,7 +58,7 @@ Another argument against `print`s is that they ofthen get into production code. 
 
 <img src="/images/crab.png" width="400" title="Bearded Crab">
 
-By the way, "it will get to production" applies not only to `print` statements, but to any silly code and data. I call this phenomenon the "The Law of The Bearded Crab". When I was working for an entertainment events aggregator, we used silly fake events for testing our staging environment. And guess what, one day, a misconfigured import, uploaded "the Concert of The Bearded Crab" to the main page.
+By the way, "it will get to production" applies not only to `print` statements, but to any silly code and data. I call this phenomenon the "The Curse of The Bearded Crab". When I was working for an entertainment events aggregator, we used silly fake events for testing our staging environment. And guess what, one day, a misconfigured import, uploaded "the Concert of The Bearded Crab" to the main page. So, think of it as an evil deity that preys on your lack of attention.
 
 Finally, a debugger allows to explore not only your code, but also 3rd party modules, like Django and Celery.
 
@@ -295,16 +295,13 @@ So, let's go through looking level.
 
 __do the looking level__
 
+So far, we've been dropping the hardcoded breakpoints. This is fine most of the time, but still gives the Bearded Crab a chance to sneak your breakpoints in the release. The ninja-way is to use the debugger without changing the source code. Here is one way to do it.
+
 -----------------------------------------------------------
                 Here Be Dragons
 -----------------------------------------------------------
 
 ### Examination
-
-* (a)rguments to see what was passed
-* `p`  if you really miss that `print`
-* `pp` a bag ~full of JSON~ of `dict`s, arrange lines vertically for clue
-* pprint sorts keys
 * `display` can list current expressions, local for frame
 * `undisplay` can clear one or many expressions
 * display shows old value, neat!
@@ -393,27 +390,17 @@ Talk how it's better to write good code instead of fixing errors.
 
 ### Debug with access to source code
 
-### Configuration
-* mostly useful for aliases
+### Configuration with .pdbrc
 * pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
+* mostly useful for aliases
 
 ### Anatomy of PDB
 * [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
-* debugger is extensible, `Pdb` class, `bdb` and `cmd` modules
 * inherits from `cmd.Cmd` and `cmd.Bdb`
-
-#### CMD aside
-* client code spectrum:
-  - simple script
-  - command with arguments
-  - Command line environment
-  - Graphical wrapper
-* part of the standard library
-* creates a simple command-line interace (CLI) interpreter
-* documentation page has a cute example `TurtleShell`
-* Cmd2 is actually better, common pattern with standard implementations
+* debugger is extensible, `Pdb` class, `bdb` and `cmd` modules
 
 #### Bdb
+* the core of all python debuggers
 * defines `Breakpoint` class `(file, line)`
 * `trace_dispatch(frame, event, arg)`
   - line
@@ -431,6 +418,17 @@ Talk how it's better to write good code instead of fixing errors.
   - clear_all_breaks
   - `get_{bpbynumber, break, breaks, file_breaks}`
 
+
+#### CMD aside
+* client code spectrum:
+  - simple script
+  - command with arguments
+  - Command line environment
+  - Graphical wrapper
+* part of the standard library
+* creates a simple command-line interace (CLI) interpreter
+* documentation page has a cute example `TurtleShell`
+* Cmd2 is actually better, common pattern with standard implementations
 
 ### Debuggers comparisson
 
@@ -459,8 +457,26 @@ Talk how it's better to write good code instead of fixing errors.
   - no jumps https://github.com/inducer/pudb/issues/129
   * watch-statements
   * code, variables, stack, breakpoints
+  * sticky mode: same as showing context?
+  * track draws a dependency graph and requires pypy
+  * `display` expressions should not have side effects
+  * can open editor
+  * can mark some frames as hidden using a decorator, don't display in stacktrace
+  * shell shell_pp python ipython pdb ipdb pdb pdb_pp, common pattern
+  * setattr condition can discriminate between 2 instances of the same class
+  * `break_on_setattr` can be attached even from within debugger.
 
-#### Pdbpp
+#### Config
+  * max pimping
+  * prompt
+  * highlight
+  * some colors settings
+  * editor `vim` by default or `editor = "subl {filename}:{lineno}"`
+  * hiding frames and showing their count, useful if you trust Django/celery or other 3rd party libraries
+  * `setup(self, pdb)`
+  * Pygments config, for example if you want `solarized` theme
+
+#### Pdb++ aka Pdbpp
   * avoids one-letter trap by preferring context variables to debugger commands, can override with `!!command`
   * Disable `pdb.set_trace()`: any subsequent call to it will be ignored
   * `@pdb.break_on_setattr(attrname, condition=always)`
@@ -482,29 +498,6 @@ Talk how it's better to write good code instead of fixing errors.
   - ipdb / pdb++
   - pudb* / graphical / IDE
   - avoiding bugs with isort, flake8, autopep8
-
-### Pdb++
-
-* sticky mode: same as showing context?
-* track draws a dependency graph and requires pypy
-* `display` expressions should not have side effects
-* can open editor
-* can mark some frames as hidden using a decorator, don't display in stacktrace
-* shell shell_pp python ipython pdb ipdb pdb pdb_pp, common pattern
-* setattr condition can discriminate between 2 instances of the same class
-* `break_on_setattr` can be attached even from within debugger.
-
-#### Config
-* prompt
-* highlight
-* some colors settings
-* editor `vim` by default or `editor = "subl {filename}:{lineno}"`
-* hiding frames and showing their count, useful if you trust Django/celery or other 3rd party libraries
-* `setup(self, pdb)`
-* Pygments config, for example if you want `solarized` theme
-
-
-#### Pudb
 
 ### iPdb tricks
 

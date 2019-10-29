@@ -1,10 +1,10 @@
-# when you want to see the whole file
-listall list 1,9999
-alias la listall
-
 # combined commands, ipdb.set_trace(context=10) is unavailable
 alias nl n;;l
 alias sl s;;l
+
+# when you want to see the whole file
+alias listall list 1,9999
+alias la listall
 
 # Inventory can be listed with inventory, inv, and i
 alias inventory !print('=Inventory=') ;; pp player.inventory
@@ -25,4 +25,4 @@ alias dump_stack !from traceback import format_stack ;; dump format_stack()
 
 # show how deep is the stack
 alias howdeep !import traceback ;; p len(traceback.format_stack())
-alias hd howdeep
+alias hd howdeep  # Howdeep, partner!
