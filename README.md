@@ -29,9 +29,9 @@ That is exactly the problem, that the debuggers solve. They allow us to see insi
 
 While preparing this workshop I have looked at a number of debugging tutorials and they all follow the same structure.
 
-* They warn agains using `print` statements
-* They recap Pdb documentation
-* And show a few examples of using debugger commands
+* Warn agains using `print` statements
+* Recap Pdb documentation
+* Show examples of using debugger commands
 
 I tried to make this workshop a bit differently: on top of the three points above we will also look at other Python debuggers and learn when it is better to use one or the other. Another thing that I will tell is useful tips and tricks.
 
