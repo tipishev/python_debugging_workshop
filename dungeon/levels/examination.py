@@ -1,3 +1,4 @@
+import random
 from mechanics import check_password
 
 _ = None
@@ -12,7 +13,7 @@ def check_examination_password(player):
 
 
 class Fish:
-    ''' it can swim and moralize '''
+    ''' swims, moralizes and kills the vibe '''
 
     def bad_pun(self):
         print('Did you know that I am {self} Fish?')
@@ -60,26 +61,24 @@ bag_of_dicts = [
 ]
 
 
-def meeting_room(player, fish, thing1, thing2):  # (s)tep in, everyone!
+def rename(player):
+    player.name = random.choice(['Grinch', 'Gox', 'Bustard', 'Dog Fish'])
+
+
+def examination_corridor(player, fish=Fish(),
+                         thing1=Thing('One'), thing2=Thing('Two')):
     _  # check who is in with `(a)rgs`
     _  # now check `whatis fish`
     _  # more info with `pinfo fish`
     _  # eye-candy version `pinfo2 fish`
     _  # you can also get the source code for some objects: `source Thing`
-
-    return player  # it's crowded here, let's return
-
-
-fish = Fish()
-thing1 = Thing(1)
-thing2 = Thing(2)
-
-
-def examination_corridor(player):
-    breakpoint(context=5)
-
-    # let's (s)tep in and look at the guests
-    meeting_room(player, fish, thing1, thing2)
+    _
+    _  # if you care for your name you better watch it!
+    _  # `display player.name`
+    _
+    rename(player)
+    rename(player)
+    rename(player)
 
     bag_of_dicts  # you find a peculiar container...
     # examine it with `p` if you miss `print`, and go (n)ext
