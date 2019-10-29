@@ -219,7 +219,7 @@ Notice the improvements:
 
 Now let's step in the `walking_corridor` and get our first amulet.
 
-__go through walking corridor: warn about `!`, `c`, `n`, etc. serves right, don't use one-letter variables, `list`, `args` are more treacherous__
+_go through walking corridor: warn about `!`, `c`, `n`, etc. serves right, don't use one-letter variables, `list`, `args` are more treacherous_
 
 Now we can add the 'amulet of walking' to our inventory.
 
