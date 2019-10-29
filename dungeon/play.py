@@ -20,14 +20,15 @@ player = Player(
         'amulet of walking',
         'amulet of stacking',
         'amulet of looking',
-        # 'amulet of examination',
+        'amulet of examination',
         # 'amulet of jumping',
         # 'amulet of breaking',
     ],
 )
 
 # the game starts here
-player = main_corridor(player)
+if __name__ == '__main__':
+    player = main_corridor(player)
 
-if 'Golden Python' in player.inventory:
-    print('Congratulations, you got the Golden Python!')
+    if 'Golden Python' in player.inventory:
+        print('Congratulations, you got the Golden Python!')

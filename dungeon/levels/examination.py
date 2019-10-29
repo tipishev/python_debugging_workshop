@@ -61,8 +61,9 @@ bag_of_dicts = [
 ]
 
 
-def rename(player):
+def voom(player):
     player.name = random.choice(['Grinch', 'Gox', 'Bustard', 'Dog Fish'])
+    player.inventory.append(random.choice(['green eggs', 'ham']))
 
 
 def examination_corridor(player, fish=Fish(),
@@ -73,12 +74,14 @@ def examination_corridor(player, fish=Fish(),
     _  # eye-candy version `pinfo2 fish`
     _  # you can also get the source code for some objects: `source Thing`
     _
-    _  # if you care for your name you better watch it!
-    _  # `display player.name`
+    _  # keep track of your name `display player.name`
     _
-    rename(player)
-    rename(player)
-    rename(player)
+    voom(player)
+    voom(player)
+    voom(player)
+    voom(player)  # stop watching `undisplay`
+    voom(player)
+    voom(player)
 
     bag_of_dicts  # you find a peculiar container...
     # examine it with `p` if you miss `print`, and go (n)ext

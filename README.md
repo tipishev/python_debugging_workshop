@@ -152,6 +152,9 @@ You don't have to worry about `ImportError`: `pdb` is in the standard library.
 ./play.py
 ```
 
+> Debuggers don't remove bugs. They only show them in slow motion.
+– Unknown
+
 Now, when we run `play.py` we are greeted by the Pdb prompt.
 Debugger becomes our Dungeon Master, stops the program right after the breakpoint and politely asks us what to do next.
 
@@ -225,6 +228,8 @@ _
 
 Now we can add the 'amulet of walking' to our inventory.
 
+### Stacking
+
 Since you see how the game is structured we can move `set_trace()` directly in the main corridor. And while we are at it, let's give us even more light with `context=5`
 
 Let's go to the next level and see how to navigate vertically in the call stack.
@@ -291,79 +296,107 @@ I don't use Pdb unless nothing better is installed, however, Pdb has one killer 
 
 iPdb gives us both color vision and more context.
 
+
+### Looking
+
 So, let's go through looking level.
 
 __do the looking level__
 
 So far, we've been dropping the hardcoded breakpoints. This is fine most of the time, but still gives the Bearded Crab a chance to sneak your breakpoints in the release. The ninja-way is to use the debugger without changing the source code. Here is one way to do it.
 
------------------------------------------------------------
-                Here Be Dragons
------------------------------------------------------------
+```bash
+python -m ipdb play.py
+```
+
+This way we start from the very first line and keep going. We can avoid this journey by passing a breakpoint.
+
+```bash
+python -m ipdb -c "b levels/examination.py:71" play.py
+```
 
 ### Examination
-* `display` can list current expressions, local for frame
-* `undisplay` can clear one or many expressions
-* display shows old value, neat!
-* display to create a "watch list"
 
+__do the examination level__
 
-### Jumping
+You may also want to use a debugger inside an interactive shell, like django shell or iPython. When I just started using a debugger I write a wrapper function around the code I wanted to debug like this:
+
+```python
+def run():
+    import ipdb; ipdb.set_trace()
+    jumping_corridor(player)
+```
+
+### Running in Shell / Jumping
+
+But later I found that Pdb has 3 functions for exactly that:
+
+* run
+* runeval
+* runcall
+
+The last one I find the most usefull. Pass into it a callable, and it's arguments and the the call will happen under debugger's control. Let's try that.
+
+```python
+from play import main_corridor, player
+ipdb.runcall(main_corridor, player)
+```
 
 * In real world jumping helps to skip
   - network calls
-  - initialization before debug-section
-  - expensive computation in loops
+  - expensive computation before debug-section
 
 combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))`
 
 * go back if you forgot to check something
 
-* pudb jump not working https://github.com/inducer/pudb/pull/306
+### Postmortem
 
-### Running
+While we talk about running code inside a shell, there's a super-useful debugger feature "postmortem" abbreviated to `pm()`. It finds the last exception that happened iin the shell and allows to explore the state right before it happened.
 
-* `run`, `runeval`, `runcall` are boring but useful with no access to code
-* `runcall` is good:
-```
-ipdb.runcall(process_events, datetime(2019, 10, 28, 7, 0), datetime(2019, 10, 28, 7, 18), push=False)
-```
-it was a celery task, so I put a breakpoint to avoid the celery dispact resolving shim sham shimmy, advice: with much wrapping put a breakpoint where you are sure it will reach.
-`b 108,statistic_type=='spam'`
+* Source Code 2011 movie
+* "I wish I was there when it happened!"
+* since it's postmortem, cannot follow the control, just observe the state at the moment of crash.
+* multiple ways to start
+  - `python -m pdb|ipdb|pudb play.py arg1 arg2` and crash
+  - `import *db; *db.pm()` in interactive shell. Will use `sys.last_traceback` for examination
+  - `%debug` in iPython
+* when a long-running script crashes in your shell, type `%debug` and walk up the stack and see what happened. It may give insights on what was the error about. Not so long ago, I was fetching events from our partner and ran postmortem on a failed script, it showed me the exact URL on which the connection was reset, so I could continue from that exact spot.
 
-### Debug without access to source code
-* debugging live in a closure, when no better idea
-* shows 3 ways to run a command:
-  - run
-  - runeval
-  - runcall
-* example with running property: `ipdb.run('obj.property')`
-* mocking live code
+
+-----------------------------------------------------------
+                Here Be Dragons
+-----------------------------------------------------------
 
 
 ### Breakpoints
+* it was a celery task, so I put a breakpoint to avoid the celery dispact resolving shim sham shimmy, advice: with much wrapping put a breakpoint where you are sure it will reach.
+* `b 108,statistic_type=='spam'`
 * breapoints allow a test-journey:
   - instead of put print here, restart, put print there, restart
   - put break here, check. Put break there, check within a single run
 * one-time breakpoints
 * watching variables with post-run `commands`
 * %debug iPython magic
-* pinfo, pinfo2: real story `DictWriter.field_names`
 * break
   - filename:lineno | function
   - condition
 * tbreak aka tea break
 * `_` variable stores the result of previous ivocation
-* PUDB
-* web-pdb `PYTHONBREAKPOINT=web_pdb.set_trace` for multithreaded
 * condition may be useful when a bug happens only on certain conditions, like looping over a bunch of records, and only orders from France are processed incrorrectly.
 * it's better to avoid modifying the code with `breakpoint`/`set_trace`, less chance of committing to production
 * `python -m ipdb -c "b levels/main.py:13" -c "b levels/main.py:14" play.py`
 
 ### Preventing Bugs
 
+> If you want more effective programmers, you will discover that they should not waste their time debugging, they should not introduce the bugs to start with.
+  – Edsger W. Dijkstra
+
 Talk how it's better to write good code instead of fixing errors.
 
+* flake8
+* autopep8
+* isort
 
 ### Aliases
 
@@ -374,17 +407,6 @@ Talk how it's better to write good code instead of fixing errors.
 * incremental introduction to aliases
 * `alias n next ;; list` -> `unalias n`
 * even if you cannot write to `.pdbrc`, keep your local config up-to-date and paste the aliases file in remote Pdb-shells, after all it's just a list of legal debugger commands.
-
-### Postmortem
-
-* Source Code 2011 movie
-* "I wish I was there when it happened!"
-* since it's postmortem, cannot follow the control, just observe the state at the moment of crash.
-* multiple ways to start
-  - `python -m pdb|ipdb|pudb play.py arg1 arg2` and crash
-  - `import *db; *db.pm()` in interactive shell. Will use `sys.last_traceback` for examination
-  - `%debug` in iPython
-* when a long-running script crashes in your shell, type `%debug` and walk up the stack and see what happened. It may give insights on what was the error about. Not so long ago, I was fetching events from our partner and ran postmortem on a failed script, it showed me the exact URL on which the connection was reset, so I could continue from that exact spot.
 
 ### strace?
 
@@ -499,17 +521,6 @@ Talk how it's better to write good code instead of fixing errors.
   - pudb* / graphical / IDE
   - avoiding bugs with isort, flake8, autopep8
 
-### iPdb tricks
-
-* %autoreload
-* %debug% instead of .pm()
-
-### Dungeon Ideas
-
-* debugging inside a closure == inside the dragon's belly
-* source the enemy to see weakness?
-* display/undisplay to check surroundings
-* `display` to check coin count, try multiple, actually not necessary in 2.7, use commands to look at `Mock.call_count`
 
 ### Conclusion
 
@@ -524,19 +535,3 @@ Talk how it's better to write good code instead of fixing errors.
   - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
 
 * https://github.com/git-game/git-game
-
-
-## Quotes
-
-### Edsger Dijkstra
-
-> They are errors, not bugs.
-
-> If you want more effective programmers, you will discover that they should not waste their time debugging, they should not introduce the bugs to start with.
-
-### Unknown
-
-> Debuggers don't remove bugs. They only show them in slow motion.
-
-## Used Materials
-TODO image sources, use tineye?
