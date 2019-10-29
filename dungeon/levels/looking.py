@@ -1,5 +1,5 @@
-# the password is 'spyglass', sorry no time for puzzle
-# `!player.inventory.append('spyglass')`
+# "Worshipped by Lisps, feared by ships (4 letters)"
+# `!player.inventory.append(answer)`
 # `(c)ontinue` will take you to the breakpoint
 
 from mechanics import check_password
@@ -9,7 +9,7 @@ _ = None
 
 
 def check_looking_password(player):
-    return check_password(player, '0a5d79f5655a4ace894b62c28ab11083')
+    return check_password(player, '10ae9fc7d453b0dd525d0edf2ede7961')
 
 
 def looking_corridor(player):  # please, (s)tep in!
@@ -127,8 +127,13 @@ def password_room(player):
     if check_looking_password(player):  # press (n)ext
 
         # Once again, you have succeeded!!!
-        player.inventory.append('amulet of looking')
+        player.inventory.append('amulet of looking')  # (n)ext...
+
         # you also unlock a cheatcode! `alias la l 1,9999`
         return player  # press q to quit
 
-    raise Exception('Incorrect Looking Password')
+    raise DidNotSeeItComming('Incorrectly Looking Password')
+
+
+class DidNotSeeItComming(Exception):
+    '''  watch out! '''

@@ -27,5 +27,5 @@ def examination_corridor(player):
     _
     _
     _
-    player.append('amulet of examination')
+    player.inventory.append('amulet of examination')
     return player
