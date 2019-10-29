@@ -160,11 +160,11 @@ Debugger becomes our Dungeon Master, stops the program right after the breakpoin
 
 First of all, we can just `quit` the debugger with `q`
 
-__do that__
+_do that_
 
 or tell it to `continue` with `c`
 
-__do that__
+_do that_
 
 and inevitably crash with the same error as before.
 
@@ -229,11 +229,7 @@ Since you see how the game is structured we can move `set_trace()` directly in t
 
 Let's go to the next level and see how to navigate vertically in the call stack.
 
-_
-go through stacking corridor
- mention (a)rgs and how they are local to each frame
- where shows who called the whole shebang
-_
+_go through stacking corridor; mention (a)rgs and how they are local to each frame where shows who started the whole circus_
 
 Now, let's add the "amulet of stacking" to our evergrowing collection and and see what fails next.
 
@@ -251,7 +247,7 @@ It was introduced in PEP553 because..
 
 Let's put it by the entrance to the corridor of looking.
 
-It defaults to `pdb.set_trace`  __demonstrate__
+It defaults to `pdb.set_trace`  _demonstrate_
 To configure it use `export PYTHONBREAKPOINT=`...
 
 * "" (unset) for default Pdb
@@ -296,7 +292,7 @@ iPdb gives us both color vision and more context.
 
 So, let's go through looking level.
 
-__do the looking level__
+_do the looking level_
 
 So far, we've been dropping the hardcoded breakpoints. This is fine most of the time, but still gives the Bearded Crab a chance to sneak your breakpoints in the release. The ninja-way is to use the debugger without changing the source code. Here is one way to do it.
 
@@ -312,7 +308,7 @@ python -m ipdb -c "b levels/examination.py:71" play.py
 
 ### Examination
 
-__do the examination level__
+_do the examination level_
 
 You may also want to use a debugger inside an interactive shell, like django shell or iPython. When I just started using a debugger I write a wrapper function around the code I wanted to debug like this:
 
@@ -393,23 +389,12 @@ Talk how it's better to write good code instead of fixing errors.
 * autopep8
 * isort
 
-### Aliases
-
-* `alias` can take all arguments with `%*`
-* `vars` built-in master race vs dirty `__dict__` peasants
-* `import pprint; pprint(self.__dict__)` vs `pp vars(self)`
-* knapsack metaphor, "but in-game inventory is not the only thing we take"
-* incremental introduction to aliases
-* `alias n next ;; list` -> `unalias n`
-* even if you cannot write to `.pdbrc`, keep your local config up-to-date and paste the aliases file in remote Pdb-shells, after all it's just a list of legal debugger commands.
-
-### strace?
-
-### Debug with access to source code
-
-### Configuration with .pdbrc
+### .pdbrc and aliases
 * pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
 * mostly useful for aliases
+* `alias` can take all arguments with `%*`
+* `import pprint; pprint(self.__dict__)` vs `pp vars(self)`
+* even if you cannot write to `.pdbrc`, keep your local config up-to-date and paste the aliases file in remote Pdb-shells, after all it's just a list of legal debugger commands.
 
 ### Anatomy of PDB
 * [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
@@ -517,6 +502,11 @@ Talk how it's better to write good code instead of fixing errors.
   - avoiding bugs with isort, flake8, autopep8
 
 
+### Strace ?
+```bash
+sudo strace -s 65535 -v -p {PID}
+```
+
 ### Conclusion
 
 * Now you know what to do when you encounter a bug
@@ -528,5 +518,3 @@ Talk how it's better to write good code instead of fixing errors.
   - install `ipdb`, `pudb`, and `pdbpp` in all environments where you are allowed to run a Python shell
   - add useful aliases to a .pdbrc file, to not type `pp vars(self)` all the time
   - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
-
-* https://github.com/git-game/git-game
