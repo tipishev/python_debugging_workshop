@@ -296,11 +296,11 @@ alias nl n;;l
 alias sl s;;l
 ```
 
-Finally, for maximum slack, save the aliases to `.pdbrc` to load them at debugger start.
+Finally, for maximum convenience, save the aliases to `.pdbrc` to load them at debugger start.
 
 iPdb gives us both color vision and more context, especially when you setu it up explicitly with `context` keyword.
 
-Pragmatically speaking, same as with default Python shell, I don't use Pdb if I can install something better, although, Pdb has one killer feature: it is always installed. So, if you ssh to a server for the first time, you can run Pdb with no additional setup.
+Pragmatically speaking, same way I don't use the default Python shell, I don't use Pdb if something better is available, although, Pdb has a killer feature: it is always installed. So, if you ssh to a server for the first time, you can run Pdb with no additional setup.
 
 
 ### Looking

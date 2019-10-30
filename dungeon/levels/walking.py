@@ -39,7 +39,7 @@ def a_room(player):
     _
     _
     _
-    _  # "A European mole, short form of `until` (3 letters)"
+    _  # "short form of `until`, also a European mole (3 letters)"
     _  # type `!player.inventory.append(answer)` to pick it up
     _  #
     _  # type `m = "mimic"` and call `locals()`
@@ -56,15 +56,15 @@ def a_room(player):
     _  # go to (r)eturn
     _
     _  # ok. Here's a bad joke.
-    _  # "A programmer got an SMS: 'while outside, buy milk'...
+    _  # "A programmer was told: 'while outside, buy milk'...
     _  # ...he never returned."
     _  #
     _  # but you should. Please press `r` now.
     _
-    _  # All right, enjoy a skip-rope workout!
+    _  # Ok... what abouta skip-rope workout?
 
     for __ in range(1000):  # hop, bunny, hop!
-        _  # you can `(r)eturn` whenever you wish
+        _  # you can go to `(r)eturn` whenever you wish
     _
     _
     _
