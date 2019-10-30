@@ -325,6 +325,8 @@ python -m ipdb -c "b levels/examination.py:71" play.py
 
 _do the examination level_
 
+### Running in Shell
+
 You may also want to use a debugger inside an interactive shell, like django shell or iPython. When I just started using a debugger I write a wrapper function around the code I wanted to debug like this:
 
 ```python
@@ -333,7 +335,6 @@ def run():
     jumping_corridor(player)
 ```
 
-### Running in Shell / Jumping
 
 But later I found that Pdb has 3 functions for exactly that:
 
@@ -342,6 +343,9 @@ But later I found that Pdb has 3 functions for exactly that:
 * runcall
 
 The last one I find the most usefull. Pass into it a callable, and it's arguments and the the call will happen under debugger's control. Let's try that.
+
+
+### Jumping
 
 ```python
 from play import main_corridor, player
@@ -358,7 +362,6 @@ combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))
 
 ### Postmortem
 
-
 <img src="/images/source_code_2011_poster.jpg" width="400" title="Source Code 2011">
 
 While we talk about running code inside a shell, there's a super-useful debugger feature "postmortem" abbreviated to `pm()`. It finds the last exception that happened iin the shell and allows to explore the state right before it happened.
@@ -372,52 +375,34 @@ Has anyone seen a 2011 movie Source Code? It's a movie about a guy who could liv
   - `%debug` in iPython
 * when a long-running script crashes in your shell, type `%debug` and walk up the stack and see what happened. It may give insights on what was the error about. Not so long ago, I was fetching events from our partner and ran postmortem on a failed script, it showed me the exact URL on which the connection was reset, so I could continue from that exact spot.
 
+### Breaking
 
------------------------------------------------------------
-                Here Be Dragons
------------------------------------------------------------
+<img src="/images/slow_down.png" width="400" title="Slow Down">
 
-
-### Breakpoints
-* it was a celery task, so I put a breakpoint to avoid the celery dispact resolving shim sham shimmy, advice: with much wrapping put a breakpoint where you are sure it will reach.
-* `b 108,statistic_type=='spam'`
-* breapoints allow a test-journey:
-  - instead of put print here, restart, put print there, restart
-  - put break here, check. Put break there, check within a single run
+* Breakpoints help to avoid stepping through heavily-decorated functions, like celery-tasks
+* breakpoints allow a test-journey:
+  - put breakpoint, check, put next breakpoint continue, all within a single run
 * one-time breakpoints
 * watching variables with post-run `commands`
-* %debug iPython magic
 * break
   - filename:lineno | function
   - condition
-* tbreak aka tea break
-* `_` variable stores the result of previous ivocation
-* condition may be useful when a bug happens only on certain conditions, like looping over a bunch of records, and only orders from France are processed incrorrectly.
+* condition may be useful when a bug happens only on certain conditions, like looping over a bunch of orders, and only orders from a single country process incorrectly.
 * it's better to avoid modifying the code with `breakpoint`/`set_trace`, less chance of committing to production
 * `python -m ipdb -c "b levels/main.py:13" -c "b levels/main.py:14" play.py`
 
-### Preventing Bugs
 
-> If you want more effective programmers, you will discover that they should not waste their time debugging, they should not introduce the bugs to start with.
-  – Edsger W. Dijkstra
-
-Talk how it's better to write good code instead of fixing errors.
-
-* flake8
-* autopep8
-* isort
-
-### .pdbrc and aliases
+### Aliases and .pdbrc
 * pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
 * mostly useful for aliases
 * `alias` can take all arguments with `%*`
 * `import pprint; pprint(self.__dict__)` vs `pp vars(self)`
 * even if you cannot write to `.pdbrc`, keep your local config up-to-date and paste the aliases file in remote Pdb-shells, after all it's just a list of legal debugger commands.
 
-### Anatomy of PDB
-* [PDB, IPDB, BDB, CMD] diagram with explanation of responsibilities
-* inherits from `cmd.Cmd` and `cmd.Bdb`
-* debugger is extensible, `Pdb` class, `bdb` and `cmd` modules
+
+### Debuggers Genealogy
+
+<img src="/images/geneaology.png" width="800" title="Genealogy">
 
 #### Bdb
 * the core of all python debuggers
@@ -438,17 +423,16 @@ Talk how it's better to write good code instead of fixing errors.
   - clear_all_breaks
   - `get_{bpbynumber, break, breaks, file_breaks}`
 
-
 #### CMD aside
+* part of the standard library
+* creates a simple command-line interace (CLI) interpreter
 * client code spectrum:
   - simple script
   - command with arguments
   - Command line environment
-  - Graphical wrapper
-* part of the standard library
-* creates a simple command-line interace (CLI) interpreter
+  - Graphical wrapper?
 * documentation page has a cute example `TurtleShell`
-* Cmd2 is actually better, common pattern with standard implementations
+* Cmd2 has more features, common pattern with standard implementations
 
 ### Debuggers comparisson
 
@@ -503,36 +487,48 @@ Talk how it's better to write good code instead of fixing errors.
   - hijacks Pdb name
 
 #### IDE/Visual debuggers
-  * no stray code
   * better display of variables
-  * jump to source
+  * better source code display
   - cannot run in terminal
-  - extra steps for remote or container debugging
-  - loss of oldschool-cred
+  - extra setup for remote or container debugging
   - they cost money?
+  - ~loss of oldschool-cred~
 
-* Image: debugger skill-chart
+* Debuggers
   - 1/0
   - print
   - pdb
   - ipdb / pdb++
   - pudb* / graphical / IDE
-  - avoiding bugs with isort, flake8, autopep8
 
-
-### Strace ?
+### Strace
 ```bash
 sudo strace -s 65535 -v -p {PID}
 ```
 
+### Preventing Bugs
+
+<img src="/images/broken_windows.jpg" width="600" title="Broken Windows">
+
+> If you want more effective programmers, you will discover that they should not waste their time debugging, they should not introduce the bugs to start with.
+  – Edsger W. Dijkstra
+
+Talk how it's better to write good code instead of fixing errors.
+
+* flake8
+* autopep8
+* isort
+
 ### Conclusion
 
 * Now you know what to do when you encounter a bug
-  - configure a debugger of choice: `pdb`, `ipdb`, or `pudb`
-  - insert a breakpoint
-  - if it's live use one of `run`, `runeval`, or `runcall` or `set_trace` in a closure
+  - don't shy away from shell debuggers, it's like a text adventure after all
+  - insert breakpoint instead of `print`
+  - if it's live use `runcall` or `set_trace` in a wrapper
+  - have some idea of what popular debuggers are out there
 
 * Call to action
   - install `ipdb`, `pudb`, and `pdbpp` in all environments where you are allowed to run a Python shell
   - add useful aliases to a .pdbrc file, to not type `pp vars(self)` all the time
   - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
+  - if you get an exception in a shell run `*db.pm()`
