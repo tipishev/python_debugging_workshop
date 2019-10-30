@@ -508,12 +508,12 @@ sudo strace -s 65535 -v -p {PID}
 
 ### Preventing Bugs
 
-<img src="/images/broken_windows.jpg" width="600" title="Broken Windows">
-
 > If you want more effective programmers, you will discover that they should not waste their time debugging, they should not introduce the bugs to start with.
   – Edsger W. Dijkstra
 
-Talk how it's better to write good code instead of fixing errors.
+<img src="/images/broken_windows.jpg" width="600" title="Broken Windows">
+
+Broken windows theory
 
 * flake8
 * autopep8
