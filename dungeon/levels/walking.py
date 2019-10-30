@@ -11,7 +11,7 @@ def check_walking_password(player):
     return check_password(player,  '8daa34c8e8e1cf098158f4ef2699598e')
 
 
-def a_room(player):  # sweet! So glad that you stepped in
+def a_room(player):
     _  # feel free to (s)tep instead of (n)ext
     _  # on non-calling lines the result is the same
 
@@ -19,12 +19,10 @@ def a_room(player):  # sweet! So glad that you stepped in
     _  # by (s)tep..
     _
     _  # keep going with `Enter`
-    _  # remember, it just repeats the la(s)t command.
+    _  # remember, it just repeats the last command.
     _
-    _  # you can skip many lines with `(unt)il {line_number}`
-    _  # the password hint is on line 42
-    _  # get there with `until 42`
-    _
+    _  # skip many lines with `(unt)il {line_number}`
+    _  # type `until 42` to see the level password hint
     _
     _
     _
@@ -39,23 +37,23 @@ def a_room(player):  # sweet! So glad that you stepped in
     _
     _
     _
-    _  # A European mole, also the short form of command `until`
-    _  # pick it up: `!player.inventory.append(answer)`
     _
-    _  # By the way, `!` is your friend
+    _
+    _  # "A European mole, short form of `until` (3 letters)"
+    _  # type `!player.inventory.append(answer)` to pick it up
+    _  #
     _  # type `m = "mimic"` and call `locals()`
     _  # now type `n = "naga"`..
     _  # .. and  call `locals()`
-    _  # `n` was a mimic!
-    _  # the debugger prefers own commands to Python
-    _  # so prefix Python code with `!`
+    _  # `n` is a mimic!
+    _  # for the expected behavior type `!n =  "naga"`
+    _
     _
     _  # there is nothing else to see in this room
     _  # you can fast-forward to the exit with (r)eturn
     _
     _  # seriously, nothing to see...
     _  # go to (r)eturn
-    _
     _
     _  # ok. Here's a bad joke.
     _  # "A programmer got an SMS: 'while outside, buy milk'...
@@ -70,7 +68,7 @@ def a_room(player):  # sweet! So glad that you stepped in
     _
     _
     _
-    _  # Thank you for walking with us, buh-bye!
+    _  # thank you for walking with us, buh-bye!
     return player  # either (n)ext or (s)tep will take you back
 
 

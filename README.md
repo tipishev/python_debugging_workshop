@@ -62,7 +62,7 @@ The third argument against `print`s is that they ofthen get into production code
 
 By the way, "it will get to production" applies not only to `print` statements, but to anything that touches your code but should not go to production . I call this extension of the Murphy's law the "The Curse of The Bearded Crab". I used to work for an entertainment events aggregator, and we put silly fake events in our staging environment. And guess what, one day, a misconfigured import, uploaded "the Concert of The Bearded Crab" to the main page. So, think of the Bearded Crab as an evil deity who preys on you losing focus.
 
-Finally, a debugger allows to explore not only your application code, but also to get into 3rd party modules that you call, which gives a 
+Finally, a debugger allows to explore not only your application code, but to also step inside 3rd party modules that your code uses.
 
 So, next time your fingers type `print`, please stop and put a debugger breakpoint instead.
 
@@ -79,16 +79,16 @@ Then you will find console-debugging similar to playing such a game:
 They are both...
 
 * controlled with just a few commands:
-  - "north, open, examine" in games
-  - and "next, step, continue" in debugger
-* the commands can be abbreviated:
+  - "north, south, open, examine" in games
+  - and "next, step, break, continue" in debugger
+* the commands can be abbreviated to single letters:
   - In interactive fiction it is common to have `n` for (n)orth, `o` for (o)pen, and `x` for e(x)amine
-  - Python debugger has the same: `n` for (n)ext, `s` for (s)tep, and `c` for (c)continue
+  - Python debugger has the same: `n` for (n)ext, `s` for (s)tep, `b` for (b)reak, and `c` for (c)continue
 * Both can be harsh:
-  - if you die in a game you start from the beginning
-  - unhandled exceptions stop the debugger
+  - In Nethack, the most known roguelike, when you die you lose all progress, but can identify your possessions at the moment of death.
+  - When an unhandled exception hits you in a debugger, you cannot continue, but enter a post-mortem mode to look at the program state at the moment of exception.
 
-Funnily enough, when we look at our codebases, the similarity with dungeons becomes only stronger. See for yourself, we and our colleagues build them over years, and sometimes we do Git archeology to (dig up history)[https://github.com/tipishev/git_workshop].
+Funnily enough, when we look at our codebases, the similarity with dungeons becomes only stronger. See for yourself, we build them over years, layer upon layer, with parts of them getting abandoned, here and there you see scarce outdated comments from people who are no longer with you. The process of recovering the lost knowledge is akin to archeology, but instead of a pickaxe you (dig up history)[https://github.com/tipishev/git_workshop] with Git commands.
 
 A typical code-dungeon looks like this:
 
@@ -96,7 +96,7 @@ A typical code-dungeon looks like this:
 
 * a single point of entry
 * each function is a corridor
-* the more lines there is in a function the longer the corridor
+* the more lines in a function the longer the corridor
 * calling a function within a function takes you one level deeper down the call stack
 * returning from a function returns you one level up, to the line where you entered
 * luckily there are no GOTO statements in Python, so each function has a single point of entry,
@@ -109,7 +109,7 @@ For your entertainment I prepared a small game "The Quest for Golden Python", wh
 
 Does everyone have Python 3.7+ installed? It's not critical as long as you have Python3.
 
-If you want to follow along, clone this repository from
+If you want to follow along, please clone this repository from
 
 * https://github.com/tipishev/python_debugging_workshop
 * or here is a short link https://git.io/JeEhw
@@ -123,9 +123,11 @@ pip install -r requirements.pip
 cd dungeon
 ```
 
+_give 3-5 minutes to setup_
+
 Before we start, let's edit `play.py`. Here we create an instance of `Player` with a name and an empty starting inventory. As you can see, the `Player` class itself is very simple.
 
-All locations in the game are functions to which we pass the player instance and hopefully get it back. The game starts with enterng `main_corridor` from which all the other corridors branch. The goal of the game is to obtain the Golden Python, and possibly save the world.
+All locations in the game are functions to which we pass the player instance and hopefully they return player back. The game starts with enterng `main_corridor` from which all the other corridors branch. The goal of the game is to obtain the Golden Python, and possibly save the world, I don't know.
 
 ### Quest 0: Scare the Rat
 
@@ -135,7 +137,7 @@ So, if everyone is ready, let's run the game.
 python play.py
 ```
 
-We immediately see an error, that happened in the `main_corridor`. The player was eaten by a rat. Looks like we need to have at least something in our inventory. Let's take something, let's say a big broomstick, to scare the rat away. And run the the game again.
+We immediately see an error, that happened in the `main_corridor`. The player was eaten by a rat. Judging by the error message we need to have at least something in our inventory. Let's take a big broomstick, to scare the rat away. And run the the game again.
 
 ```bash
 ./play.py
@@ -147,8 +149,7 @@ Having a broom helped, but now we hit a different error and can use a debugger. 
 
 _type `import pdb; pdb.set_trace()` right above `player = main_corridor(player)`_
 
-You don't have to worry about `ImportError`: `pdb` is in the standard library.
-
+You don't have to worry about `ImportError`: `pdb` is part of the standard library.
 
 ```bash
 ./play.py
@@ -158,40 +159,38 @@ You don't have to worry about `ImportError`: `pdb` is in the standard library.
 – Unknown
 
 Now, when we run `play.py` we are greeted by the Pdb prompt.
-Debugger becomes our Dungeon Master, stops the program right after the breakpoint and politely asks us what to do next.
+Pdb becomes our Dungeon Master, stops the program on the line after the breakpoint and politely asks us what to do next.
 
 First of all, we can just `quit` the debugger with `q`
 
 _do that_
 
-or tell it to `continue` with `c`
+or tell it to `continue` running towards the error with `c`
 
 _do that_
 
-and inevitably crash with the same error as before.
+Or we can look around us, with `l`, which stands not for `look` as in text adventures but for `list`.
 
-Or we can look around us, with `l`, the full command, however, is not `look` but `list`.
-
-The real fun begins when we learn to navigate our code dungeon.
+The real fun begins when we start navigating our code dungeon.
 
 There are 2 types of movement:
 
-* horizontal – within a single function
+* horizontal – within a single function or frame
 * vertical – up and down the call stack
 
-Let's have an overview of moving within a single function:
+Let's look at moving within a single function:
 
 ![Next](/images/walking/1_next.png)
 
-The first command is called `next`, it simply takes us to the next line. Here and in following examples, blue shows the position before the command, the orange – the position after. So, if we were on line 42 and typed next, we are taken to line 43.
+The first command is called `next`, it simply takes us to the next line. Here and in following examples, blue shows the position before the command, the orange – the position after. So, typing `next` on line 42 takes us to line 43.
 
 ![Next on call](/images/walking/2_on_fun.png)
 
-If we are on a line that makes a function call, we have 2 choices.
+If we are on a line with a function call, we have 2 choices.
 
 ![On fun next](/images/walking/3_on_fun_next.png)
 
-We can choose `next` and the nested function runs behind the scenes and we continue to line 45. Think of next: "stay local and avoid any foreign functions"
+We can choose `next` and the nested function executes behind the scenes and we continue to line 45. Think of `next` as "stay local and avoid any foreign functions".
 
 ![On fun step](/images/walking/4_on_fun_step.png)
 
@@ -199,25 +198,29 @@ Or we can type `step` and go vertically one level down to line 17, inside the ne
 
 ![Until](/images/walking/5_until.png)
 
-We can also use command `until {line_number}` instead of typing `next` or `n`.
-This command is useful for skipping loops. If lines 18 to 20 contained a loop, I would have to press `n` for each iteration.
+We can also fast travel with `until {line_number}` instead of typing `next` or `n`.
+This command is useful for skipping loops. If lines 18 to 20 contained a loop, both `next` or `step` would make us go through each iteration.
 
-If a return happens before the `{line_number}`, debugger stops there. For example, if I accidentally type `until 210`, the debugger stops on line 23 and waits for the input.
+If a return happens before the `{line_number}`, debugger stops there. For example, if I accidentally typed `until 210`, the debugger would stop on line 23 and wait for further commands.
 
 ![Return](/images/walking/6_return.png)
 
-If we specifically want to stop before returning to the function above, we can type `return` or `r`.
+If we specifically want to stop before returning to the calling function , we can type `return` or `r`.
 
-`return` is useful when we lose interest in the current function, get stuck in a loop, or step in the nested function by accident.
+It gets useful when we
+
+* lose interest in the function and just want to see what it returns
+* get stuck in a loop
+* or `step` in the nested function by accident, instead of typing `next`
 
 Let's try these commands in the debugger.
 
-But before we do that, let's get some light. By default Pdb shows just the current line, so we will have to use `l` a lot. Instead, we can use an iPdb, an improved version of Pdb. For that we just add a couple of `i`s to our hardcoded breakpoint.
+But before we do that, let's get a lantern. By default Pdb shows just the current line, so we may have to use `l` a lot. Instead, we can use an iPdb, an iPython-wrapper around Pdb. For that we just add a couple of `i`s to our hardcoded breakpoint.
 
 Notice the improvements:
 
-* we now have color
-* we see a bit more of the context
+* we now have color vision with syntax highlight
+* we see 3 lines of context instead of just one
 
 Now let's step in the `walking_corridor` and get our first amulet.
 
