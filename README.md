@@ -248,7 +248,7 @@ It was introduced in PEP-553 because..
 
 * The linter complains about multiple statements on one line
 * It's short and easy to remember
-* Even JavaScript has a `debugger` builtin
+* Even JavaScript has a `debugger` statement
 
 Let's put it by the entrance to the corridor of looking.
 
