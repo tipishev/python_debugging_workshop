@@ -1,6 +1,7 @@
-from mechanics import check_password
 import random
 import codecs
+
+from mechanics import check_password
 
 _ = None
 
@@ -44,7 +45,6 @@ def breaking_corridor(player):
 
     # you learn a new language!  # try it with player.translate('Uhyyb!')
     setattr(player, 'translate', lambda s:  codecs.encode(s, 'rot13'))
-    _
     _
 
     _  # the number on the left shows this breakpoint
