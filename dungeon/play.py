@@ -16,13 +16,12 @@ class Player:
 player = Player(
     name='Tim',
     inventory=[
-        'broom',
-        # 'amulet of walking',
-        # 'amulet of stacking',
-        # 'amulet of looking',
-        # 'amulet of examination',
-        # 'amulet of jumping',
-        # 'amulet of breaking',
+        #  'amulet of walking',
+        #  'amulet of stacking',
+        #  'amulet of looking',
+        #  'amulet of examination',
+        #  'amulet of jumping',
+        #  'amulet of breaking',
     ],
 )
 
