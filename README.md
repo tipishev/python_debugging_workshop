@@ -17,50 +17,52 @@ Some developers say they don't need a debugger in a scripting language, since th
 
 > "If you need a debugger, the error had happened much earlier."
 
-Meaning that someone had complicated the code so much that reading the source does not help much.
+Meaning that someone had complicated the logic so much that reading the source code does not help.
 
 <img src="/images/tunnelbana.png" width="400" title="Tunnelbana">
 
-But on the other hand, a complex application, can be compared to a transit system. Of course, you have your source: the transit map and schedules. But would you bet your lunch money on the exact location of any given train?
+But on the other hand, a complex application, can be compared to a transit system. Certainly, you have your "source code": the transit map and schedules. But would you bet your lunch money on even approximate location of any given train?
 
 <img src="/images/rube_goldberg.jpg" width="400" title="Rube Goldberg">
 
-That is exactly the problem, that the debuggers solve. They allow us to see inside the black box and examine the runtime state of the code.
+That is exactly the problem, that the debuggers address. They allow us to look inside the black box and examine the runtime state of the code.
 
 While preparing this workshop I have looked at a number of debugging tutorials and they all follow the same structure.
 
-* Warn agains using `print` statements
-* Recap Pdb documentation
-* Show examples of using debugger commands
+They
 
-I tried to make this workshop a bit differently: on top of the three points above we will also look at other Python debuggers and learn when it is better to use one or the other. Another thing that I will tell is useful tips and tricks.
+* warn agains using `print` statements
+* recap Pdb documentation
+* show examples of using debugger commands
+
+I tried to make this workshop a bit differently: on top of the three points above we will look at different Python debuggers and ways to invoke them depending on the context: whether you develop locally, or run code in a remote shell. I will also share pragmatic tips from my day-to-day.
 
 ### Print Considered Harmful
 
 ![Boat vs Surf](/images/boat_vs_surf.jpg)
 
-Now I am legally required to scorn you for `print`-debugging and explain what's wrong with it.
+Before we start, I am legally required to talk about `print`-debugging and what's wrong with it.
 
-First of all, `print` is very limitted in what it can do and is often used just to check whether the code runs at all. Using `print` for that is an overkill, there is a 3-character Python built-in function for that.
+First of all, `print` is limitted in what it can do and is often used simply to check whether the code runs at all. Using `print` for that is an overkill, there is a better way. Python has a 3-character Python built-in for that.
 
 `1/0`
 
 Also known as the Redneck Breakpoint
 
-unlike print it does not get lost in console output, you don't have to decorate it with `=================` or `***************` it just crashes your program loudly and proudly. If you need more than one, use `2/0`, `3/0`, etc.
+unlike the timid `print` it does not get lost in the console output, it crashes your program loudly and proudly. If you need more than one, use `2/0`, `3/0`, etc.
 
 <img src="/images/printgles.png" width="400" title="Printgles">
 
-Secondly, one print is never enough, like Pringles, once you pop, you cannot stop
-You put one, it doesn't work, then you put another one, and yet another one. And to see changes you need to restart your code every time, which may be quite slow, for example in Docker. We want a short feedback loop to test our bug-origing theories as fast as we can without breaking the flow of thought.
+Secondly, one print is never enough, like Pringles, once you pop, you cannot stop.
+You put one, it doesn't work, then you put another one, and yet another one. And in order to see the changes you need to restart the application every time, which may be quite slow, for example in Docker. We want a short feedback loop to test our bug-origin theories as fast as we can without breaking the flow of thought.
 
-Another argument against `print`s is that they ofthen get into production code. If you don't believe me, just search your codebase git history.
+The third argument against `print`s is that they ofthen get into production code. If you don't believe me, just search your codebase git history.
 
 <img src="/images/crab.png" width="400" title="Bearded Crab">
 
-By the way, "it will get to production" applies not only to `print` statements, but to any silly code and data. I call this phenomenon the "The Curse of The Bearded Crab". When I was working for an entertainment events aggregator, we used silly fake events for testing our staging environment. And guess what, one day, a misconfigured import, uploaded "the Concert of The Bearded Crab" to the main page. So, think of it as an evil deity that preys on your lack of attention.
+By the way, "it will get to production" applies not only to `print` statements, but to anything that touches your code but should not go to production . I call this extension of the Murphy's law the "The Curse of The Bearded Crab". I used to work for an entertainment events aggregator, and we put silly fake events in our staging environment. And guess what, one day, a misconfigured import, uploaded "the Concert of The Bearded Crab" to the main page. So, think of the Bearded Crab as an evil deity who preys on you losing focus.
 
-Finally, a debugger allows to explore not only your code, but also 3rd party modules, like Django and Celery.
+Finally, a debugger allows to explore not only your application code, but also to get into 3rd party modules that you call, which gives a 
 
 So, next time your fingers type `print`, please stop and put a debugger breakpoint instead.
 
