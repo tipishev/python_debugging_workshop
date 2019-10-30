@@ -358,11 +358,14 @@ combined e.g. `records = decode_xml(requests.get('http://example.com/huge.xml'))
 
 ### Postmortem
 
+
+<img src="/images/source_code_2011_poster.jpg" width="400" title="Source Code 2011">
+
 While we talk about running code inside a shell, there's a super-useful debugger feature "postmortem" abbreviated to `pm()`. It finds the last exception that happened iin the shell and allows to explore the state right before it happened.
 
-* Source Code 2011 movie
+Has anyone seen a 2011 movie Source Code? It's a movie about a guy who could live through the last 8 minutes of a person in a train accident, but could not change anything. Postmortem is a bit like this. You cannot follow the control, just observe the state at the moment of crash.
+
 * "I wish I was there when it happened!"
-* since it's postmortem, cannot follow the control, just observe the state at the moment of crash.
 * multiple ways to start
   - `python -m pdb|ipdb|pudb play.py arg1 arg2` and crash
   - `import *db; *db.pm()` in interactive shell. Will use `sys.last_traceback` for examination
