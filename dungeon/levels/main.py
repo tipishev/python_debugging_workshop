@@ -33,8 +33,5 @@ def main_corridor(player):
     if 'amulet of breaking' not in player.inventory:
         player = breaking_corridor(player)
 
-    #  if 'amulet of calling' not in player.inventory:
-    #      player = calling_corridor(player)
-
     player.inventory.append('Golden Python')  # you earned it!
     return player
