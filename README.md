@@ -226,11 +226,11 @@ Now let's step in the `walking_corridor` and get our first amulet.
 
 _go through walking corridor: warn about `!`, `c`, `n`, etc. serves right, don't use one-letter variables, `list`, `args` are more treacherous_
 
-Now we can add the 'amulet of walking' to our inventory.
+Let's add the 'amulet of walking' to our inventory, so that we don't go there again.
 
 ### Stacking
 
-Since you see how the game is structured we can move `set_trace()` directly in the main corridor. And while we are at it, let's give us even more light with `context=5`
+Since you see how the game is structured we can move `set_trace()` directly in the main corridor. And while we are at it, let's upgrade our lantern with `context=5`
 
 Let's go to the next level and see how to navigate vertically in the call stack.
 
@@ -244,7 +244,7 @@ _raise hand, too_
 
 But when we switch to Python 3.7, we can start using a builtin keyword `breakpoint()`.
 
-It was introduced in PEP553 because..
+It was introduced in PEP-553 because..
 
 * The linter complains about multiple statements on one line
 * It's short and easy to remember
@@ -261,17 +261,27 @@ To configure it use `export PYTHONBREAKPOINT=`...
   - `ipdb.set_trace` for iPdb
   - `pudb.set_trace` for Pudb (we'll look at it later)
 
-`breakpoint` passes args and kwargs to the handler, so we can put `breakpoint(context=7)` will make iPdb show 10 lines of context.
+`breakpoint` passes args and kwargs to the handler, so we can put `breakpoint(context=7)` will make iPdb show 7 lines of context.
 
-_demonstrate with context=7_
+_demonstrate_
 
-Since we talk about showing context, here is an illustration of context showing in Pdb and iPdb.
+
+To summarize showing context, here is an illustration of context in Pdb and iPdb.
 
 <img src="/images/lighting.png" width="640" title="Lighting">
 
 If we use the dungeon metaphor, context is how much of surroundings you can see.
 
+Let's switch back to Pdb by unsetting `PYTHONBREAKPOINT` and starting the script.
+
+```bash
+export PYTHONBREAKPOINT=""
+./play.py
+```
+
 By defaul, PDB shows just the current line, so often we would type `l` after `n` or `s`.
+
+
 We can turn this into a one liner with double-semicolon:
 
 ```python
@@ -288,9 +298,9 @@ alias sl s;;l
 
 Finally, for maximum slack, save the aliases to `.pdbrc` to load them at debugger start.
 
-I don't use Pdb unless nothing better is installed, however, Pdb has one killer feature: it is in the standard library. So, if you ssh to a server, have no install permissions, you can still run Pdb.
+iPdb gives us both color vision and more context, especially when you setu it up explicitly with `context` keyword.
 
-iPdb gives us both color vision and more context.
+Pragmatically speaking, same as with default Python shell, I don't use Pdb if I can install something better, although, Pdb has one killer feature: it is always installed. So, if you ssh to a server for the first time, you can run Pdb with no additional setup.
 
 
 ### Looking
