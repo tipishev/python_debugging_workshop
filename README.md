@@ -244,7 +244,7 @@ _raise hand, too_
 
 But when we switch to Python 3.7, we can start using a builtin keyword `breakpoint()`.
 
-It was introduced in PEP-553 because..
+It was introduced in PEP 553 because..
 
 * The linter complains about multiple statements on one line
 * It's short and easy to remember
