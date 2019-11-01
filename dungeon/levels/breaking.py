@@ -62,12 +62,12 @@ def breaking_corridor(player):
     _
     _
     _
-    _  # persistent breakpoints shine in loops: `b 80`
+    _  # persistent breakpoints shine inside loops: `b 70`
     _
     _
     _
     for person in crowd:
-        _  # `person.speak()` could give a hint
+        _  # `person.speak()` could give a hint, also `l 46,47`
     _
     _
     _
