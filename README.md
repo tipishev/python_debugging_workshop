@@ -412,7 +412,7 @@ Has anyone seen a 2011 movie Source Code? It's a movie about a guy who could liv
   - stack
   - breakpoints
 
-#### Code
+#### Source Code
 
 * vi-keys
 * breakpoint with `b`
@@ -498,25 +498,6 @@ Has anyone seen a 2011 movie Source Code? It's a movie about a guy who could liv
   - works better on bigger screens
   - no jumps https://github.com/inducer/pudb/issues/129
   * watch-statements
-  * code, variables, stack, breakpoints
-  * sticky mode: same as showing context?
-  * track draws a dependency graph and requires pypy
-  * `display` expressions should not have side effects
-  * can open editor
-  * can mark some frames as hidden using a decorator, don't display in stacktrace
-  * shell shell_pp python ipython pdb ipdb pdb pdb_pp, common pattern
-  * setattr condition can discriminate between 2 instances of the same class
-  * `break_on_setattr` can be attached even from within debugger.
-
-#### Config
-  * max pimping
-  * prompt
-  * highlight
-  * some colors settings
-  * editor `vim` by default or `editor = "subl {filename}:{lineno}"`
-  * hiding frames and showing their count, useful if you trust Django/celery or other 3rd party libraries
-  * `setup(self, pdb)`
-  * Pygments config, for example if you want `solarized` theme
 
 #### Pdb++ aka Pdbpp
 
@@ -524,14 +505,14 @@ Has anyone seen a 2011 movie Source Code? It's a movie about a guy who could liv
   * avoids one-letter trap by preferring context variables to debugger commands, can override with `!!command`
   * Disable `pdb.set_trace()`: any subsequent call to it will be ignored
   * `@pdb.break_on_setattr(attrname, condition=always)`
+  * highly configurable
 
 #### IDE/Visual debuggers
 
-  * better display of variables
-  * better source code display
+  * better display of variables and source
   * cannot run in terminal
   * extra setup for remote or container debugging
-  * they cost money?
+  * some cost money
   * ~loss of oldschool-cred~
 
 ### Strace
