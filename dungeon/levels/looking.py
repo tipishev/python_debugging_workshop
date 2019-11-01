@@ -1,4 +1,4 @@
-# "Worshipped by Lisps, feared by ships (4 letters)"
+# "A datastructure, too much of it can sink ships (4 letters)"
 # `!player.inventory.append(answer)`
 # `(c)ontinue` will take you to the breakpoint
 

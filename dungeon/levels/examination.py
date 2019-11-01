@@ -13,7 +13,7 @@ def check_examination_password(player):
 
 
 class Fish:
-    ''' swims, moralizes and kills the vibe '''
+    ''' swims, moralizes, and kills the vibe '''
 
     def bad_pun(self):
         print('Did you know that I am {self} Fish?')

@@ -400,6 +400,43 @@ Has anyone seen a 2011 movie Source Code? It's a movie about a guy who could liv
 * even if you cannot write to `.pdbrc`, keep your local config up-to-date and paste the aliases file in remote Pdb-shells, after all it's just a list of legal debugger commands.
 
 
+### PUDB
+
+* modern, "v.2019"
+* works best on a wide screen
+* 5 splits:
+  - code
+  - shell
+  - variables (and watches)
+  - stack
+  - breakpoints
+
+#### Code
+
+* vi-keys
+* breakpoint with `b`
+* breakpoints are preserved between runs
+* `H` to go back to the bottom frame, executing function
+* `m` to open modules
+* `ctrl-p` to open preferences
+
+#### Shell
+
+* clear button
+
+#### Variables
+
+* `n` to watch an expression
+
+#### Stack
+
+* stack, not much to say
+
+#### Breakpoints
+
+* edit breakpoint
+
+
 ### Debuggers Genealogy
 
 <img src="/images/geneaology.png" width="800" title="Genealogy">
@@ -481,30 +518,30 @@ Has anyone seen a 2011 movie Source Code? It's a movie about a guy who could liv
   * Pygments config, for example if you want `solarized` theme
 
 #### Pdb++ aka Pdbpp
+
+  * hijacks Pdb name
   * avoids one-letter trap by preferring context variables to debugger commands, can override with `!!command`
   * Disable `pdb.set_trace()`: any subsequent call to it will be ignored
   * `@pdb.break_on_setattr(attrname, condition=always)`
-  - hijacks Pdb name
 
 #### IDE/Visual debuggers
+
   * better display of variables
   * better source code display
-  - cannot run in terminal
-  - extra setup for remote or container debugging
-  - they cost money?
-  - ~loss of oldschool-cred~
-
-* Debuggers
-  - 1/0
-  - print
-  - pdb
-  - ipdb / pdb++
-  - pudb* / graphical / IDE
+  * cannot run in terminal
+  * extra setup for remote or container debugging
+  * they cost money?
+  * ~loss of oldschool-cred~
 
 ### Strace
+
+While we talk about looking inside the program runtime with debuggers, there is a Linux utility called `strace` if you have a long-running script but no idea what it is doing, launch
+
 ```bash
 sudo strace -s 65535 -v -p {PID}
 ```
+
+And it will show what kernel read/write operations are happening, it can leak the URLs the sctip accesses, the strings it reads and writes.
 
 ### Preventing Bugs
 

@@ -9,7 +9,7 @@ class LostInLegacyCode(Exception):
 
 MAYBE_HINT_1 = "When lazy and don't know go to Stack O......."
 MAYBE_HINT_2 = "Hints' wording is a silly whim, my favourite editor is V.."
-MAYBE_HINT_3 = "Could it be a real hint? when using Python don't use p...."
+MAYBE_HINT_3 = "Could it be a real hint? When debugging don't use p...."
 
 
 def check_stacking_password(player):
@@ -40,6 +40,7 @@ def stacking_corridor(player):  # you (s)tep in
     player = your_last_summer_code(player, hint=MAYBE_HINT_1)
 
     if check_stacking_password(player):  # what's (n)ext?
+
         # Excellent!
         player.inventory.append('amulet of stacking')
         return player  # press q to (q)uit
