@@ -45,9 +45,9 @@ Before we start, I am legally required to talk about `print`-debugging and what'
 
 First of all, `print` is limitted in what it can do and is often used simply to check whether the code runs at all. Using `print` for that is an overkill, there is a better way. Python has a 3-character Python built-in for that.
 
-----
+-----
 `1/0`
-----
+-----
 
 Also known as the Redneck Breakpoint
 
