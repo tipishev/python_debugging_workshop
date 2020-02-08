@@ -551,3 +551,17 @@ Broken windows theory
   - add useful aliases to a .pdbrc file, to not type `pp vars(self)` all the time
   - the next time you time your code breaks, put `import ipdb; ipdb.set_tace(context=10)`
   - if you get an exception in a shell run `*db.pm()`
+
+### Pre-Klarna TODO
+* fix typos
+* iron out the the demo hiccup "commands list"
+* PDB commands colored achievements checklist
+* Jupyter debugging
+  - J. noting Jupyter is interactive
+  - %debug magic
+  - PixieDust visual debugger
+  - Experiment with widgets.out (?)
+- read on iPython/Jupyter magics
+- dig into PUDB
+- dig into pdb++
+- rehearse with ipad/printed notes
