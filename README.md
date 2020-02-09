@@ -8,9 +8,9 @@ Hello everyone! My name is Tim and today I will talk about Python debugging.
 
 <img src="/images/debugging_game.png" width="400" title="Debugging Game">
 
-First of all, how many of you use a debugger in your daily workflow?
+First of all, how many of you systematically use a debugger in your daily workflow?
 
-* \<½ Awesome! It means that a lot of you will go to lunch with a new tool under the belt.
+* \<½ Awesome! It means that a lot of you will leave with a new tool under the belt.
 * \>½ Nice! Then you already know quite a few things that I tell, and it will be a refresher, with a few tips and tricks on top.
 
 Some developers say they don't need a debugger in a scripting language, since they can just look at the source. On one hand it's true and there is a saying
@@ -392,6 +392,32 @@ Has anyone seen a 2011 movie Source Code? It's a movie about a guy who could liv
 * it's better to avoid modifying the code with `breakpoint`/`set_trace`, less chance of committing to production
 * `python -m ipdb -c "b levels/main.py:13" -c "b levels/main.py:14" play.py`
 
+#### Sage Search
+
+as soon as in the loop on line 70
+
+```python
+person.speak()
+l 46,47
+player.translate(person.speak())
+continue
+try again..
+
+ipdb> commands 6
+(com) print(player.translate(person.speak()))
+(com) end
+
+
+
+display person.__class__.__name__
+# c a few times
+# undisplay
+
+commands 7
+print('person.__class__.__name__)
+end
+```
+
 
 ### Aliases and .pdbrc
 * pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
@@ -565,3 +591,5 @@ Broken windows theory
 - dig into PUDB
 - dig into pdb++
 - rehearse with ipad/printed notes
+- alias for take
+- w + l if got lost
