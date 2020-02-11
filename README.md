@@ -353,6 +353,8 @@ from play import main_corridor, player
 ipdb.runcall(main_corridor, player)
 ```
 
+__do the level__
+
 * In real world jumping helps to skip
   - network calls
   - expensive computation before debug-section
@@ -591,5 +593,11 @@ Broken windows theory
 - dig into PUDB
 - dig into pdb++
 - rehearse with ipad/printed notes
-- alias for take
+- alias for take in examination level
+
+```
+alias take !player.inventory.append(%1)
+```
+
 - w + l if got lost
+
