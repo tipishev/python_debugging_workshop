@@ -115,19 +115,19 @@ A typical code-dungeon looks like this:
 * luckily there are no `GOTO` statements in Python, so each function has a single point of entry,
 * though, it may have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit `None`.
 
---
 _On this diagram the numbers are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines in a function are always consecutive._
 
-For your entertainment I prepared a small game "The Quest for Golden Python", while going through it we will work with different aspects of using a debugger.
+For your entertainment I have prepared a small game "The Quest for Golden Python". Each level in it focuses on a different aspect of using a debugger.
 
 ### Installation
 
 Does everyone have Python 3.7+ installed? It's not critical as long as you have Python3.
 
-If you want to follow along, please clone this repository from
+In order to follow along please clone this repository from
 
 * https://github.com/tipishev/python_debugging_workshop
 * or here is a short link https://git.io/JeEhw
+
 
 ```bash
 git clone git@github.com:tipishev/python_debugging_workshop.git
