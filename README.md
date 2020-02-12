@@ -444,7 +444,7 @@ print('person.__class__.__name__)
 end
 ```
 
-<img src="/images/pdb_commands_coverage.png" width="400" title="pdb_commands_coverage">
+<img src="/images/pdb_commands_coverage.png" title="pdb_commands_coverage">
 
 ### Aliases and .pdbrc
 * pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
