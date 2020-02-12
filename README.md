@@ -35,7 +35,7 @@ They...
 * recap [Pdb documentation](https://docs.python.org/3/library/pdb.html)
 * show examples of using debugger commands
 
-I tried to make this workshop a bit differently: on top of the three points above we will look at different Python debuggers and ways to invoke them depending on the context: whether you develop locally, or run code in a remote shell. I will also share pragmatic tips from my day-to-day.
+I tried to make this workshop a bit differently: on top of the three points above we will look at different Python debuggers and ways to invoke them depending on the context: whether you develop locally or run code in a remote shell. I will also share pragmatic tips from my day-to-day.
 
 ### Print Considered Harmful
 
@@ -50,14 +50,26 @@ First of all, `print` is limitted in what it can do and is often used simply to 
 
 Also known as the Redneck Breakpoint
 
-unlike the timid `print` it does not get lost in the console output, it crashes your program loudly and proudly. If you need more than one, use `2/0`, `3/0`, etc.
+Unlike the timid `print` it does not get lost in the console output, it crashes your program loudly and proudly. If you need more than one, use `2/0`, `3/0`, etc.
 
 <img src="/images/printgles.png" width="400" title="Printgles">
 
-Secondly, one print is never enough, like Pringles, once you pop, you cannot stop.
+Secondly, one print is never enough, once you pop, you cannot stop.
 You put one, it doesn't work, then you put another one, and yet another one. And in order to see the changes you need to restart the application every time, which may be quite slow, for example in Docker. We want a short feedback loop to test our bug-origin theories as fast as we can without breaking the flow of thought.
 
-The third argument against `print`s is that they ofthen get into production code. If you don't believe me, just search your codebase git history.
+The third argument against `print`s is that they accidentally get into production code. If you don't believe me, try this 3 commands:
+
+```bash
+# in the current codebase
+git grep "print("
+
+# in commit messages
+git log --grep print
+
+# across all history
+git log -S 'print('
+
+```
 
 <img src="/images/crab.png" width="400" title="Bearded Crab">
 
