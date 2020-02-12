@@ -21,7 +21,7 @@ Meaning that someone had complicated the logic so much that reading the source c
 
 <img src="/images/tunnelbana.png" width="400" title="Tunnelbana">
 
-But on the other hand, a complex application, can be compared to a transit system. Certainly, you have your "source code": the transit map and schedules. But would you bet your lunch money on even approximate location of any given train?
+On the other hand, however, a complex application, is like a transit system. Certainly, you have your "source code": the transit map and schedules. But would you bet your lunch money on even approximate location of any given train?
 
 <img src="/images/rube_goldberg.jpg" width="400" title="Rube Goldberg">
 
@@ -29,10 +29,10 @@ That is exactly the problem, that the debuggers address. They allow us to look i
 
 While preparing this workshop I have looked at a number of debugging tutorials and they all follow the same structure.
 
-They
+They...
 
-* warn agains using `print` statements
-* recap Pdb documentation
+* warn against using `print` statements
+* recap (Pdb documentation)[https://docs.python.org/3/library/pdb.html]
 * show examples of using debugger commands
 
 I tried to make this workshop a bit differently: on top of the three points above we will look at different Python debuggers and ways to invoke them depending on the context: whether you develop locally, or run code in a remote shell. I will also share pragmatic tips from my day-to-day.
