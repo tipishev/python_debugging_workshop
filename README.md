@@ -32,7 +32,7 @@ While preparing this workshop I have looked at a number of debugging tutorials a
 They...
 
 * warn against using `print` statements
-* recap (Pdb documentation)[https://docs.python.org/3/library/pdb.html]
+* recap [Pdb documentation](https://docs.python.org/3/library/pdb.html)
 * show examples of using debugger commands
 
 I tried to make this workshop a bit differently: on top of the three points above we will look at different Python debuggers and ways to invoke them depending on the context: whether you develop locally, or run code in a remote shell. I will also share pragmatic tips from my day-to-day.
