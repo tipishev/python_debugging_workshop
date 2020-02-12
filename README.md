@@ -135,6 +135,9 @@ In order to follow along please clone this repository from
 * https://github.com/tipishev/python_debugging_workshop
 * or here is a short link https://git.io/JeEhw
 
+_wait till everyone clones the repo_
+
+__examine the requirements before installing__
 
 ```bash
 git clone git@github.com:tipishev/python_debugging_workshop.git
@@ -149,7 +152,7 @@ _give 3-5 minutes to setup_
 
 Before we start, let's edit `play.py`. Here we create an instance of `Player` with a name and an empty starting inventory. As you can see, the `Player` class itself is very simple.
 
-All locations in the game are functions to which we pass the player instance and hopefully they return player back. The game starts with enterng `main_corridor` from which all the other corridors branch. The goal of the game is to obtain the Golden Python, and possibly save the world, I don't know.
+All locations in the game are functions to which we pass the player instance and hopefully they return player back. The game starts with enterng `main_corridor` from which all the other corridors branch. The goal of the game is to obtain the Golden Python, learn debugging, and possibly save the world, I don't know.
 
 ### Quest 0: Scare the Rat
 
@@ -159,7 +162,7 @@ So, if everyone is ready, let's run the game.
 python play.py
 ```
 
-We immediately see an error, that happened in the `main_corridor`. The player was eaten by a rat. Judging by the error message we need to have at least something in our inventory. Let's take a big broomstick, to scare the rat away. And run the the game again.
+We immediately see an error, that happened in the `main_corridor`. The player was eaten by a rat. Judging by the error message we need to have at least something in our inventory. Let's take a big broomstick and make sure it's a big one, to scare the rat away. And run the the game again.
 
 ```bash
 ./play.py
@@ -183,11 +186,11 @@ You don't have to worry about `ImportError`: `pdb` is part of the standard libra
 Now, when we run `play.py` we are greeted by the Pdb prompt.
 Pdb becomes our Dungeon Master, stops the program on the line after the breakpoint and politely asks us what to do next.
 
-First of all, we can just `quit` the debugger with `q`
+First of all, we can just `quit` the debugger with `q`.
 
 _do that_
 
-or tell it to `continue` running towards the error with `c`
+..or tell it to `continue` happily running towards the error with `c`.
 
 _do that_
 
@@ -441,6 +444,7 @@ print('person.__class__.__name__)
 end
 ```
 
+<img src="/images/pdb_commands_coverage.png" width="400" title="pdb_commands_coverage">
 
 ### Aliases and .pdbrc
 * pdb config file .pdbrc or ~/.pdbrc, local overrides global, as in git or laws
@@ -603,7 +607,7 @@ Broken windows theory
 
 ### Pre-Klarna TODO
 * fix typos
-* iron out the the demo hiccup "commands list"
+* ~~iron out the the demo hiccup "commands list"~~
 * PDB commands colored achievements checklist
 * Jupyter debugging
   - J. noting Jupyter is interactive
