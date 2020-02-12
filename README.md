@@ -101,7 +101,7 @@ They are both...
   - In Nethack, the most known roguelike, when you die you cannot load game, you lose all progress, but can identify your possessions at the moment of death.
   - When an unhandled exception hits you in a debugger, you cannot undo, cannot continue, but enter a post-mortem mode to look at the program state at the moment of exception.
 
-Funnily enough, when we look at our codebases, the similarity with dungeons becomes only stronger. See for yourself: we build them over years, layer upon layer, with parts of them getting abandoned, here and there one finds scarce outdated comments from people who are no longer around. The process of recovering the lost knowledge is akin to archeology, but instead of a pickaxe you dig up history with Git commands. Git-archeology among other topics is featured in my other [workshop](https://github.com/tipishev/git_workshop). `</shameless_plug>`
+Funnily enough, when we look at our codebases, the similarity with dungeons becomes only stronger. See for yourself: we build them over years, layer upon layer, with parts of them getting abandoned, here and there one finds scarce outdated comments from people who are no longer around. The process of recovering the lost knowledge is akin to archeology, but instead of a pickaxe you dig up history with Git commands. Git-archeology among other topics is featured [in my other workshop](https://github.com/tipishev/git_workshop). `</shameless_plug>`
 
 A typical code-dungeon looks like this:
 
@@ -115,7 +115,8 @@ A typical code-dungeon looks like this:
 * luckily there are no `GOTO` statements in Python, so each function has a single point of entry,
 * though, it may have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit `None`.
 
-__On this diagram the numbers are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines in a function are always consecutive.__
+--
+_On this diagram the numbers are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines in a function are always consecutive._
 
 For your entertainment I prepared a small game "The Quest for Golden Python", while going through it we will work with different aspects of using a debugger.
 
