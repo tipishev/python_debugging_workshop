@@ -73,11 +73,11 @@ git log -S 'print('
 
 <img src="/images/crab.png" width="400" title="Bearded Crab">
 
-By the way, "it will get to production" applies not only to `print` statements, but to anything that touches your code but should not go to production . I call this extension of the Murphy's law the "The Curse of The Bearded Crab". I used to work for an entertainment events aggregator, and we put silly fake events in our staging environment. And guess what, one day, a misconfigured import, uploaded "the Concert of The Bearded Crab" to the main page. So, think of the Bearded Crab as an evil deity who preys on you losing focus.
+By the way, "it will get to production" applies not only to `print` statements, but to anything that touches your code but should not go in production. I call this extension of the Murphy's law "The Curse of The Bearded Crab". I used to work for an entertainment events aggregator, and we put silly fake events in our staging environment. And guess what, one day, a misconfigured import, uploaded "the Concert of The Bearded Crab" to the main page. So, think of the Bearded Crab as an evil deity who preys on your lost focus.
 
-Finally, a debugger allows to explore not only your application code, but to also step inside 3rd party modules that your code uses.
+Finally, a debugger allows to explore not only your application code, but to also step inside 3rd party dependencies. It is a good way to explore how other people's code works especially in heavy-duty frameworks such as Django, celery, or sklearn.
 
-So, next time your fingers type `print`, please stop and put a debugger breakpoint instead.
+So, the next time your fingers type `print`, please stop and put a debugger breakpoint instead.
 
 ### Debugging as Text Adventure
 
@@ -98,10 +98,10 @@ They are both...
   - In interactive fiction it is common to have `n` for (n)orth, `o` for (o)pen, and `x` for e(x)amine
   - Python debugger has the same: `n` for (n)ext, `s` for (s)tep, `b` for (b)reak, and `c` for (c)continue
 * Both can be harsh:
-  - In Nethack, the most known roguelike, when you die you lose all progress, but can identify your possessions at the moment of death.
-  - When an unhandled exception hits you in a debugger, you cannot continue, but enter a post-mortem mode to look at the program state at the moment of exception.
+  - In Nethack, the most known roguelike, when you die you cannot load game, you lose all progress, but can identify your possessions at the moment of death.
+  - When an unhandled exception hits you in a debugger, you cannot undo, cannot continue, but enter a post-mortem mode to look at the program state at the moment of exception.
 
-Funnily enough, when we look at our codebases, the similarity with dungeons becomes only stronger. See for yourself, we build them over years, layer upon layer, with parts of them getting abandoned, here and there you see scarce outdated comments from people who are no longer with you. The process of recovering the lost knowledge is akin to archeology, but instead of a pickaxe you (dig up history)[https://github.com/tipishev/git_workshop] with Git commands.
+Funnily enough, when we look at our codebases, the similarity with dungeons becomes only stronger. See for yourself: we build them over years, layer upon layer, with parts of them getting abandoned, here and there one finds scarce outdated comments from people who are no longer around. The process of recovering the lost knowledge is akin to archeology, but instead of a pickaxe you dig up history with Git commands. Git-archeology among other topics is featured in my other [workshop](https://github.com/tipishev/git_workshop). `</shameless_plug>`
 
 A typical code-dungeon looks like this:
 
@@ -111,10 +111,11 @@ A typical code-dungeon looks like this:
 * each function is a corridor
 * the more lines in a function the longer the corridor
 * calling a function within a function takes you one level deeper down the call stack
-* returning from a function returns you one level up, to the line where you entered
-* luckily there are no GOTO statements in Python, so each function has a single point of entry,
-* though, it may have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit None.
-* On this diagram the numbers are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines in a function are always consecutive.
+* returning from a function takes you one level up, to the line where you entered
+* luckily there are no `GOTO` statements in Python, so each function has a single point of entry,
+* though, it may have multiple return points, for example a condition check may return the result earlier. And even if you don't return explicitly, Python returns an implicit `None`.
+
+__On this diagram the numbers are relative to each function. In real code all functions may be defined in the same file and their starting line number can be anywhere, but lines in a function are always consecutive.__
 
 For your entertainment I prepared a small game "The Quest for Golden Python", while going through it we will work with different aspects of using a debugger.
 
