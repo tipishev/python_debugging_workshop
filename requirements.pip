@@ -2,5 +2,5 @@
 
 pudb==2019.2
 ipdb==0.12.3
-pdbpp==0.10.2
+# pdbpp==0.10.2  # hijacks pdb if installed
 rpdb==0.1.6
