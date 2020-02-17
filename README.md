@@ -474,6 +474,7 @@ end
 * `m` to open modules
 * `ctrl-p` to open preferences
 
+
 #### Shell
 
 * clear button
@@ -489,6 +490,52 @@ end
 #### Breakpoints
 
 * edit breakpoint
+
+### Exercise
+
+check your terminal size
+
+```bash
+tput lines
+# e.g. 174
+
+tput lines
+# e.g. 51
+```
+
+In the code:
+
+```python
+from sklearn.metrics import r2_score
+
+y_true = [3, -0.5, 2, 7]
+y_pred = [2.5, 0.0, 2, 8]
+
+from pudb.remote import set_trace
+set_trace(term_size=(174, 51))
+
+r2_score(y_true, y_pred)
+```
+
+No mouse, only arrows, shortcuts, and vi-keys.
+
+Old commands from PDB work:
+
+* (n)ext
+* (s)tep
+* (c)ontinue
+* (d)own
+* (u)p
+
+Ctrl-l to redraw the screen.
+
+Side panels: vi-keys work, as well as `PgUp`/`PgDn`, `Home`/`End`.
+
+Resizing:
+
+* `+` / `-`
+* `=` / `_`
+* `[` / `]`
 
 
 ### Debuggers Genealogy
@@ -573,10 +620,11 @@ end
 While we talk about looking inside the program runtime with debuggers, there is a Linux utility called `strace` if you have a long-running script but no idea what it is doing, launch
 
 ```bash
+# for longer lines
 sudo strace -s 65535 -v -p {PID}
 ```
 
-And it will show what kernel read/write operations are happening, it can leak the URLs the sctip accesses, the strings it reads and writes.
+And it will show what kernel read/write operations are happening, it can leak the URLs the script accesses, the strings it reads and writes.
 
 ### Preventing Bugs
 
