@@ -1,3 +1,6 @@
+# take item to inventory
+alias take !player.inventory.append(%1)
+
 # combined commands, ipdb.set_trace(context=10) is unavailable
 alias nl n;;l
 alias sl s;;l
@@ -15,7 +18,7 @@ alias i inv
 alias pi for k in sorted(vars(%1)): print(f"%1.{k}={vars(%1)[k]}")
 
 # Print instance variables in ~self~ player
-alias ps pi player
+alias ps pi self
 
 # timestamp and dump objects to a file, e.g. `dump "captains log"`
 alias dump !from datetime import datetime ;; with open('dump.txt', 'a+') as f: f.write(f'{datetime.now().isoformat()}\n{%*}\n\n')
